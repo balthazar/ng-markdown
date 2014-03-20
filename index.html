@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Pagedown by Apercu</title>
+    <title>Ng-Markdown by Apercu</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -20,9 +20,9 @@
   <body>
       <div id="header">
         <nav>
-          <li class="fork"><a href="https://github.com/Apercu/pagedown">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/Apercu/pagedown/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/Apercu/pagedown/tarball/master">TAR</a></li>
+          <li class="fork"><a href="https://github.com/Apercu/ng-markdown">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/Apercu/ng-markdown/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/Apercu/ng-markdown/tarball/master">TAR</a></li>
           <li class="title">DOWNLOADS</li>
         </nav>
       </div><!-- end header -->
@@ -31,7 +31,7 @@
 
       <section>
         <div id="title">
-          <h1>Pagedown</h1>
+          <h1>Ng-Markdown</h1>
           <p></p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/Apercu">Apercu</a></span>
@@ -39,7 +39,45 @@
         </div>
 
         <h1>
-<a name="pagedown-page" class="anchor" href="#pagedown-page"><span class="octicon octicon-link"></span></a>PageDown Page</h1>
+<a name="ng-markdown" class="anchor" href="#ng-markdown"><span class="octicon octicon-link"></span></a>Ng-Markdown</h1>
+
+<hr><h2>
+<a name="parameters" class="anchor" href="#parameters"><span class="octicon octicon-link"></span></a>Parameters</h2>
+
+<table>
+<thead><tr>
+<th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Defaults to</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td>sanitized</td>
+            <td>boolean</td>
+            <td>Sanitize the Markdown output.</td>
+            <td>true</td>
+        </tr>
+<tr>
+<td>prefix</td>
+            <td>string</td>
+            <td>How the elements of the markdown should be prefixed.</td>
+            <td>wmd-</td>
+        </tr>
+<tr>
+<td>postfix (required when more than 1 MarkDown on the page)</td>
+            <td>string</td>
+            <td>How the elements of the markdown should be postfixed.</td>
+            <td>""</td>
+        </tr>
+<tr>
+<td>preConversion</td>
+            <td>expression</td>
+            <td>Called with the Markdown source as given to the converter's makeHtml object, should return the actual to-be-converted source. Fine to chain.</td>
+            <td>null</td>
+        </tr>
+</tbody>
+</table>
       </section>
 
     </div>
