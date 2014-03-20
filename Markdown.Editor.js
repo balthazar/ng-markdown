@@ -14,10 +14,6 @@
             isOpera: /opera/.test(nav.userAgent.toLowerCase())
         };
 
-    // -------------------------------------------------------------------
-    //  CHANGES
-    // -------------------------------------------------------------------
-
 	var defaultsStrings = {
         bold: "Strong <strong> Ctrl+B",
         boldexample: "strong text",
@@ -58,38 +54,18 @@
     var imageDefaultText = "http://";
     var linkDefaultText = "http://";
 
-    // -------------------------------------------------------------------
-    //  END OF YOUR CHANGES
-    // -------------------------------------------------------------------
-
-    // options, if given, can have the following properties:
-    //   options.helpButton = { handler: yourEventHandler }
-    //   options.strings = { italicexample: "slanted text" }
-    // `yourEventHandler` is the click handler for the help button.
-    // If `options.helpButton` isn't given, not help button is created.
-    // `options.strings` can have any or all of the same properties as
-    // `defaultStrings` above, so you can just override some string displayed
-    // to the user on a case-by-case basis, or translate all strings to
-    // a different language.
-    //
-    // For backwards compatibility reasons, the `options` argument can also
-    // be just the `helpButton` object, and `strings.help` can also be set via
-    // `helpButton.title`. This should be considered legacy.
+	// The helpFunction is the help function handler, fired when a user click on
+	// the help button. It will not be created if null function is given.
+	//
+	// If given, strings can modify all the properties as defaultStrings above.
     //
     // The constructed editor object has the methods:
     // - getConverter() returns the markdown converter object that was passed to the constructor
     // - run() actually starts the editor; should be called after all necessary plugins are registered. Calling this more than once is a no-op.
     // - refreshPreview() forces the preview to be updated. This method is only available after run() was called.
-    Markdown.Editor = function (markdownConverter, idPostfix, options) {
-        options = options || {};
-        if (typeof options.handler === "function") { //backwards compatible behavior
-            options = { helpButton: options };
-        }
-        options.strings = options.strings || {};
-        if (options.helpButton) {
-            options.strings.help = options.strings.help || options.helpButton.title;
-        }
-        var getString = function (identifier) { return options.strings[identifier] || defaultsStrings[identifier]; }
+    Markdown.Editor = function (markdownConverter, idPostfix, idPrefix, helpFunction, strings) {
+        strings = strings || {};
+        var getString = function (identifier) { return strings[identifier] || defaultsStrings[identifier]; }
 
         idPostfix = idPostfix || "";
 
@@ -110,7 +86,7 @@
             if (panels)
                 return; // already initialized
 
-            panels = new PanelCollection(idPostfix);
+            panels = new PanelCollection(idPostfix, idPrefix);
             var commandManager = new CommandManager(hooks, getString);
             var previewManager = new PreviewManager(markdownConverter, panels, function () { hooks.onPreviewRefresh(); });
             var undoManager, uiManager;
@@ -127,7 +103,7 @@
                     that.refreshPreview();
                 }
             }
-            uiManager = new UIManager(idPostfix, panels, undoManager, previewManager, commandManager, options.helpButton, getString);
+            uiManager = new UIManager(idPostfix, idPrefix, panels, undoManager, previewManager, commandManager, helpFunction, getString);
             uiManager.setUndoRedoButtonStates();
 
             var forceRefresh = that.refreshPreview = function () { previewManager.refresh(true); };
@@ -284,10 +260,10 @@
     // This ONLY affects Internet Explorer (tested on versions 6, 7
     // and 8) and ONLY on button clicks.  Keyboard shortcuts work
     // normally since the focus never leaves the textarea.
-    function PanelCollection(postfix) {
-        this.buttonBar = doc.getElementsByClassName("wmd-button-bar" + postfix)[0];
-        this.preview = doc.getElementsByClassName("wmd-preview" + postfix)[0];
-        this.input = doc.getElementsByClassName("wmd-input" + postfix)[0];
+    function PanelCollection(postfix, prefix) {
+        this.buttonBar = doc.getElementsByClassName(prefix + 'button-bar' + postfix)[0];
+        this.preview = doc.getElementsByClassName(prefix + 'preview' + postfix)[0];
+        this.input = doc.getElementsByClassName(prefix + 'input' + postfix)[0];
     };
 
     // Returns true if the DOM element is visible, false if it's hidden.
@@ -1150,12 +1126,12 @@
         }, 0);
     };
 
-    function UIManager(postfix, panels, undoManager, previewManager, commandManager, helpOptions, getString) {
+    function UIManager(postfix, prefix, panels, undoManager, previewManager, commandManager, helpFunction, getString) {
 
         var inputBox = panels.input,
             buttons = {}; // buttons.undo, buttons.link, etc. The actual DOM elements.
 
-        makeSpritedButtonRow();
+        makeSpritedButtonRow(prefix);
 
         var keyEvent = "keydown";
         if (uaSniffed.isOpera) {
@@ -1363,7 +1339,7 @@
             return function () { method.apply(commandManager, arguments); }
         }
 
-        function makeSpritedButtonRow() {
+        function makeSpritedButtonRow(prefix) {
 
             var buttonBar = panels.buttonBar;
 
@@ -1372,11 +1348,11 @@
             var highlightYShift = "-40px";
 
             var buttonRow = document.createElement("div");
-            buttonRow.className = 'btn-toolbar wmd-button-row' + postfix;
+            buttonRow.className = 'btn-toolbar ' + prefix + 'button-row' + postfix;
             buttonRow = buttonBar.appendChild(buttonRow);
             var makeButton = function (id, title, classname, textOp) {
                 var button = document.createElement("i");
-                button.className = "wmd-button";
+                button.className = prefix + 'button';
                 button.className += " " + classname;
                 var buttonImage = document.createElement("span");
                 button.id = id + postfix;
@@ -1390,52 +1366,50 @@
             };
             var makeSpacer = function (num) {
                 var spacer = document.createElement("i");
-                spacer.className = "wmd-spacer ";
+                spacer.className = prefix + 'spacer';
                 buttonRow.appendChild(spacer);
             }
 
-            buttons.bold = makeButton("wmd-bold-button", getString("bold"), "icon-bold", bindCommand("doBold"));
-            buttons.italic = makeButton("wmd-italic-button", getString("italic"), "icon-italic", bindCommand("doItalic"));
+            buttons.bold = makeButton(prefix + "bold-button", getString("bold"), "icon-bold", bindCommand("doBold"));
+            buttons.italic = makeButton(prefix + "italic-button", getString("italic"), "icon-italic", bindCommand("doItalic"));
             makeSpacer(1);
-            buttons.link = makeButton("wmd-link-button", getString("link"), "icon-link", bindCommand(function (chunk, postProcessing) {
+            buttons.link = makeButton(prefix + "link-button", getString("link"), "icon-link", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, false);
             }));
-            buttons.quote = makeButton("wmd-quote-button", getString("quote"), "icon-quotes-left", bindCommand("doBlockquote"));
-            buttons.code = makeButton("wmd-code-button", getString("code"), "icon-code", bindCommand("doCode"));
-            buttons.image = makeButton("wmd-image-button", getString("image"), "icon-image", bindCommand(function (chunk, postProcessing) {
+            buttons.quote = makeButton(prefix + "quote-button", getString("quote"), "icon-quotes-left", bindCommand("doBlockquote"));
+            buttons.code = makeButton(prefix + "code-button", getString("code"), "icon-code", bindCommand("doCode"));
+            buttons.image = makeButton(prefix + "image-button", getString("image"), "icon-image", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, true);
             }));
             makeSpacer(2);
-            buttons.olist = makeButton("wmd-olist-button", getString("olist"), "icon-numbered-list", bindCommand(function (chunk, postProcessing) {
+            buttons.olist = makeButton(prefix + "olist-button", getString("olist"), "icon-numbered-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }));
-            buttons.ulist = makeButton("wmd-ulist-button", getString("ulist"), "icon-list", bindCommand(function (chunk, postProcessing) {
+            buttons.ulist = makeButton(prefix + "ulist-button", getString("ulist"), "icon-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }));
-            buttons.heading = makeButton("wmd-heading-button", getString("heading"), "icon-font", bindCommand("doHeading"));
-            buttons.hr = makeButton("wmd-hr-button", getString("hr"), "icon-insert-template", bindCommand("doHorizontalRule"));
+            buttons.heading = makeButton(prefix + "heading-button", getString("heading"), "icon-font", bindCommand("doHeading"));
+            buttons.hr = makeButton(prefix + "hr-button", getString("hr"), "icon-insert-template", bindCommand("doHorizontalRule"));
             makeSpacer(3);
-            buttons.undo = makeButton("wmd-undo-button", getString("undo"), "icon-undo2", null);
+            buttons.undo = makeButton(prefix + "undo-button", getString("undo"), "icon-undo2", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 getString("redo") :
                 getString("redomac");
 
-            buttons.redo = makeButton("wmd-redo-button", redoTitle, "icon-redo2", null);
+            buttons.redo = makeButton(prefix + "redo-button", redoTitle, "icon-redo2", null);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
-            if (helpOptions) {
-                var helpButton = document.createElement("li");
+            if (helpFunction) {
+                var helpButton = document.createElement("i");
                 var helpButtonImage = document.createElement("span");
                 helpButton.appendChild(helpButtonImage);
-                helpButton.className = "wmd-button wmd-help-button";
-                helpButton.id = "wmd-help-button" + postfix;
-                helpButton.XShift = "-240px";
+                helpButton.className = prefix + "button " + prefix + "help-button icon-question";
+                helpButton.id = prefix + "help-button" + postfix;
                 helpButton.isHelp = true;
-                helpButton.style.right = "0px";
                 helpButton.title = getString("help");
-                helpButton.onclick = helpOptions.handler;
+                helpButton.onclick = helpFunction;
 
                 setupButton(helpButton, true);
                 buttonRow.appendChild(helpButton);
