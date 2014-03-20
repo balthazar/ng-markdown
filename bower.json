@@ -1,7 +1,7 @@
 {
     "name": "pagedown",
     "version": "1.0.0",
-    "location": 'https://github.com/Apercu/pagedown',
+    "location": "https://github.com/Apercu/pagedown",
     "main": [
         "Markdown.Converter.js",
         "Markdown.Editor.js",
