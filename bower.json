@@ -15,6 +15,6 @@
         "Modifications and bugfixes (c) 2009-2013 Stack Exchange Inc.",
         "Balthazar Gronon <https://github.com/Apercu>"
     ],
-    "description": "PageDown directive for AngularJS",
+    "description": "MarkDown directive for AngularJS",
     "license": "MIT"
 }
