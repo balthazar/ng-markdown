@@ -1,7 +1,7 @@
 {
-    "name": "pagedown",
+    "name": "ng-markdown",
     "version": "1.0.0",
-    "location": "https://github.com/Apercu/pagedown",
+    "location": "https://github.com/Apercu/ng-markdown",
     "main": [
         "Markdown.Converter.js",
         "Markdown.Editor.js",
