@@ -2,4 +2,4 @@ pagedown
 ========
 
 
-Demo and documentation at http://apercu.github.io/pagedown
+Demo and documentation at http://apercu.github.io/ng-markdown/
