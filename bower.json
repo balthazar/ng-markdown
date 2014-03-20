@@ -5,7 +5,8 @@
     "main": [
         "Markdown.Converter.js",
         "Markdown.Editor.js",
-        "Markdown.Sanitizer.js"
+        "Markdown.Sanitizer.js",
+        "ng-markdown.js"
     ],
     "authors": [
         "Original Showdown code copyright (c) 2007 John Fraser",
