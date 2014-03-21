@@ -5,22 +5,29 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<title>Ng-Markdown by Apercu</title>
 		<link rel="stylesheet" href="stylesheets/styles.css">
+		<link rel="stylesheet" href="stylesheets/icomoon/style.css">
 		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="javascripts/respond.js"></script>
+		<script type="text/javascript">
+			angular.module('demoApp', []);
+			angular.module('demoApp').controller('AppCtrl', function ($scope) {
+				$scope.toto = 'Mr. B is a Zavatta.';
+			});
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	</head>
-	<body>
+	<body ng-app="demoApp" ng-controller="AppCtrl">
 		<div id="header">
 			<nav>
-			<li class="link"><a href="/ng-markdown">Home</a></li>
-			<li class="link"><a href="install">Install</a></li>
-			<li class="link"><a href="demos">Demos</a></li>
-			<li class="link"><a href="docs">Documentation</a></li>
-			<li class="fork"><a href="https://github.com/Apercu/ng-markdown">View On GitHub</a></li>
-			<li class="downloads"><a href="https://github.com/Apercu/ng-markdown/zipball/master">ZIP</a></li>
-			<li class="downloads"><a href="https://github.com/Apercu/ng-markdown/tarball/master">TAR</a></li>
+				<li class="link"><a href="/ng-markdown">Home</a></li>
+				<li class="link"><a href="install">Install</a></li>
+				<li class="link"><a href="demos">Demos</a></li>
+				<li class="link"><a href="docs">Documentation</a></li>
+				<li class="fork"><a href="https://github.com/Apercu/ng-markdown">View On GitHub</a></li>
+				<li class="downloads"><a href="https://github.com/Apercu/ng-markdown/zipball/master">ZIP</a></li>
+				<li class="downloads"><a href="https://github.com/Apercu/ng-markdown/tarball/master">TAR</a></li>
 			</nav>
 		</div>
 		<div class="wrapper">
