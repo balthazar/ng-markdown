@@ -1370,42 +1370,42 @@
                 buttonRow.appendChild(spacer);
             }
 
-            buttons.bold = makeButton(prefix + "bold-button", getString("bold"), "icon-bold", bindCommand("doBold"));
-            buttons.italic = makeButton(prefix + "italic-button", getString("italic"), "icon-italic", bindCommand("doItalic"));
+            buttons.bold = makeButton(prefix + "bold-button", getString("bold"), "wmd-icon-bold", bindCommand("doBold"));
+            buttons.italic = makeButton(prefix + "italic-button", getString("italic"), "wmd-icon-italic", bindCommand("doItalic"));
             makeSpacer(1);
-            buttons.link = makeButton(prefix + "link-button", getString("link"), "icon-link", bindCommand(function (chunk, postProcessing) {
+            buttons.link = makeButton(prefix + "link-button", getString("link"), "wmd-icon-link", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, false);
             }));
-            buttons.quote = makeButton(prefix + "quote-button", getString("quote"), "icon-quotes-left", bindCommand("doBlockquote"));
-            buttons.code = makeButton(prefix + "code-button", getString("code"), "icon-code", bindCommand("doCode"));
-            buttons.image = makeButton(prefix + "image-button", getString("image"), "icon-image", bindCommand(function (chunk, postProcessing) {
+            buttons.quote = makeButton(prefix + "quote-button", getString("quote"), "wmd-icon-quotes-left", bindCommand("doBlockquote"));
+            buttons.code = makeButton(prefix + "code-button", getString("code"), "wmd-icon-code", bindCommand("doCode"));
+            buttons.image = makeButton(prefix + "image-button", getString("image"), "wmd-icon-image", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, true);
             }));
             makeSpacer(2);
-            buttons.olist = makeButton(prefix + "olist-button", getString("olist"), "icon-numbered-list", bindCommand(function (chunk, postProcessing) {
+            buttons.olist = makeButton(prefix + "olist-button", getString("olist"), "wmd-icon-numbered-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }));
-            buttons.ulist = makeButton(prefix + "ulist-button", getString("ulist"), "icon-list", bindCommand(function (chunk, postProcessing) {
+            buttons.ulist = makeButton(prefix + "ulist-button", getString("ulist"), "wmd-icon-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }));
-            buttons.heading = makeButton(prefix + "heading-button", getString("heading"), "icon-font", bindCommand("doHeading"));
-            buttons.hr = makeButton(prefix + "hr-button", getString("hr"), "icon-insert-template", bindCommand("doHorizontalRule"));
+            buttons.heading = makeButton(prefix + "heading-button", getString("heading"), "wmd-icon-font", bindCommand("doHeading"));
+            buttons.hr = makeButton(prefix + "hr-button", getString("hr"), "wmd-icon-insert-template", bindCommand("doHorizontalRule"));
             makeSpacer(3);
-            buttons.undo = makeButton(prefix + "undo-button", getString("undo"), "icon-undo2", null);
+            buttons.undo = makeButton(prefix + "undo-button", getString("undo"), "wmd-icon-undo2", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 getString("redo") :
                 getString("redomac");
 
-            buttons.redo = makeButton(prefix + "redo-button", redoTitle, "icon-redo2", null);
+            buttons.redo = makeButton(prefix + "redo-button", redoTitle, "wmd-icon-redo2", null);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
             if (helpFunction) {
                 var helpButton = document.createElement("i");
                 var helpButtonImage = document.createElement("span");
                 helpButton.appendChild(helpButtonImage);
-                helpButton.className = prefix + "button " + prefix + "help-button icon-question";
+                helpButton.className = prefix + "button " + prefix + "help-button wmd-icon-question";
                 helpButton.id = prefix + "help-button" + postfix;
                 helpButton.isHelp = true;
                 helpButton.title = getString("help");
