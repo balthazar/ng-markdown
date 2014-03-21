@@ -812,6 +812,10 @@ section #title .credits.right {
   float: right;
 }
 
+.parameters pre {
+	margin: 10px 0;
+}
+
 .label {
 	display: block;
 	padding: .2em .6em .3em;
