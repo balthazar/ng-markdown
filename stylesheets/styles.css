@@ -837,6 +837,10 @@ section #title .credits.right {
 	background-color: #d9534f;
 }
 
+.label-object {
+	background-color: #9B5CB8;
+}
+
 .flex {
 	display: flex;
 }
