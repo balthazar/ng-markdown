@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngMarkdown', [])
+angular.module('ngMarkdown', ['monospaced.elastic'])
 .directive('ngMarkdown', function ($timeout) {
 
 	return {
