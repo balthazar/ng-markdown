@@ -75,7 +75,8 @@
 .wmd-preview > blockquote {
 	padding: 0 0 0 16px;
 	margin: 0 0 16px;
-	border-left: 5px solid #002b36;
+	border-left: 5px solid #414141;
+	font-style: italic;
 }
 
 .wmd-preview > h2 {
@@ -83,7 +84,6 @@
 	font-size: 2.5em;
 	font-family: "Helvetica Neue";
 	text-decoration: underline;
-	color: #839496;
 }
 
 .wmd-button-bar {
@@ -99,7 +99,6 @@
 .wmd-button-bar > .wmd-button-row > .wmd-button {
 	width: 24px;
 	height: 16px;
-	color: #839496;
 }
 
 .wmd-button-bar > .wmd-button-row > .wmd-button > a {
@@ -115,7 +114,7 @@
 	width: 1px;
 	height: 20px;
 	margin: 0 8px;
-	background-color: #839496;
+	background-color: white;
 }
 
 .wmd-prompt-background {
@@ -138,9 +137,9 @@
 	-moz-border-radius: 5px / 5px;
 	-webkit-border-radius: 5px 5px;
 	border-radius: 5px / 5px;
-	border: 2px solid rgba(0, 0, 0, 0.1);
+	border: 2px solid rgba(196, 196, 196, 1);
 	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
-	background-color: #073642;
+	background-color: rgba(71, 71, 71, 0.9);
 }
 
 .wmd-prompt-dialog > div {
@@ -167,8 +166,7 @@
 textarea {
 	width: 100%;
 	border: 1px solid rgba(255, 255, 255, 0.1);
-	background: #002b36;
-	color: #839496;
+	background: #535353;
 	padding: 1em;
 	font-size: 14px;
 	overflow: hidden;
