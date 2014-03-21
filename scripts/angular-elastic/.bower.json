@@ -1,0 +1,23 @@
+{
+  "name": "angular-elastic",
+  "version": "2.3.2",
+  "main": "elastic.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "angular": ">=1.0.6"
+  },
+  "homepage": "https://github.com/monospaced/angular-elastic",
+  "_release": "2.3.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.3.2",
+    "commit": "ca13ae641b81261513691705669c1e57868c85b0"
+  },
+  "_source": "git://github.com/monospaced/angular-elastic.git",
+  "_target": "2.3.2",
+  "_originalSource": "angular-elastic"
+}
