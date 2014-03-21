@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>Ng-Markdown by Apercu</title>
+		<link rel="stylesheet" href="stylesheets/styles.css">
+		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="javascripts/respond.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	</head>
+	<body>
+		<div id="header">
+			<nav>
+			<li class="link"><a href="/ng-markdown">Home</a></li>
+			<li class="link"><a href="install">Install</a></li>
+			<li class="link"><a href="demos">Demos</a></li>
+			<li class="link"><a href="docs">Documentation</a></li>
+			<li class="downloads"><a href="https://github.com/Apercu/ng-markdown/zipball/master">ZIP</a></li>
+			<li class="downloads"><a href="https://github.com/Apercu/ng-markdown/tarball/master">TAR</a></li>
+			<li class="fork"><a href="https://github.com/Apercu/ng-markdown">View On GitHub</a></li>
+			</nav>
+		</div>
+		<div class="wrapper">
+			<section>
+			<div id="title">
+				<h1>Ng-Markdown</h1>
+				<p></p>
+			</div>
+			<div>
+				<h2>
+					<a name="parameters" class="anchor" href="#parameters"><span class="octicon octicon-link"></span></a>Parameters
+				</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>sanitized</td>
+							<td>boolean</td>
+							<td>Sanitize the Markdown output.</td>
+							<td>true</td>
+						</tr>
+						<tr>
+							<td>prefix</td>
+							<td>string</td>
+							<td>How the elements of the markdown should be prefixed.</td>
+							<td>wmd-</td>
+						</tr>
+						<tr>
+							<td>postfix (required when more than 1 MarkDown on the page)</td>
+							<td>string</td>
+							<td>How the elements of the markdown should be postfixed.</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>preConversion</td>
+							<td>function</td>
+							<td>
+								Called before conversion, text parameter is the text of the input that will be passed to the converter.
+								<br>
+								Parameters : text
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>postConversion</td>
+							<td>expression</td>
+							<td>
+								Called after conversion, text parameter is the text that have been output from the converter.
+								<br>
+								Parameters : text
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>postNormalization</td>
+							<td>expression</td>
+							<td>
+								Called after normalization, text parameter is the final result of conversion.
+								<br>
+								Parameters : text
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>plainLinkText</td>
+							<td>expression</td>
+							<td>
+								Transform the text to be displayed of bare URLs (does not affect the targets of the links).
+								<br>
+								Parameters : url
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>preBlockGamut</td>
+							<td>expression</td>
+							<td>
+								Called with the text before creating block elements like code blocks and lists.
+								If you're creating a new kind of block structure that can include other blocks, you need to run the full block gamut again on the content of your block, for that purpose you will need to use the second parameter.
+								<br>
+								Parameters : text, runBlockGamut
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>postBlockGamut</td>
+							<td>expression</td>
+							<td>
+								Same as preBlockGamut, but called with the text after creating block elements.
+								<br>
+								Parameters : text, runBlockGamut
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>preSpanGamut</td>
+							<td>expression</td>
+							<td>
+								Called with the text of a single block element before the span-level conversions (like bold, code spans...)
+								<br>
+								Parameters : text
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>postSpanGamut</td>
+							<td>expression</td>
+							<td>
+								Same as preSpanGamut, but called with the text after the span-level conversions.
+								<br>
+								Parameters : text
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>onPreviewRefresh</td>
+							<td>expression</td>
+							<td>
+								Called every time the editor preview has been updated.
+								<br>
+								Parameters : none
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>postBlockquoteCreation</td>
+							<td>expression</td>
+							<td>
+								Called just after the user has clicked on the Blockquote button.
+								<br>
+								Parameters : text
+							</td>
+							<td>null</td>
+						</tr>
+						<tr>
+							<td>insertImageDialog</td>
+							<td>expression</td>
+							<td>
+								Function to create a new behaviour for when a user add a new image, call the callback function with your result in parameter. Must return true.
+								<br>
+								Parameters : callback
+							</td>
+							<td>null</td>
+						</tr>
+					</tbody>
+				</table>
+				<hr>
+				<span class="credits left">Project maintained by <a href="https://github.com/Apercu">Apercu</a></span>
+				<span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+			</div>
+			</section>
+		</body>
+	</html>
