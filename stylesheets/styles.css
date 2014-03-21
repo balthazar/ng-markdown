@@ -825,6 +825,18 @@ section #title .credits.right {
 	border-radius: .25em;
 }
 
+.label-string {
+	background-color: #5cb85c;
+}
+
+.label-boolean {
+	background-color: #428bca;
+}
+
+.label-function {
+	background-color: #d9534f;
+}
+
 .flex {
 	display: flex;
 }
