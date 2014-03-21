@@ -1391,14 +1391,14 @@
             buttons.heading = makeButton(prefix + "heading-button", getString("heading"), "markdown-icon-font", bindCommand("doHeading"));
             buttons.hr = makeButton(prefix + "hr-button", getString("hr"), "markdown-icon-insert-template", bindCommand("doHorizontalRule"));
             makeSpacer(3);
-            buttons.undo = makeButton(prefix + "undo-button", getString("undo"), "markdown-icon-undo2", null);
+            buttons.undo = makeButton(prefix + "undo-button", getString("undo"), "markdown-icon-undo", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 getString("redo") :
                 getString("redomac");
 
-            buttons.redo = makeButton(prefix + "redo-button", redoTitle, "markdown-icon-redo2", null);
+            buttons.redo = makeButton(prefix + "redo-button", redoTitle, "markdown-icon-redo", null);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
             if (helpFunction) {
