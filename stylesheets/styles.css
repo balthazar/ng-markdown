@@ -812,6 +812,23 @@ section #title .credits.right {
   float: right;
 }
 
+.flex {
+	display: flex;
+}
+
+.intro {
+	margin-bottom: 32px;
+}
+
+.fifty {
+	width: 50%;
+}
+
+.introdemo {
+	margin-left: 32px;
+	border: 1px solid #434343;
+}
+
 .left {
 	float: left;
 }
