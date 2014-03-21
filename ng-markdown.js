@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ngMarkdown').directive('ngMarkdown', function ($timeout) {
+angular.module('ngMarkdown', [])
+.directive('ngMarkdown', function ($timeout) {
 
 	return {
 		template: '<textarea></textarea>',

@@ -1,7 +1,7 @@
 {
     "name": "ng-markdown",
-    "description": "Markdown directive for AngularJS",
     "version": "1.0.0",
+    "description": "Markdown directive for AngularJS",
     "location": "https://github.com/Apercu/ng-markdown",
     "repository": {
         "type": "git",
