@@ -874,6 +874,10 @@ section #title .credits.right {
 	font-size: 12px;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 @media print, screen and (max-width: 720px) {
 	#title .credits {
 		display: block;
