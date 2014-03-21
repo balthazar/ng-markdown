@@ -1,6 +1,6 @@
 {
   "name": "ng-markdown",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Markdown directive for AngularJS",
   "location": "https://github.com/Apercu/ng-markdown",
   "repository": {
@@ -37,14 +37,14 @@
     "directive"
   ],
   "license": "MIT",
-  "_release": "1.0.7",
+  "_release": "1.0.8",
   "_resolution": {
     "type": "version",
-    "tag": "1.0.7",
-    "commit": "5da11ed44d5b45b5526294ab8b64f94c67c472ae"
+    "tag": "1.0.8",
+    "commit": "129322e537896f5ca088ff5532d283592092a4d6"
   },
   "_source": "git://github.com/Apercu/ng-markdown.git",
-  "_target": "~1.0.7",
+  "_target": "~1.0.8",
   "_originalSource": "ng-markdown",
   "_direct": true
 }
