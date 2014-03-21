@@ -859,7 +859,12 @@ section #title .credits.right {
 
 .introdemo {
 	margin-left: 32px;
+	padding: 5px 15px;
 	border: 1px solid #434343;
+}
+
+.introdemo .wmd-preview {
+	margin-top: 16px;
 }
 
 .left {
