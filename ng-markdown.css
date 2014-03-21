@@ -86,23 +86,23 @@
 	color: #839496;
 }
 
-.wmd-panel > .wmd-button-bar {
+.wmd-button-bar {
 	width: 100%;
 }
 
-.wmd-panel > .wmd-button-bar > .wmd-button-row {
+.wmd-button-bar > .wmd-button-row {
 	height: 32px;
 	display: flex;
 	align-items: center;
 }
 
-.wmd-panel > .wmd-button-bar > .wmd-button-row > .wmd-button {
+.wmd-button-bar > .wmd-button-row > .wmd-button {
 	width: 24px;
 	height: 16px;
 	color: #839496;
 }
 
-.wmd-panel > .wmd-button-bar > .wmd-button-row > .wmd-button > a {
+.wmd-button-bar > .wmd-button-row > .wmd-button > a {
 	width: 20px;
 	height: 20px;
 	margin-left: 5px;
@@ -111,7 +111,7 @@
 	display: inline-block;
 }
 
-.wmd-panel > .wmd-button-bar > .wmd-button-row > .wmd-spacer {
+.wmd-button-bar > .wmd-button-row > .wmd-spacer {
 	width: 1px;
 	height: 20px;
 	margin: 0 8px;
