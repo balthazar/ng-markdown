@@ -4,7 +4,7 @@ angular.module('ngMarkdown', [])
 .directive('ngMarkdown', function ($timeout) {
 
 	return {
-		template: '<textarea></textarea>',
+		template: '<textarea ng-model="content" msd-elastic></textarea>',
 		restrict: 'E',
 		replace: true,
 		scope: {
@@ -18,11 +18,13 @@ angular.module('ngMarkdown', [])
 			postSpanGamut: '=',
 			onPreviewRefresh: '=',
 			helpHandler: '=',
-			customStrings: '='
+			customStrings: '=',
+			content: '='
 		},
 		link: function postLink(scope, element, attrs) {
 
 			$timeout(function () {
+
 				//Setting defaults params
 				var converter = Markdown.getSanitizingConverter();
 				var postfix = '';
