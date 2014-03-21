@@ -812,6 +812,18 @@ section #title .credits.right {
   float: right;
 }
 
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.footer {
+	font-size: 12px;
+}
+
 @media print, screen and (max-width: 720px) {
   #title .credits {
     display: block;
