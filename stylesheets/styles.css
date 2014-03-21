@@ -812,6 +812,19 @@ section #title .credits.right {
   float: right;
 }
 
+.label {
+	display: block;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+	font-weight: bold;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+
 .flex {
 	display: flex;
 }
@@ -842,31 +855,31 @@ section #title .credits.right {
 }
 
 @media print, screen and (max-width: 720px) {
-  #title .credits {
-    display: block;
-    width: 100%;
-    line-height: 30px;
-    text-align: center;
+	#title .credits {
+		display: block;
+		width: 100%;
+		line-height: 30px;
+		text-align: center;
   }
   #title .credits .left {
-    float: none;
-    display: block;
+	  float: none;
+	  display: block;
   }
   #title .credits .right {
-    float: none;
-    display: block;
+	  float: none;
+	  display: block;
   }
 }
 @media print, screen and (max-width: 480px) {
-  #header {
-    margin-top: -20px;
+	#header {
+		margin-top: -20px;
   }
 
   section {
-    margin-top: 40px;
+	  margin-top: 40px;
   }
 
   nav {
-    display: none;
+	  display: none;
   }
 }
