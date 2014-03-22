@@ -868,7 +868,7 @@ section #title .credits.right {
 }
 
 .started > .fifty {
-	margin-right: 32px;
+	margin-right: 52px;
 }
 
 .mouseclick {
@@ -879,6 +879,10 @@ section #title .credits.right {
 .mouseclick li {
 	list-style: none;
 	margin-right: 8px;
+}
+
+.prenomarge p {
+	margin: 0;
 }
 
 .left {

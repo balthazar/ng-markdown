@@ -52,6 +52,16 @@
 					</div>
 					<div class="fifty">
 						<h2>Installation</h2>
+						Using bower ? You can jump to the third step.<br><br>
+						<h3>Include the ng-markdown.min.js in your project.</h3>
+						<pre><code>&lt;script type="text/javascript" src="scripts/ng-markdown.min.js"&gt;&lt;/script&gt;</code></pre>
+						<h3>And the ng-markdown.min.css.</h3>
+						<pre><code>&lt;link rel="stylesheet" href="styles/ng-markdown.min.css"&gt;</code></pre>
+						<h3>Finally, add the ngMarkdown as dependency of your app.</h3>
+						<pre><code>angular.module('demoApp', ['ngMarkdown']);</code></pre>
+						<br><br>
+						You're now all set, you can directly test the directive by using defaults params :<br><br>
+						<pre class="prenomarge"><code><p>&lt;div class="wmd-button-bar"&gt;&lt;/div&gt;</p><p>&lt;ng-markdown content="markdownText"&gt;&lt;/ng-markdown&gt;</p><p>&lt;div class="wmd-preview"&gt;&lt;/div&gt;</p></code></pre>
 					</div>
 				</div>
 				<hr>
