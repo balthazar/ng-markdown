@@ -718,7 +718,7 @@ dt {
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
   font-size: 14px;
 }
-#header nav li a {
+#header nav li a, li.downloads a {
   color: white;
   border: 1px solid #5d910b;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #93bd20), color-stop(100%, #659e10));
@@ -745,7 +745,7 @@ dt {
   display: inline-block;
   text-align: center;
 }
-#header nav li a:hover {
+#header nav li a:hover, li.downloads a:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #749619), color-stop(100%, #527f0e));
   background: -webkit-linear-gradient(#749619, #527f0e);
   background: -moz-linear-gradient(#749619, #527f0e);
@@ -865,6 +865,20 @@ section #title .credits.right {
 
 .introdemo .wmd-preview {
 	margin-top: 16px;
+}
+
+.started > .fifty {
+	margin-right: 32px;
+}
+
+.mouseclick {
+	display: flex;
+	padding: 0;
+}
+
+.mouseclick li {
+	list-style: none;
+	margin-right: 8px;
 }
 
 .left {
