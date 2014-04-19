@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 @font-face {
 	font-family: 'markdown';
 	src:url('fonts/markdown.eot?-9rz235');
@@ -68,9 +70,7 @@
     p > code {
 	    padding: 3px 4px;
     	border: 1px solid rgba(255, 255, 255, 0.1);
-    	-moz-border-radius: 4px / 4px;
-    	-webkit-border-radius: 4px 4px;
-    	border-radius: 4px / 4px;
+		@include border-radius(4px, 4px);
     }
     > blockquote {
 	    padding: 0 0 0 16px;
@@ -92,37 +92,44 @@
 	    height: 32px;
      	display: flex;
     	align-items: center;
+        [class^="wmd-button"], [class*=" wmd-button"] {
+	        width: 24px;
+	        height: 16px;
+            > a {
+	            width: 20px;
+              	height: 20px;
+            	margin-left: 5px;
+            	margin-right: 5px;
+            	position: absolute;
+            	display: inline-block;
+            }
+        }
+        [class^="wmd-spacer"], [class*=" wmd-spacer"] {
+	        width: 1px;
+    	    height: 20px;
+         	margin: 0 8px;
+     	    background-color: white;
+        }
     }
 }
 
-.wmd-button-bar {
+[class^="wmd-input"], [class*=" wmd-input"] {
+	width: 100%;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: #535353;
+	padding: 1em;
+	font-size: 14px;
+	overflow: hidden;
+	outline: none;
+	resize: none !important;
+	word-wrap: break-word;
+	@include transition-duration(50ms);
+    &:focus {
+	    border-color: #859900;
+    }
 }
 
-.wmd-button-bar > .wmd-button-row {
-}
-
-.wmd-button-bar > .wmd-button-row > .wmd-button {
-	width: 24px;
-	height: 16px;
-}
-
-.wmd-button-bar > .wmd-button-row > .wmd-button > a {
-	width: 20px;
-	height: 20px;
-	margin-left: 5px;
-	margin-right: 5px;
-	position: absolute;
-	display: inline-block;
-}
-
-.wmd-button-bar > .wmd-button-row > .wmd-spacer {
-	width: 1px;
-	height: 20px;
-	margin: 0 8px;
-	background-color: white;
-}
-
-.wmd-prompt-background {
+[class^="wmd-prompt-background"], [class*=" wmd-prompt-background"] {
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -133,57 +140,31 @@
 	background-color: black;
 }
 
-.wmd-prompt-dialog {
+[class^="wmd-prompt-dialog"], [class*=" wmd-prompt-dialog"] {
 	position: fixed;
 	top: 35%;
 	left: 40%;
 	z-index: 1001;
 	padding: 16px;
-	-moz-border-radius: 5px / 5px;
-	-webkit-border-radius: 5px 5px;
-	border-radius: 5px / 5px;
+	@include border-radius(5px, 5px);
 	border: 2px solid rgba(196, 196, 196, 1);
 	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
 	background-color: rgba(71, 71, 71, 0.9);
-}
-
-.wmd-prompt-dialog > div {
-	text-align: center;
-}
-
-.wmd-prompt-dialog > form {
-	padding: 0;
-	margin: 0;
-	text-align: center;
-}
-
-.wmd-prompt-dialog > form input[type="button"] {
-	padding: 8px;
-	margin: 8px;
-	width: 24%;
-}
-
-.wmd-prompt-dialog > form input[type="text"] {
-	margin: auto;
-	width: 80%;
-}
-
-textarea {
-	width: 100%;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	background: #535353;
-	padding: 1em;
-	font-size: 14px;
-	overflow: hidden;
-	outline: none;
-	resize: none !important;
-	word-wrap: break-word;
-	-moz-transition-duration: 50ms;
-	-o-transition-duration: 50ms;
-	-webkit-transition-duration: 50ms;
-	transition-duration: 50ms;
-}
-
-textarea:focus {
-	border-color: #859900;
+    > div {
+	    text-align: center;
+    }
+    > form {
+	    padding: 0;
+    	margin: 0;
+    	text-align: center;
+        input[type="button"] {
+	        padding: 8px;
+            margin: 8px;
+        	width: 24%;
+        }
+        input[type="text"] {
+        	margin: auto;
+	        width: 80%;
+        }
+    }
 }
