@@ -53,6 +53,8 @@
 
     var imageDefaultText = "http://";
     var linkDefaultText = "http://";
+	var prefixName;
+	var suffixName;
 
 	// The helpFunction is the help function handler, fired when a user click on
 	// the help button. It will not be created if null function is given.
@@ -68,6 +70,8 @@
         var getString = function (identifier) { return strings[identifier] || defaultsStrings[identifier]; };
 
         idPostfix = idPostfix || "";
+		suffixName = idPostfix;
+		prefixName = idPrefix;
 
         var hooks = this.hooks = new Markdown.HookCollection();
         hooks.addNoop("onPreviewRefresh");       // called with no arguments after the preview has been refreshed
@@ -983,7 +987,7 @@
 
         var background = doc.createElement("div"),
             style = background.style;
-        background.className = prefix + "prompt-background" + postfix;
+        background.className = prefixName + "prompt-background" + suffixName;
         if (uaSniffed.isIE) {
             style.filter = "alpha(opacity=50)";
         }
@@ -1055,7 +1059,7 @@
 
             // The main dialog box.
             dialog = doc.createElement("div");
-            dialog.className = prefix + "prompt-dialog" + postfix;
+            dialog.className = prefixName + "prompt-dialog" + suffixName;
 
             // The dialog text.
             var question = doc.createElement("div");
