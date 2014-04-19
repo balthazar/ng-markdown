@@ -983,7 +983,7 @@
 
         var background = doc.createElement("div"),
             style = background.style;
-        background.className = "wmd-prompt-background";
+        background.className = prefix + "prompt-background" + postfix;
         if (uaSniffed.isIE) {
             style.filter = "alpha(opacity=50)";
         }
@@ -1055,7 +1055,7 @@
 
             // The main dialog box.
             dialog = doc.createElement("div");
-            dialog.className = "wmd-prompt-dialog";
+            dialog.className = prefix + "prompt-dialog" + postfix;
 
             // The dialog text.
             var question = doc.createElement("div");
