@@ -1,25 +1,28 @@
-<!doctype html>
+<!doctype HTML>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<title>Ng-Markdown by Apercu</title>
+
 		<link rel="stylesheet" href="stylesheets/styles.css">
 		<link rel="stylesheet" href="stylesheets/icomoon/style.css">
 		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
-		<link rel="stylesheet" href="scripts/ng-markdown/ng-markdown.min.css">
+		<link rel="stylesheet" href="bower_components/ng-markdown/dist/ng-markdown.min.css">
+
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.js"></script>
-		<script type="text/javascript" src="scripts/angular-elastic/elastic.js"></script>
-		<script type="text/javascript" src="scripts/ng-markdown/ng-markdown.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="scripts/respond.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-elastic/elastic.js"></script>
+		<script type="text/javascript" src="bower_components/ng-markdown/dist/ng-markdown.min.js"></script>
+
 		<script type="text/javascript">
 			angular.module('demoApp', ['ngMarkdown']);
 			angular.module('demoApp').controller('AppCtrl', function ($scope) {
 				$scope.text = '';
 			});
 		</script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
 	</head>
 	<body ng-app="demoApp" ng-controller="AppCtrl">
 		<div id="header">
