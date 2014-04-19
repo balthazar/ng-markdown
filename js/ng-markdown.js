@@ -43,7 +43,7 @@ angular.module('ngMarkdown', ['monospaced.elastic'])
 					prefix = attrs.prefix;
 				}
 				if (attrs.preConversion) {
-					converter.hooks.chain('preConversion', scope.preConversion)
+					converter.hooks.chain('preConversion', scope.preConversion);
 				}
 				if (attrs.postConversion) {
 					converter.hooks.chain('postConversion', scope.postConversion);

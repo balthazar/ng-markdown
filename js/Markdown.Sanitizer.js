@@ -12,7 +12,7 @@
         converter.hooks.chain("postConversion", sanitizeHtml);
         converter.hooks.chain("postConversion", balanceTags);
         return converter;
-    }
+    };
     function sanitizeHtml(html) {
         return html.replace(/<[^>]*>?/gi, sanitizeTag);
     }
@@ -38,7 +38,7 @@
     /// adapted from CODESNIPPET: A8591DBA-D1D3-11DE-947C-BA5556D89593
     /// </summary>
     function balanceTags(html) {
-        if (html == "")
+        if (html === "")
             return "";
         var re = /<\/?\w+[^>]*(\s|$|>)/g;
         // convert everything to lower case; this makes
@@ -46,7 +46,7 @@
         var tags = html.toLowerCase().match(re);
         // no HTML tags present? nothing to do; exit now
         var tagcount = (tags || []).length;
-        if (tagcount == 0)
+        if (tagcount === 0)
             return html;
         var tagname, tag;
         var ignoredtags = "<p><img><br><li><hr>";
@@ -81,7 +81,7 @@
         if (!needsRemoval)
             return html;
         // delete all orphaned tags from the string
-        var ctag = 0;
+        ctag = 0;
         html = html.replace(re, function (match) {
             var res = tagremove[ctag] ? "" : match;
             ctag++;

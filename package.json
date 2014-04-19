@@ -1,0 +1,19 @@
+{
+  "name": "ng-markdown",
+  "version": "1.1.0",
+  "main": "dist/ng-markdown.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Apercu/ng-markdown.git"
+  },
+  "homepage": "http://apercu.github.io/ng-markdown/",
+  "devDependencies": {
+    "gulp": "^3.6.1",
+    "gulp-concat": "^2.2.0",
+    "gulp-jshint": "^1.5.3",
+    "gulp-minify-css": "^0.3.1",
+    "gulp-ngmin": "^0.2.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^0.2.1"
+  }
+}
