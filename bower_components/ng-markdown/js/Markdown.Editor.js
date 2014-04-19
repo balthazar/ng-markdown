@@ -65,7 +65,7 @@
     // - refreshPreview() forces the preview to be updated. This method is only available after run() was called.
     Markdown.Editor = function (markdownConverter, idPostfix, idPrefix, helpFunction, strings) {
         strings = strings || {};
-        var getString = function (identifier) { return strings[identifier] || defaultsStrings[identifier]; }
+        var getString = function (identifier) { return strings[identifier] || defaultsStrings[identifier]; };
 
         idPostfix = idPostfix || "";
 
@@ -77,7 +77,7 @@
                                                   * image url (or null if the user cancelled). If this hook returns false, the default dialog will be used.
                                                   */
 
-        this.getConverter = function () { return markdownConverter; }
+        this.getConverter = function () { return markdownConverter; };
 
         var that = this,
             panels;
@@ -101,7 +101,7 @@
                     undoManager.setCommandMode();
                     f();
                     that.refreshPreview();
-                }
+                };
             }
             uiManager = new UIManager(idPostfix, idPrefix, panels, undoManager, previewManager, commandManager, helpFunction, getString);
             uiManager.setUndoRedoButtonStates();
@@ -111,7 +111,7 @@
             forceRefresh();
         };
 
-    }
+    };
     // before: contains all the text in the input box BEFORE the selection.
     // after: contains all the text in the input box AFTER the selection.
     function Chunks() { }
@@ -171,8 +171,8 @@
         if (remove) {
             beforeReplacer = afterReplacer = "";
         } else {
-            beforeReplacer = function (s) { that.before += s; return ""; }
-            afterReplacer = function (s) { that.after = s + that.after; return ""; }
+            beforeReplacer = function (s) { that.before += s; return ""; };
+            afterReplacer = function (s) { that.after = s + that.after; return ""; };
         }
 
         this.selection = this.selection.replace(/^(\s*)/, beforeReplacer).replace(/(\s*)$/, afterReplacer);
@@ -264,7 +264,7 @@
         this.buttonBar = doc.getElementsByClassName(prefix + 'button-bar' + postfix)[0];
         this.preview = doc.getElementsByClassName(prefix + 'preview' + postfix)[0];
         this.input = doc.getElementsByClassName(prefix + 'input' + postfix)[0];
-    };
+    }
 
     // Returns true if the DOM element is visible, false if it's hidden.
     // Checks if display is anything other than none.
@@ -344,7 +344,7 @@
         pattern = pre + pattern + post;
 
         return new re(pattern, flags);
-    }
+    };
 
     // UNFINISHED
     // The assignment in the while loop makes jslint cranky.
@@ -612,7 +612,7 @@
 
             var handlePaste = function () {
                 if (uaSniffed.isIE || (inputStateObj && inputStateObj.text != panels.input.value)) {
-                    if (timer == undefined) {
+                    if (timer === undefined) {
                         mode = "paste";
                         saveState();
                         refreshState();
@@ -662,7 +662,7 @@
                 this.text = inputArea.value;
             }
 
-        }
+        };
 
         // Sets the selected text in the input box after we've performed an
         // operation.
@@ -746,7 +746,7 @@
         // Restore this state into the input area.
         this.restore = function () {
 
-            if (stateObj.text != undefined && stateObj.text != inputArea.value) {
+            if (stateObj.text !== undefined && stateObj.text !== inputArea.value) {
                 inputArea.value = stateObj.text;
             }
             this.setInputAreaSelection();
@@ -779,7 +779,7 @@
             this.scrollTop = chunk.scrollTop;
         };
         this.init();
-    };
+    }
 
     function PreviewManager(converter, panels, previewRefreshCallback) {
 
@@ -913,11 +913,11 @@
                 parent.appendChild(preview);
             else
                 parent.insertBefore(preview, sibling);
-        }
+        };
 
         var nonSuckyBrowserPreviewSet = function (text) {
             panels.preview.innerHTML = text;
-        }
+        };
 
         var previewSetter;
 
@@ -973,7 +973,7 @@
         };
 
         init();
-    };
+    }
 
     // Creates the background behind the hyperlink text entry box.
     // And download dialog
@@ -983,7 +983,7 @@
 
         var background = doc.createElement("div"),
             style = background.style;
-        background.className = "wmd-prompt-background";
+        background.className = prefix + "prompt-background" + postfix;
         if (uaSniffed.isIE) {
             style.filter = "alpha(opacity=50)";
         }
@@ -1055,7 +1055,7 @@
 
             // The main dialog box.
             dialog = doc.createElement("div");
-            dialog.className = "wmd-prompt-dialog";
+            dialog.className = prefix + "prompt-dialog" + postfix;
 
             // The dialog text.
             var question = doc.createElement("div");
@@ -1286,7 +1286,7 @@
             if (button.execute) {
                 button.execute(undoManager);
             }
-        };
+        }
 
         function setupButton(button, isEnabled) {
 
@@ -1324,7 +1324,7 @@
                         }
                         doClick(this);
                         return false;
-                    }
+                    };
                 }
             }
             else {
@@ -1336,7 +1336,7 @@
         function bindCommand(method) {
             if (typeof method === "string")
                 method = commandManager[method];
-            return function () { method.apply(commandManager, arguments); }
+            return function () { method.apply(commandManager, arguments); };
         }
 
         function makeSpritedButtonRow(prefix) {
@@ -1368,7 +1368,7 @@
                 var spacer = document.createElement("i");
                 spacer.className = prefix + 'spacer';
                 buttonRow.appendChild(spacer);
-            }
+            };
 
             buttons.bold = makeButton(prefix + "bold-button", getString("bold"), "markdown-icon-bold", bindCommand("doBold"));
             buttons.italic = makeButton(prefix + "italic-button", getString("italic"), "markdown-icon-italic", bindCommand("doItalic"));
@@ -1424,7 +1424,7 @@
                 setupButton(buttons.undo, undoManager.canUndo());
                 setupButton(buttons.redo, undoManager.canRedo());
             }
-        };
+        }
 
         this.setUndoRedoButtonStates = setUndoRedoButtonStates;
 
@@ -2079,7 +2079,7 @@
         // We make a level 2 header if there is no current header.
         // If there is a header level, we substract one from the header level.
         // If it's already a level 1 header, it's removed.
-        var headerLevelToCreate = headerLevel == 0 ? 2 : headerLevel - 1;
+        var headerLevelToCreate = headerLevel === 0 ? 2 : headerLevel - 1;
 
         if (headerLevelToCreate > 0) {
 
@@ -2101,7 +2101,6 @@
         chunk.startTag = "----------\n";
         chunk.selection = "";
         chunk.skipLines(2, 1, true);
-    }
-
+    };
 
 })();

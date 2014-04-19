@@ -1,6 +1,6 @@
 {
     "name": "ng-markdown",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "Markdown directive for AngularJS",
     "location": "https://github.com/Apercu/ng-markdown",
     "repository": {
@@ -8,8 +8,8 @@
         "url": "git://github.com/foo/bar.git"
     },
     "main": [
-        "ng-markdown.min.js",
-        "ng-markdown.min.css"
+        "dist/ng-markdown.min.js",
+        "dist/ng-markdown.min.css"
     ],
     "dependencies": {
         "angular-elastic": "2.3.2"

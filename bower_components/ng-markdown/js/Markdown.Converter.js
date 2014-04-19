@@ -267,8 +267,8 @@ else
             // "paragraphs" that are wrapped in non-block-level tags, such as anchors,
             // phrase emphasis, and spans. The list of tags we're looking for is
             // hard-coded:
-            var block_tags_a = "p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del"
-            var block_tags_b = "p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math"
+            var block_tags_a = "p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del";
+            var block_tags_b = "p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math";
 
             // First, look for nested blocks, e.g.:
             //   <div>
@@ -394,7 +394,7 @@ else
 
             return blockText;
         }
-        var blockGamutHookCallback = function (t) { return _RunBlockGamut(t); }
+        var blockGamutHookCallback = function (t) { return _RunBlockGamut(t); };
 
         function _RunBlockGamut(text, doNotUnhash) {
             //
@@ -572,23 +572,23 @@ else
         }
 
         function writeAnchorTag(wholeMatch, m1, m2, m3, m4, m5, m6, m7) {
-            if (m7 == undefined) m7 = "";
+            if (m7 === undefined) m7 = "";
             var whole_match = m1;
             var link_text = m2.replace(/:\/\//g, "~P"); // to prevent auto-linking withing the link. will be converted back after the auto-linker runs
             var link_id = m3.toLowerCase();
             var url = m4;
             var title = m7;
 
-            if (url == "") {
-                if (link_id == "") {
+            if (url === "") {
+                if (link_id === "") {
                     // lower-case and turn embedded newlines into spaces
                     link_id = link_text.toLowerCase().replace(/ ?\n/g, " ");
                 }
                 url = "#" + link_id;
 
-                if (g_urls.get(link_id) != undefined) {
+                if (g_urls.get(link_id) !== undefined) {
                     url = g_urls.get(link_id);
-                    if (g_titles.get(link_id) != undefined) {
+                    if (g_titles.get(link_id) !== undefined) {
                         title = g_titles.get(link_id);
                     }
                 }
@@ -605,7 +605,7 @@ else
             url = escapeCharacters(url, "*_");
             var result = "<a href=\"" + url + "\"";
 
-            if (title != "") {
+            if (title !== "") {
                 title = attributeEncode(title);
                 title = escapeCharacters(title, "*_");
                 result += " title=\"" + title + "\"";
@@ -688,16 +688,16 @@ else
 
             if (!title) title = "";
 
-            if (url == "") {
-                if (link_id == "") {
+            if (url === "") {
+                if (link_id === "") {
                     // lower-case and turn embedded newlines into spaces
                     link_id = alt_text.toLowerCase().replace(/ ?\n/g, " ");
                 }
                 url = "#" + link_id;
 
-                if (g_urls.get(link_id) != undefined) {
+                if (g_urls.get(link_id) !== undefined) {
                     url = g_urls.get(link_id);
-                    if (g_titles.get(link_id) != undefined) {
+                    if (g_titles.get(link_id) !== undefined) {
                         title = g_titles.get(link_id);
                     }
                 }
@@ -1151,7 +1151,7 @@ else
                 else if (/\S/.test(str)) {
                     str = _RunSpanGamut(str);
                     str = str.replace(/^([ \t]*)/g, "<p>");
-                    str += "</p>"
+                    str += "</p>";
                     grafsOut.push(str);
                 }
 
@@ -1161,7 +1161,7 @@ else
             //
             if (!doNotUnhash) {
                 end = grafsOut.length;
-                for (var i = 0; i < end; i++) {
+                for (i = 0; i < end; i++) {
                     var foundAny = true;
                     while (foundAny) { // we may need several runs, since the data may be nested
                         foundAny = false;
@@ -1261,7 +1261,7 @@ else
             text = text.replace(autoLinkRegex, handleTrailingParens);
 
             //  autolink anything like <http://example.com>
-            var replacer = function (wholematch, m1) { return "<a href=\"" + m1 + "\">" + pluginHooks.plainLinkText(m1) + "</a>"; }
+            var replacer = function (wholematch, m1) { return "<a href=\"" + m1 + "\">" + pluginHooks.plainLinkText(m1) + "</a>"; };
             text = text.replace(/<((https?|ftp):[^'">\s]+)>/gi, replacer);
 
             // Email addresses: <address@domain.foo>
@@ -1312,7 +1312,7 @@ else
             text = text.replace(/^(\t|[ ]{1,4})/gm, "~0"); // attacklab: g_tab_width
 
             // attacklab: clean up hack
-            text = text.replace(/~0/g, "")
+            text = text.replace(/~0/g, "");
 
             return text;
         }
@@ -1342,7 +1342,7 @@ else
 
         var _problemUrlChars = /(?:["'*()[\]:]|~D)/g;
 
-        // hex-encodes some unusual "problem" chars in URLs to avoid URL detection problems 
+        // hex-encodes some unusual "problem" chars in URLs to avoid URL detection problems
         function encodeProblemUrlChars(url) {
             if (!url)
                 return "";
@@ -1354,7 +1354,7 @@ else
                     return "%24";
                 if (match == ":") {
                     if (offset == len - 1 || /[0-9\/]/.test(url.charAt(offset + 1)))
-                        return ":"
+                        return ":";
                 }
                 return "%" + match.charCodeAt(0).toString(16);
             });
