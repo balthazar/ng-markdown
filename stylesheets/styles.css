@@ -154,12 +154,6 @@ body {
 /* =============================================================================
    Links
    ========================================================================== */
-/*
- * Addresses outline displayed oddly in Chrome
- */
-a:focus {
-  outline: thin dotted;
-}
 
 /*
  * Improves readability when focused and also mouse hovered in all browsers
@@ -897,8 +891,22 @@ section #title .credits.right {
 	font-size: 12px;
 }
 
+.demos .params {
+		margin-right: 32px;
+		margin-top: 32px;
+}
+
+.demos .flex {
+	margin-bottom: 24px;
+}
+
+.anchor {
+		margin-right: 10px;
+}
+
 * {
 	box-sizing: border-box;
+	outline: none;
 }
 
 @media print, screen and (max-width: 720px) {
