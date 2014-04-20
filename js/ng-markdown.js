@@ -7,7 +7,7 @@
     .directive('ngMarkdown', function ($timeout) {
 
         return {
-            template: '<textarea ng-model="content" msd-elastic></textarea>',
+            template: '<textarea ng-model="content" msd-elastic="\n"></textarea>',
             restrict: 'E',
             replace: true,
             scope: {
