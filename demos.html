@@ -19,6 +19,12 @@
 			angular.module('demoApp', ['ngMarkdown']);
 			angular.module('demoApp').controller('AppCtrl', function ($scope) {
 				$scope.demo1 = '';
+				$scope.demo3 = '';
+
+				$scope.func1 = function(text) {
+					console.log('ok');
+					return "# Converted text follows\n\n" + text;
+				};
 			});
 		</script>
 	</head>
@@ -43,9 +49,7 @@
 				<div class="demos">
 					<div class="flex">
 						<div class="params fifty">
-							<pre>
-								<code></code>
-							</pre>
+							<pre><code>&lt;ng-markdown content="demo1" &gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
 							<div class="wmd-button-bar"></div>
@@ -56,12 +60,23 @@
 					<hr>
 					<div class="flex">
 						<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo1" postfix="-2" sanitized="false"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown content="demo1" suffix="-2" sanitized="false"&gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
 							<div class="wmd-button-bar-2"></div>
-							<ng-markdown content="demo1" postfix="-2" sanitized="false"></ng-markdown>
+							<ng-markdown content="demo1" suffix="-2" sanitized="false"></ng-markdown>
 							<div class="wmd-preview-2"></div>
+						</div>
+					</div><!-- box -->
+					<hr>
+					<div class="flex">
+						<div class="params fifty">
+							<pre><code>&lt;ng-markdown content="demo3" suffix="-3"&gt;&lt;/ng-markdown&gt;</code></pre>
+						</div>
+						<div class="demo fifty">
+							<div class="wmd-button-bar-3"></div>
+							<ng-markdown content="demo3" suffix="-3" preConversion="func1()"></ng-markdown>
+							<div class="wmd-preview-3"></div>
 						</div>
 					</div><!-- box -->
 				</div>

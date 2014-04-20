@@ -39,8 +39,8 @@
                     if (attrs.sanitized === 'false') {
                         converter = new Markdown.Converter();
                     }
-                    if (attrs.postfix) {
-                        postfix = attrs.postfix;
+                    if (attrs.suffix) {
+                        postfix = attrs.suffix;
                     }
                     if (attrs.prefix) {
                         prefix = attrs.prefix;
