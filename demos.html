@@ -22,6 +22,7 @@
 				$scope.demo1 = '';
 				$scope.demo3 = '';
 				$scope.demo4 = '';
+				$scope.demo5 = 'http://www.stackexchange.com\n\n http://google.fr';
 
 				$scope.func1 = function (text) {
 					return "# Converted text follows\n\n" + text;
@@ -29,6 +30,13 @@
 
 				$scope.func2 = function (text) {
 					return text + "<br>\n**This is not bold, because it was added after the conversion**";
+				}
+
+				$scope.func3 = function (url) {
+					if (/^http:\/\/\w+\.stackexchange.com/i.test(url))
+						return "<b>A link to an awesome site!</b>";
+					else
+						return "some page on the internet";
 				}
 			});
 		</script>
@@ -77,33 +85,47 @@
 					<div class="flex">
 						<div class="params fifty">
 							<pre><code>&lt;ng-markdown content="demo3" suffix="-3" pre-conversion="func1"&gt;&lt;/ng-markdown&gt;</code></pre>
-						</div>
-						<div class="demo fifty">
-							<div class="wmd-button-bar-3"></div>
-							<ng-markdown content="demo3" suffix="-3" pre-conversion="func1"></ng-markdown>
-							<div class="wmd-preview-3"></div>
-						</div>
-					</div><!-- box -->
-					<hr>
-					<div class="flex">
-						<div class="params fifty">
+							<pre><code>$scope.func1 = function (text) {<br>    return "# Converted text follows\n\n" + text;<br>};</code></pre>
+							</div>
+							<div class="demo fifty">
+								<div class="wmd-button-bar-3"></div>
+								<ng-markdown content="demo3" suffix="-3" pre-conversion="func1"></ng-markdown>
+								<div class="wmd-preview-3"></div>
+							</div>
+						</div><!-- box -->
+						<hr>
+						<div class="flex">
+							<div class="params fifty">
 							<pre><code>&lt;ng-markdown content="demo4" suffix="-4" post-conversion="func2"&gt;&lt;/ng-markdown&gt;</code></pre>
-						</div>
-						<div class="demo fifty">
-							<div class="wmd-button-bar-4"></div>
-							<ng-markdown content="demo4" suffix="-4" post-conversion="func2"></ng-markdown>
-							<div class="wmd-preview-4"></div>
-						</div>
-					</div><!-- box -->
+							<pre><code>$scope.func2 = function (text) {<br>    return text + "&lt;br&gt;\n**This is not bold, because it was added after the conversion**";<br>};</code></pre>
+							</div>
+							<div class="demo fifty">
+								<div class="wmd-button-bar-4"></div>
+								<ng-markdown content="demo4" suffix="-4" post-conversion="func2"></ng-markdown>
+								<div class="wmd-preview-4"></div>
+							</div>
+						</div><!-- box -->
+						<hr>
+						<div class="flex">
+							<div class="params fifty">
+							<pre><code>&lt;ng-markdown content="demo5" suffix="-5" plain-link-text="func3"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>$scope.func3 = function (url) {<br>    if (/^http:\/\/\w+\.stackexchange.com/i.test(url))<br>        return "&lt;b&gt;A link to an awesome site!&lt;/b&gt;";<br>    else<br>        return "some page on the internet";<br>};</code></pre>
+							</div>
+							<div class="demo fifty">
+								<div class="wmd-button-bar-5"></div>
+								<ng-markdown content="demo5" suffix="-5" plain-link-text="func3"></ng-markdown>
+								<div class="wmd-preview-5"></div>
+							</div>
+						</div><!-- box -->
+					</div>
+					<hr>
+					<div class="footer">
+						<span class="credits left">Project maintained by <a href="https://github.com/Apercu">Apercu</a></span>
+						<span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+					</div>
 				</div>
-				<hr>
-				<div class="footer">
-					<span class="credits left">Project maintained by <a href="https://github.com/Apercu">Apercu</a></span>
-					<span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-				</div>
+				</section>
 			</div>
-			</section>
-		</div>
-	</body>
-</html>
+		</body>
+	</html>
 
