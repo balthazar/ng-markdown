@@ -7,10 +7,9 @@
 		<link rel="stylesheet" href="stylesheets/styles.css">
 		<link rel="stylesheet" href="stylesheets/icomoon/style.css">
 		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+		<link rel="stylesheet" href="bower_components/ng-markdown/dist/ng-markdown.min.css">
+
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="scripts/respond.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	</head>
 	<body>
 		<div id="header">
@@ -38,6 +37,7 @@
 							<th>Name</th>
 							<th>Description</th>
 							<th>Usage</th>
+							<th>Demo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,6 +45,7 @@
 							<td>refreshMarkdown</td>
 							<td>Event to force the refresh of the Markdown. This is usefull when you have programmatically changed the value binded with the markdown.</td>
 							<td>You can either pass a null value or '' as message to refresh all the markdowns of the page or the couple prefix + suffix to target a specific one.</td>
+							<td><a href="demos/#refresh"><i class="markdown-icon-link"></i></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -59,6 +60,7 @@
 							<th>Type</th>
 							<th>Description</th>
 							<th>Default</th>
+							<th>Demo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -67,30 +69,35 @@
 							<td><span class="label label-string">string</span></td>
 							<td>Ng-Model binded to the textarea. It's the only required argument.</td>
 							<td>null</td>
+							<td><a href="demos/#basic"><i class="markdown-icon-link"></i></a></td>
 						</tr>
 						<tr>
 							<td>sanitized</td>
 							<td><span class="label label-boolean">boolean</span></td>
 							<td>Sanitize the Markdown output.</td>
 							<td>true</td>
+							<td><a href="demos/#notsafe"><i class="markdown-icon-link"></i></a></td>
 						</tr>
 						<tr>
 							<td>prefix</td>
 							<td><span class="label label-string">string</span></td>
 							<td>How the elements of the markdown should be prefixed.</td>
 							<td>wmd-</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>suffix</td>
 							<td><span class="label label-string">string</span></td>
 							<td>How the elements of the markdown should be suffixed. When you have more than one markdown one a page, this argument is required to help the directive distinguish them.</td>
 							<td>null</td>
+							<td><a href="demos/#suffix"><i class="markdown-icon-link"></i></a></td>
 						</tr>
 						<tr>
 							<td>custom-strings</td>
 							<td><span class="label label-object">object</span></td>
 							<td>If you want to change the defaults strings.</td>
 							<td>null</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>pre-conversion</td>
@@ -101,6 +108,7 @@
 								<pre><code>Parameters : text</code></pre>
 								</td>
 								<td>null</td>
+								<td><a href="demos/#preconversion"><i class="markdown-icon-link"></i></a></td>
 							</tr>
 							<tr>
 								<td>post-conversion</td>
@@ -111,6 +119,7 @@
 								<pre><code>Parameters : text</code></pre>
 									</td>
 									<td>null</td>
+									<td><a href="demos/#postconversion"><i class="markdown-icon-link"></i></a></td>
 								</tr>
 								<tr>
 									<td>post-normalization</td>

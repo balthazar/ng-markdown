@@ -58,10 +58,11 @@
 				<p></p>
 			</div>
 			<div>
-				<h2><a name="demos" class="anchor" href="#demos"><i class="markdown-icon-link"></i></a>Demos</h2>
+				<h2>Demos</h2>
 				<div class="demos">
 					<div class="flex">
 						<div class="params fifty">
+							<a name="basic" class="anchor" href="#basic"></a>
 							<pre><code>&lt;ng-markdown content="demo1" &gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
@@ -73,6 +74,8 @@
 					<hr>
 					<div class="flex">
 						<div class="params fifty">
+							<a name="notsafe" class="anchor" href="#notsafe"></a>
+							<a name="suffix" class="anchor" href="#suffix"></a>
 							<pre><code>&lt;ng-markdown content="demo1" suffix="-2" sanitized="false"&gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
@@ -84,6 +87,7 @@
 					<hr>
 					<div class="flex">
 						<div class="params fifty">
+							<a name="preconversion" class="anchor" href="#preconversion"></a>
 							<pre><code>&lt;ng-markdown content="demo3" suffix="-3" pre-conversion="func1"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func1 = function (text) {<br>    return "# Converted text follows\n\n" + text;<br>};</code></pre>
 							</div>
@@ -96,6 +100,7 @@
 						<hr>
 						<div class="flex">
 							<div class="params fifty">
+							<a name="postconversion" class="anchor" href="#postconversion"></a>
 							<pre><code>&lt;ng-markdown content="demo4" suffix="-4" post-conversion="func2"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func2 = function (text) {<br>    return text + "&lt;br&gt;\n**This is not bold, because it was added after the conversion**";<br>};</code></pre>
 							</div>
@@ -108,6 +113,7 @@
 						<hr>
 						<div class="flex">
 							<div class="params fifty">
+							<a name="plainlinktext" class="anchor" href="#plainlinktext"></a>
 							<pre><code>&lt;ng-markdown content="demo5" suffix="-5" plain-link-text="func3"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func3 = function (url) {<br>    if (/^http:\/\/\w+\.stackexchange.com/i.test(url))<br>        return "&lt;b&gt;A link to an awesome site!&lt;/b&gt;";<br>    else<br>        return "some page on the internet";<br>};</code></pre>
 							</div>
