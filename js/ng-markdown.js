@@ -89,7 +89,7 @@
 				editor = new Markdown.Editor(converter, postfix, prefix, helpHandler, strings);
 				editor.run();
 
-				scope.on('refreshMarkdown', function(event, message) {
+				scope.$on('refreshMarkdown', function(event, message) {
 					if (!message || message === '' || message === (prefix + postfix))
 					{
 						$timeout(function() {
