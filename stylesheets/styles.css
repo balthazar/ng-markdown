@@ -810,6 +810,10 @@ section #title .credits.right {
 	margin: 10px 0;
 }
 
+.parameters th:first-child {
+	width: 190px;
+}
+
 .label {
 	display: block;
 	padding: .2em .6em .3em;

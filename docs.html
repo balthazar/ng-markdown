@@ -30,6 +30,26 @@
 			</div>
 			<div>
 				<h2>
+					<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events
+				</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Usage</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>refreshMarkdown</td>
+							<td>Event to force the refresh of the Markdown. This is usefull when you have programmatically changed the value binded with the markdown.</td>
+							<td>You can either pass a null value or '' as message to refresh all the markdowns of the page or the couple prefix + suffix to target a specific one.</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<h2>
 					<a name="parameters" class="anchor" href="#parameters"><span class="octicon octicon-link"></span></a>Parameters
 				</h2>
 				<table class="parameters">
@@ -79,120 +99,120 @@
 								Called before conversion, text parameter is the text of the input that will be passed to the converter.
 								<br>
 								<pre><code>Parameters : text</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>post-conversion</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Called after conversion, text parameter is the text that have been output from the converter.
-								<br>
+								</td>
+								<td>null</td>
+							</tr>
+							<tr>
+								<td>post-conversion</td>
+								<td><span class="label label-function">function</span></td>
+								<td>
+									Called after conversion, text parameter is the text that have been output from the converter.
+									<br>
 								<pre><code>Parameters : text</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>post-normalization</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Called after normalization, text parameter is the final result of conversion.
-								<br>
+									</td>
+									<td>null</td>
+								</tr>
+								<tr>
+									<td>post-normalization</td>
+									<td><span class="label label-function">function</span></td>
+									<td>
+										Called after normalization, text parameter is the final result of conversion.
+										<br>
 								<pre><code>Parameters : text</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>plain-link-text</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Transform the text to be displayed of bare URLs (does not affect the targets of the links).
-								<br>
+										</td>
+										<td>null</td>
+									</tr>
+									<tr>
+										<td>plain-link-text</td>
+										<td><span class="label label-function">function</span></td>
+										<td>
+											Transform the text to be displayed of bare URLs (does not affect the targets of the links).
+											<br>
 								<pre><code>Parameters : url</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>pre-block-gamut</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Called with the text before creating block elements like code blocks and lists.
-								If you're creating a new kind of block structure that can include other blocks, you need to run the full block gamut again on the content of your block, for that purpose you will need to use the second parameter.
-								Be carefull of infinite recursion.
-								<br>
+											</td>
+											<td>null</td>
+										</tr>
+										<tr>
+											<td>pre-block-gamut</td>
+											<td><span class="label label-function">function</span></td>
+											<td>
+												Called with the text before creating block elements like code blocks and lists.
+												If you're creating a new kind of block structure that can include other blocks, you need to run the full block gamut again on the content of your block, for that purpose you will need to use the second parameter.
+												Be carefull of infinite recursion.
+												<br>
 								<pre><code>Parameters : text, runBlockGamut</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>post-block-gamut</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Same as preBlockGamut, but called with the text after creating block elements.
-								<br>
+												</td>
+												<td>null</td>
+											</tr>
+											<tr>
+												<td>post-block-gamut</td>
+												<td><span class="label label-function">function</span></td>
+												<td>
+													Same as preBlockGamut, but called with the text after creating block elements.
+													<br>
 								<pre><code>Parameters : text, runBlockGamut</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>pre-span-gamut</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Called with the text of a single block element before the span-level conversions (like bold, code spans...)
-								<br>
+													</td>
+													<td>null</td>
+												</tr>
+												<tr>
+													<td>pre-span-gamut</td>
+													<td><span class="label label-function">function</span></td>
+													<td>
+														Called with the text of a single block element before the span-level conversions (like bold, code spans...)
+														<br>
 								<pre><code>Parameters : text</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>post-span-gamut</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Same as preSpanGamut, but called with the text after the span-level conversions.
-								<br>
+														</td>
+														<td>null</td>
+													</tr>
+													<tr>
+														<td>post-span-gamut</td>
+														<td><span class="label label-function">function</span></td>
+														<td>
+															Same as preSpanGamut, but called with the text after the span-level conversions.
+															<br>
 								<pre><code>Parameters : text</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>on-preview-refresh</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Called every time the editor preview has been updated.
-								<br>
+															</td>
+															<td>null</td>
+														</tr>
+														<tr>
+															<td>on-preview-refresh</td>
+															<td><span class="label label-function">function</span></td>
+															<td>
+																Called every time the editor preview has been updated.
+																<br>
 								<pre><code>Parameters : none</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>post-blockquote-creation</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Called just after the user has clicked on the Blockquote button.
-								<br>
+																</td>
+																<td>null</td>
+															</tr>
+															<tr>
+																<td>post-blockquote-creation</td>
+																<td><span class="label label-function">function</span></td>
+																<td>
+																	Called just after the user has clicked on the Blockquote button.
+																	<br>
 								<pre><code>Parameters : text</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-						<tr>
-							<td>insert-image-dialog</td>
-							<td><span class="label label-function">function</span></td>
-							<td>
-								Function to create a new behaviour for when a user add a new image, call the callback function with your result in parameter. Must return true.
-								<br>
+																	</td>
+																	<td>null</td>
+																</tr>
+																<tr>
+																	<td>insert-image-dialog</td>
+																	<td><span class="label label-function">function</span></td>
+																	<td>
+																		Function to create a new behaviour for when a user add a new image, call the callback function with your result in parameter. Must return true.
+																		<br>
 								<pre><code>Parameters : callback</code></pre>
-							</td>
-							<td>null</td>
-						</tr>
-					</tbody>
-				</table>
-				<hr>
-				<div class="footer">
-					<span class="credits left">Project maintained by <a href="https://github.com/Apercu">Apercu</a></span>
-					<span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-				</div>
-			</div>
-			</section>
-		</div>
-	</body>
-</html>
+																		</td>
+																		<td>null</td>
+																	</tr>
+																</tbody>
+															</table>
+															<hr>
+															<div class="footer">
+																<span class="credits left">Project maintained by <a href="https://github.com/Apercu">Apercu</a></span>
+																<span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+															</div>
+														</div>
+														</section>
+													</div>
+												</body>
+											</html>
