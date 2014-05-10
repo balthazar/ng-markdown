@@ -18,13 +18,18 @@
 		<script type="text/javascript">
 			angular.module('demoApp', ['ngMarkdown']);
 			angular.module('demoApp').controller('AppCtrl', function ($scope) {
+
 				$scope.demo1 = '';
 				$scope.demo3 = '';
+				$scope.demo4 = '';
 
-				$scope.func1 = function(text) {
-					console.log('ok');
+				$scope.func1 = function (text) {
 					return "# Converted text follows\n\n" + text;
 				};
+
+				$scope.func2 = function (text) {
+					return text + "<br>\n**This is not bold, because it was added after the conversion**";
+				}
 			});
 		</script>
 	</head>
@@ -71,12 +76,23 @@
 					<hr>
 					<div class="flex">
 						<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo3" suffix="-3"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown content="demo3" suffix="-3" pre-conversion="func1"&gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
 							<div class="wmd-button-bar-3"></div>
-							<ng-markdown content="demo3" suffix="-3" preConversion="func1()"></ng-markdown>
+							<ng-markdown content="demo3" suffix="-3" pre-conversion="func1"></ng-markdown>
 							<div class="wmd-preview-3"></div>
+						</div>
+					</div><!-- box -->
+					<hr>
+					<div class="flex">
+						<div class="params fifty">
+							<pre><code>&lt;ng-markdown content="demo4" suffix="-4" post-conversion="func2"&gt;&lt;/ng-markdown&gt;</code></pre>
+						</div>
+						<div class="demo fifty">
+							<div class="wmd-button-bar-4"></div>
+							<ng-markdown content="demo4" suffix="-4" post-conversion="func2"></ng-markdown>
+							<div class="wmd-preview-4"></div>
 						</div>
 					</div><!-- box -->
 				</div>
