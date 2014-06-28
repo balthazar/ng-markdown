@@ -19,7 +19,7 @@
 			angular.module('demoApp', ['ngMarkdown']);
 			angular.module('demoApp').controller('AppCtrl', function ($scope) {
 
-				$scope.demo1 = '<marquee>This is a marquee<marquee>';
+				$scope.demo1 = '<marquee>This is a marquee</marquee>';
 				$scope.demo3 = '';
 				$scope.demo4 = '';
 				$scope.demo5 = 'http://www.stackexchange.com\n\n http://google.fr';
@@ -71,11 +71,11 @@
 					<div class="flex">
 						<a name="basic" class="anchor" href="#basic"></a>
 						<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo1" &gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown ng-model="demo1"&gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
 							<div class="wmd-button-bar"></div>
-							<ng-markdown content="demo1"></ng-markdown>
+							<ng-markdown ng-model="demo1"></ng-markdown>
 							<div class="wmd-preview"></div>
 						</div>
 					</div><!-- box -->
@@ -84,11 +84,11 @@
 						<a name="notsafe" class="anchor" href="#notsafe"></a>
 						<a name="suffix" class="anchor" href="#suffix"></a>
 						<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo1" suffix="-2" sanitized="false"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown ng-model="demo1" suffix="-2" sanitized="false"&gt;&lt;/ng-markdown&gt;</code></pre>
 						</div>
 						<div class="demo fifty">
 							<div class="wmd-button-bar-2"></div>
-							<ng-markdown content="demo1" suffix="-2" sanitized="false"></ng-markdown>
+							<ng-markdown ng-model="demo1" suffix="-2" sanitized="false"></ng-markdown>
 							<div class="wmd-preview-2"></div>
 						</div>
 					</div><!-- box -->
@@ -96,12 +96,12 @@
 					<div class="flex">
 						<a name="preconversion" class="anchor" href="#preconversion"></a>
 						<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo3" suffix="-3" pre-conversion="func1"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown ng-model="demo3" suffix="-3" pre-conversion="func1"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func1 = function (text) {<br>    return "# Converted text follows\n\n" + text;<br>};</code></pre>
 							</div>
 							<div class="demo fifty">
 								<div class="wmd-button-bar-3"></div>
-								<ng-markdown content="demo3" suffix="-3" pre-conversion="func1"></ng-markdown>
+								<ng-markdown ng-model="demo3" suffix="-3" pre-conversion="func1"></ng-markdown>
 								<div class="wmd-preview-3"></div>
 							</div>
 						</div><!-- box -->
@@ -109,12 +109,12 @@
 						<div class="flex">
 							<a name="postconversion" class="anchor" href="#postconversion"></a>
 							<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo4" suffix="-4" post-conversion="func2"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown ng-model="demo4" suffix="-4" post-conversion="func2"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func2 = function (text) {<br>    return text + "&lt;br&gt;\n**This is not bold, because it was added after the conversion**";<br>};</code></pre>
 							</div>
 							<div class="demo fifty">
 								<div class="wmd-button-bar-4"></div>
-								<ng-markdown content="demo4" suffix="-4" post-conversion="func2"></ng-markdown>
+								<ng-markdown ng-model="demo4" suffix="-4" post-conversion="func2"></ng-markdown>
 								<div class="wmd-preview-4"></div>
 							</div>
 						</div><!-- box -->
@@ -122,12 +122,12 @@
 						<div class="flex">
 							<a name="plainlinktext" class="anchor" href="#plainlinktext"></a>
 							<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo5" suffix="-5" plain-link-text="func3"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown ng-model="demo5" suffix="-5" plain-link-text="func3"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func3 = function (url) {<br>    if (/^http:\/\/\w+\.stackexchange.com/i.test(url))<br>        return "&lt;b&gt;A link to an awesome site!&lt;/b&gt;";<br>    else<br>        return "some page on the internet";<br>};</code></pre>
 							</div>
 							<div class="demo fifty">
 								<div class="wmd-button-bar-5"></div>
-								<ng-markdown content="demo5" suffix="-5" plain-link-text="func3"></ng-markdown>
+								<ng-markdown ng-model="demo5" suffix="-5" plain-link-text="func3"></ng-markdown>
 								<div class="wmd-preview-5"></div>
 							</div>
 						</div><!-- box -->
@@ -135,12 +135,12 @@
 						<div class="flex">
 							<a name="preblockgamut" class="anchor" href="#preblockgamut"></a>
 							<div class="params fifty">
-							<pre><code>&lt;ng-markdown content="demo6" suffix="-6" pre-block-gamut="func4"&gt;&lt;/ng-markdown&gt;</code></pre>
+							<pre><code>&lt;ng-markdown ng-model="demo6" suffix="-6" pre-block-gamut="func4"&gt;&lt;/ng-markdown&gt;</code></pre>
 							<pre><code>$scope.func4 = function (text, runBlockGamut) {<br>    return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {<br>        return "&lt;blockquote&gt;" + runBlockGamut(inner) + "&lt;/blockquote&gt;\n";<br>    });<br>};</code></pre>
 							</div>
 							<div class="demo fifty">
 								<div class="wmd-button-bar-6"></div>
-								<ng-markdown content="demo6" suffix="-6" pre-block-gamut="func4"></ng-markdown>
+								<ng-markdown ng-model="demo6" suffix="-6" pre-block-gamut="func4"></ng-markdown>
 								<div class="wmd-preview-6"></div>
 							</div>
 						</div><!-- box -->
