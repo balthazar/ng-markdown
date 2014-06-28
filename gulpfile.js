@@ -33,7 +33,7 @@ gulp.task('css', function() {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('test', function (done) {
+gulp.task('test', function () {
 	return gulp.src(['bower_components/angular/angular.min.js',
 					'bower_components/angular-elastic/elastic.js',
 					'dist/*.js',
