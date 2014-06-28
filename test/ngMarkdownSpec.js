@@ -7,22 +7,35 @@ describe('ngMarkdown Directive', function () {
 		$scope,
 		bind;
 
+	var getHtml = function () {
+		return angular.element([
+			'<content>',
+			'<div class="wmd-button-bar"></div>',
+			'<ng-markdown ng-model="bind"></ng-markdown>',
+			'<div class="wmd-preview">initialize</div>',
+			'</content>'
+		].join());
+	};
+
 	beforeEach(module('ngMarkdown'));
 
 	beforeEach(inject(function ($rootScope, $compile, $document) {
 
-		body = angular.element($document[0].body);
 		$scope = $rootScope.$new();
-
 		$scope.bind = '**strongText**';
 
-		html = angular.element('<div class="wmd-button-bar"></div><ng-markdown ng-model="bind"></ng-markdown><div class="wmd-preview">initialize</div>');
+		body = angular.element($document[0].body);
+		html = getHtml();
 		body.append(html);
 
 		$compile($document)($scope);
 		$scope.$digest();
 
 	}));
+
+	afterEach(function () {
+		document.querySelector('content').innerHTML = getHtml();
+	});
 
 	it('should equal 42', function () {
 		expect(42).toBe(42);
