@@ -17,6 +17,10 @@ describe('ngMarkdown Directive', function () {
 		].join());
 	};
 
+	var getPreview = function () {
+		return document.querySelector('.wmd-preview');
+	};
+
 	beforeEach(module('ngMarkdown'));
 
 	beforeEach(inject(function ($rootScope, $compile, $document) {
@@ -47,7 +51,17 @@ describe('ngMarkdown Directive', function () {
 
 	it('should be strong', function () {
 		expect($scope.bind).toBe('**strongText**');
-		expect(document.querySelector('.wmd-preview').innerHTML).toBe('<p><strong>strongText</strong></p>')
+		expect(getPreview().innerHTML).toBe('<p><strong>strongText</strong></p>')
+	});
+
+	it('should be italic', function () {
+		expect(getPreview().innerHTML).not.toBe('<p><em>italic</em><p>');
+
+		$scope.bind = '*italic*';
+		expect($scope.bind).toBe('*italic*');
+
+		$scope.$digest();
+		expect(getPreview().innerHTML).toBe('<p><em>italic</em><p>');
 	});
 
 });
