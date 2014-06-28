@@ -10,12 +10,12 @@ var gulp = require('gulp'),
 	karma = require('gulp-karma');
 
 function handleError(err) {
-    console.log(err.toString());
-    this.emit('end');
+	console.log(err.toString());
+	this.emit('end');
 }
 
-gulp.task('js', function() {
-    return gulp.src('js/*.js')
+gulp.task('js', function () {
+	return gulp.src('js/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(concat('ng-markdown.min.js'))
@@ -24,8 +24,8 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('css', function() {
-    return gulp.src('css/*.scss')
+gulp.task('css', function () {
+	return gulp.src('css/*.scss')
 		.pipe(sass({compass: true}))
 		.on('error', handleError)
 		.pipe(cssmin())
@@ -35,20 +35,21 @@ gulp.task('css', function() {
 
 gulp.task('test', function () {
 	return gulp.src(['bower_components/angular/angular.min.js',
-					'bower_components/angular-elastic/elastic.js',
-					'dist/*.js',
-					'test/*.js'])
+		'bower_components/angular-mocks/angular-mocks.js',
+		'bower_components/angular-elastic/elastic.js',
+		'js/*.js',
+		'test/*.js'])
 		.pipe(karma({
 			configFile: 'karma.conf.js',
-			action: 'run'
+			action    : 'run'
 		})).on('error', function (err) {
 			throw err;
 		});
 });
 
-gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['js', 'test']);
-    gulp.watch('css/*.scss', ['css']);
+gulp.task('watch', function () {
+	gulp.watch('js/*.js', ['js', 'test']);
+	gulp.watch('css/*.scss', ['css']);
 });
 
 gulp.task('default', ['js', 'css', 'watch']);

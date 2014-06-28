@@ -287,6 +287,9 @@
     // Adds a listener callback to a DOM element which is fired on a specified
     // event.
     util.addEvent = function (elem, event, listener) {
+	    if (!elem) {
+		    return;
+	    }
         if (elem.attachEvent) {
             // IE only.  The "on" is mandatory.
             elem.attachEvent("on" + event, listener);
@@ -630,8 +633,10 @@
                 setMode("moving");
             });
 
-            panels.input.onpaste = handlePaste;
-            panels.input.ondrop = handlePaste;
+	        if (panels.input) {
+		        panels.input.onpaste = handlePaste;
+		        panels.input.ondrop = handlePaste;
+	        }
         };
 
         var init = function () {
@@ -796,6 +801,10 @@
 
         // Adds event listeners to elements
         var setupEvents = function (inputElem, listener) {
+
+	        if (!inputElem) {
+		        return;
+	        }
 
             util.addEvent(inputElem, "input", listener);
             inputElem.onpaste = listener;
