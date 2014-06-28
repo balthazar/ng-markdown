@@ -280,7 +280,7 @@
         }
         else if (elem.currentStyle) {
             // IE
-            return elem.currentStyle["display"] !== "none";
+            return elem.currentStyle.display !== "none";
         }
     };
 
