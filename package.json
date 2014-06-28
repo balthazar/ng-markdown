@@ -1,6 +1,6 @@
 {
   "name": "ng-markdown",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "main": "dist/ng-markdown.min.js",
   "repository": {
     "type": "git",
