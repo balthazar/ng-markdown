@@ -18,7 +18,7 @@ module.exports = function(config) {
 		'bower_components/angular/angular.min.js',
 		'bower_components/angular-mocks/angular-mocks.js',
 		'bower_components/angular-elastic/elastic.js',
-		'js/*.js',
+		'js/**/*.js',
 		'test/*.js',
 		'test/tpl/*.html'
 	],

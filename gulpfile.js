@@ -15,7 +15,7 @@ function handleError(err) {
 }
 
 gulp.task('js', function () {
-	return gulp.src('js/*.js')
+	return gulp.src('js/**/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(concat('ng-markdown.min.js'))
@@ -44,7 +44,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('watch', function () {
-	gulp.watch('js/*.js', ['js', 'test']);
+	gulp.watch('js/*.js', ['js']);
 	gulp.watch('css/*.scss', ['css']);
 });
 
