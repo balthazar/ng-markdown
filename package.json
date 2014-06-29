@@ -16,6 +16,10 @@
     "gulp-rename": "^1.2.0",
     "gulp-ruby-sass": "^0.4.3",
     "gulp-uglify": "^0.2.1",
-    "gulp-util": "^2.2.14"
+    "gulp-util": "^2.2.14",
+    "gulp-karma": "0.0.4",
+    "karma-jasmine": "^0.1.5",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-ng-html2js-preprocessor": "~0.1.0"
   }
 }
