@@ -34,11 +34,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('test', function () {
-	return gulp.src(['bower_components/angular/angular.min.js',
-		'bower_components/angular-mocks/angular-mocks.js',
-		'bower_components/angular-elastic/elastic.js',
-		'js/*.js',
-		'test/*.js'])
+	return gulp.src('./ok')
 		.pipe(karma({
 			configFile: 'karma.conf.js',
 			action    : 'run'

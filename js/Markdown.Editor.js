@@ -276,6 +276,9 @@
 
         if (window.getComputedStyle) {
             // Most browsers
+			if (!window.getComputedStyle(elem, null)) {
+				return;
+			}
             return window.getComputedStyle(elem, null).getPropertyValue("display") !== "none";
         }
         else if (elem.currentStyle) {
