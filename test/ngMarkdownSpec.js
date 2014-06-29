@@ -10,6 +10,11 @@ describe('ngMarkdown Directive', function () {
 		return document.querySelector('.wmd-preview');
 	};
 
+	var clearContent = function () {
+		var content = document.querySelector('content');
+		content.parentNode.removeChild(content);
+	};
+
 	beforeEach(module('ngMarkdown'));
 
 	//need to implement this
@@ -34,8 +39,7 @@ describe('ngMarkdown Directive', function () {
 	}));
 
 	afterEach(inject(function ($document) {
-		var content = document.querySelector('content');
-		content.parentNode.removeChild(content);
+		clearContent();
 	}));
 
 	it('should equal 42', function () {
