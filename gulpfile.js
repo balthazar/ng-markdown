@@ -18,15 +18,18 @@ gulp.task('js', function () {
 	return gulp.src('js/**/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
-		.pipe(concat('ng-markdown.min.js'))
+		.pipe(concat('ng-markdown.js'))
+		.pipe(gulp.dest('dist'))
 		.pipe(ngmin())
 		.pipe(uglify({mangle: false}))
+		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
 	return gulp.src('css/*.scss')
 		.pipe(sass({compass: true}))
+		.pipe(gulp.dest('dist'))
 		.on('error', handleError)
 		.pipe(cssmin())
 		.pipe(rename({suffix: '.min'}))
