@@ -77,13 +77,17 @@
 [class^="wmd-prompt-dialog"], [class*=" wmd-prompt-dialog"] {
 	position: fixed;
 	top: 35%;
-	left: 40%;
+    width: 300px;
+	left: 50%;
+    margin-left: -150px;
 	z-index: 1001;
 	padding: 16px;
 	@include border-radius(5px, 5px);
 	border: 2px solid rgba(196, 196, 196, 1);
 	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
 	background-color: rgba(71, 71, 71, 0.9);
+    box-sizing: border-box;
+
     > div {
 	    text-align: center;
     }
@@ -168,3 +172,12 @@
 .markdown-icon-code:before {
 	content: "\e60d";
 }
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    [class*=" wmd-prompt-dialog"], [class^=wmd-prompt-dialog] {
+        width: 400px;
+        margin-left: -200px;
+    }
+}
+
