@@ -7,10 +7,10 @@
 	.config(['msdElasticConfig', function(config) {
 		config.append = '\n\n';
 	}])
-    .directive('ngMarkdown', function ($timeout) {
+    .directive('ngMarkdown', function ($timeout, $compile) {
 
         return {
-            template: '<textarea msd-elastic></textarea>',
+            template: '<textarea></textarea>',
             restrict: 'EA',
             replace: true,
             scope: {
@@ -30,6 +30,12 @@
 			compile: function () {
 				return {
 					post: function (scope, element, attrs) {
+
+						//Change elasticity, recompile element
+						if (attrs.elastic !== 'false') {
+							element.attr('msd-elastic', '');
+							$compile(element)(scope);
+						}
 
 						//Setting defaults params
 						var converter = Markdown.getSanitizingConverter();
