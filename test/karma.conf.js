@@ -15,12 +15,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-		'bower_components/angular/angular.min.js',
-		'bower_components/angular-mocks/angular-mocks.js',
-		'bower_components/angular-elastic/elastic.js',
-		'js/**/*.js',
-		'test/*.js',
-		'test/tpl/*.html'
+		'../bower_components/angular/angular.min.js',
+		'../bower_components/angular-mocks/angular-mocks.js',
+		'../bower_components/angular-elastic/elastic.js',
+		'../dist/ng-markdown.min.js',
+		'unit/*.js',
+		'tpl/*.html'
 	],
 
 
@@ -32,7 +32,7 @@ module.exports = function(config) {
 	// preprocess matching files before serving them to the browser
 	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	preprocessors: {
-		'test/tpl/*.html': 'ng-html2js'
+		'tpl/*.html': 'ng-html2js'
 	},
 
 
@@ -61,7 +61,7 @@ module.exports = function(config) {
 
 	// start these browsers
 	// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-	browsers: ['Firefox'],
+	browsers: ['Chrome'],
 
 
 	// Continuous Integration mode

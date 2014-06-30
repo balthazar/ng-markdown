@@ -7,7 +7,8 @@ var gulp = require('gulp'),
 	rename = require("gulp-rename"),
 	gutil = require('gulp-util'),
 	sass = require('gulp-ruby-sass'),
-	karma = require('gulp-karma');
+	karma = require('gulp-karma'),
+	protractor = require("gulp-protractor").protractor;
 
 function handleError(err) {
 	console.log(err.toString());
@@ -39,11 +40,18 @@ gulp.task('css', function () {
 gulp.task('test', function () {
 	return gulp.src('./ok')
 		.pipe(karma({
-			configFile: 'karma.conf.js',
+			configFile: 'test/karma.conf.js',
 			action    : 'run'
 		})).on('error', function (err) {
 			throw err;
 		});
+});
+
+gulp.task('e2e:run', function () {
+	gulp.src('test/e2e/*.js')
+		.pipe(protactor({
+			configFile: 'test/protactor.config.js'
+		}));
 });
 
 gulp.task('watch', function () {
