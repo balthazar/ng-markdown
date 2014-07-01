@@ -19,17 +19,21 @@ exports.config = {
   // is found, this will default to
   // node_modules/protractor/selenium/selenium-server...
   seleniumServerJar: null,
+
   // The port to start the selenium server on, or null if the server should
   // find its own unused port.
   seleniumPort: null,
+
   // Chromedriver location is used to help the selenium standalone server
   // find chromedriver. This will be passed to the selenium jar as
   // the system property webdriver.chrome.driver. If null, selenium will
   // attempt to find chromedriver using PATH.
   chromeDriver: './selenium/chromedriver',
+
   // If true, only chromedriver will be started, not a standalone selenium.
   // Tests for browsers other than chrome will not run.
   chromeOnly: false,
+
   // Additional command line options to pass to selenium. For example,
   // if you need to change the browser timeout, use
   // seleniumArgs: ['-browserTimeout=60'],
@@ -49,27 +53,9 @@ exports.config = {
   // than the maximum time your application needs to stabilize between tasks.
   allScriptsTimeout: 11000,
 
-  // ----- What tests to run -----
-  //
-  // Spec patterns are relative to the location of this config.
-  specs: [
-    'spec/*_spec.js',
-  ],
-
-  // Patterns to exclude.
-  exclude: [],
-
-  // Alternatively, suites may be used. When run without a command line parameter,
-  // all suites will run. If run with --suite=smoke, only the patterns matched
-  // by that suite will run.
-  suites: {
-    smoke: 'spec/smoketests/*.js',
-    full: 'spec/*.js'
-  },
-
-  // Maximum number of total browser sessions to run. Tests are queued in 
-  // sequence if number of browser sessions is limited by this parameter. 
-  // Use a number less than 1 to denote unlimited. Default is unlimited. 
+  // Maximum number of total browser sessions to run. Tests are queued in
+  // sequence if number of browser sessions is limited by this parameter.
+  // Use a number less than 1 to denote unlimited. Default is unlimited.
   maxSessions: -1,
 
   // ----- Capabilities to be passed to the webdriver instance ----
@@ -81,65 +67,11 @@ exports.config = {
   // Additionally, you may specify count, shardTestFiles, and maxInstances.
   capabilities: {
     browserName: 'chrome',
-
-    // Number of times to run this set of capabilities (in parallel, unless 
-    // limited by maxSessions). Default is 1.
-    count: 1, 
-
-    // If this is set to be true, specs will be sharded by file (i.e. all
-    // files to be run by this set of capabilities will run in parallel).
-    // Default is false.
-    shardTestFiles: false,
-
-    // Maximum number of browser instances that can run in parallel for this 
-    // set of capabilities. This is only needed if shardTestFiles is true. 
-    // Default is 1.
-    maxInstances: 1
   },
-
-  // If you would like to run more than one instance of webdriver on the same
-  // tests, use multiCapabilities, which takes an array of capabilities.
-  // If this is specified, capabilities will be ignored.
-  multiCapabilities: [],
-
-  // ----- More information for your tests ----
-  //
-  // A base URL for your application under test. Calls to protractor.get()
-  // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:9876',
 
   // Selector for the element housing the angular app - this defaults to
-  // body, but is necessary if ng-app is on a descendant of <body>  
+  // body, but is necessary if ng-app is on a descendant of <body>
   rootElement: 'body',
-
-  // A callback function called once protractor is ready and available, and
-  // before the specs are executed
-  // You can specify a file containing code to run by setting onPrepare to
-  // the filename string.
-  onPrepare: function() {
-    // At this point, global 'protractor' object will be set up, and jasmine
-    // will be available. For example, you can add a Jasmine reporter with:
-    //     jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter(
-    //         'outputdir/', true, true));
-  },
-
-  // A callback function called once tests are finished.
-  onComplete: function() {
-    // At this point, tests will be done but global objects will still be
-    // available.
-  },
-
-  // The params object will be passed directly to the protractor instance,
-  // and can be accessed from your test. It is an arbitrary object and can
-  // contain anything you may need in your test.
-  // This can be changed via the command line as:
-  //   --params.login.user 'Joe'
-  params: {
-    login: {
-      user: 'Jane',
-      password: '1234'
-    }
-  },
 
   // ----- The test framework -----
   //
@@ -147,7 +79,7 @@ exports.config = {
   // Mocha and Cucumber have limited beta support. You will need to include your
   // own assertion framework if working with mocha.
   framework: 'jasmine',
-  
+
   // ----- Options to be passed to minijasminenode -----
   //
   // See the full list at https://github.com/juliemr/minijasminenode
@@ -160,25 +92,6 @@ exports.config = {
     includeStackTrace: true,
     // Default time to wait in ms before a test fails.
     defaultTimeoutInterval: 30000
-  },
-
-  // ----- Options to be passed to mocha -----
-  //
-  // See the full list at http://visionmedia.github.io/mocha/
-  mochaOpts: {
-    ui: 'bdd',
-    reporter: 'list'
-  },
-
-  // ----- Options to be passed to cucumber -----
-  cucumberOpts: {
-    // Require files before executing the features.
-    require: 'cucumber/stepDefinitions.js',
-    // Only execute the features or scenarios with tags matching @dev.
-    // This may be an array of strings to specify multiple tags to include.
-    tags: '@dev',
-    // How to format features (default: progress)
-    format: 'summary'
   },
 
   // ----- The cleanup step -----

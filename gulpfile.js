@@ -8,7 +8,13 @@ var gulp = require('gulp'),
 	gutil = require('gulp-util'),
 	sass = require('gulp-ruby-sass'),
 	karma = require('gulp-karma'),
-	protractor = require("gulp-protractor").protractor;
+	gulpactor = require("gulp-protractor"),
+	args = require('yargs').argv;
+
+//Server config
+var express = require('express'),
+	http = require('http'),
+	server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
 
 function handleError(err) {
 	console.log(err.toString());
@@ -49,9 +55,14 @@ gulp.task('test', function () {
 
 gulp.task('e2e:run', function () {
 	gulp.src('test/e2e/*.js')
-		.pipe(protactor({
-			configFile: 'test/protactor.config.js'
+		.pipe(gulpactor.protractor({
+			configFile: 'test/protractor.config.js',
+			args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
 		}));
+});
+
+gulp.task('e2e:update', function () {
+	gulpactor.webdriver_update();
 });
 
 gulp.task('watch', function () {
