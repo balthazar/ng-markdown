@@ -53,12 +53,24 @@ gulp.task('test', function () {
 		});
 });
 
-gulp.task('e2e:run', function () {
+gulp.task('e2e:server', function (callback) {
+	server.listen(8001, callback);
+});
+
+gulp.task('e2e:run', ['e2e:server'], function (callback) {
 	gulp.src('test/e2e/*.js')
 		.pipe(gulpactor.protractor({
 			configFile: 'test/protractor.config.js',
 			args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
-		}));
+		})).on('error', function (e) {
+			//console.log(e);
+			//throw(e);
+			server.close();
+			callback();
+		}).on('end', function () {
+			server.close();
+			callback();
+		});
 });
 
 gulp.task('e2e:update', function () {

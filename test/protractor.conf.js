@@ -18,7 +18,7 @@ exports.config = {
   // to the location of this config. If no other method of starting selenium
   // is found, this will default to
   // node_modules/protractor/selenium/selenium-server...
-  seleniumServerJar: null,
+  seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.42.2.jar',
 
   // The port to start the selenium server on, or null if the server should
   // find its own unused port.
@@ -28,7 +28,7 @@ exports.config = {
   // find chromedriver. This will be passed to the selenium jar as
   // the system property webdriver.chrome.driver. If null, selenium will
   // attempt to find chromedriver using PATH.
-  chromeDriver: './selenium/chromedriver',
+  chromeDriver: './node_modules/protractor/selenium/chromedriver',
 
   // If true, only chromedriver will be started, not a standalone selenium.
   // Tests for browsers other than chrome will not run.
@@ -92,12 +92,6 @@ exports.config = {
     includeStackTrace: true,
     // Default time to wait in ms before a test fails.
     defaultTimeoutInterval: 30000
-  },
+  }
 
-  // ----- The cleanup step -----
-  //
-  // A callback function called once the tests have finished running and
-  // the webdriver instance has been shut down. It is passed the exit code
-  // (0 if the tests passed or 1 if not). This is called once per capability.
-  onCleanUp: function(exitCode) {}
 };
