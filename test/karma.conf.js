@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './..',
 
 
     // frameworks to use
@@ -15,11 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-		'../bower_components/angular/angular.min.js',
-		'../bower_components/angular-mocks/angular-mocks.js',
-		'../bower_components/angular-elastic/elastic.js',
-		'../dist/ng-markdown.min.js',
-		'unit/*.js'
+		'bower_components/angular/angular.min.js',
+		'bower_components/angular-mocks/angular-mocks.js',
+		'bower_components/angular-elastic/elastic.js',
+		'dist/ng-markdown.min.js',
+		'test/unit/*.js'
 	],
 
 
@@ -32,13 +32,6 @@ module.exports = function(config) {
 	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	preprocessors: {
 		'js/{,*/}*.js': 'coverage'
-	},
-
-	coverageReporter: {
-		reporters:[
-			{ type: 'lcov', dir:'test/coverage/' },
-			{ type: 'text-summary', dir:'test/coverage/' }
-		]
 	},
 
 	plugins: [
@@ -54,11 +47,19 @@ module.exports = function(config) {
 	reporters: ['progress', 'coverage'],
 
 
+	coverageReporter: {
+		reporters:[
+			{ type: 'lcov', dir:'test/coverage/' },
+			{ type: 'text-summary', dir:'test/coverage/' }
+		]
+	},
+
+
 	singleRun: false,
 
 
 	// web server port
-	port: 9876,
+	port: 8080,
 
 
 	// enable / disable colors in the output (reporters and logs)
