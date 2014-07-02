@@ -49,13 +49,9 @@ gulp.task('test', function () {
 	karma.start({
 		configFile: path.join(__dirname, 'test/karma.conf.js'),
 	    browsers: ['PhantomJS'],
-	    reporters: ['progress']
+	    reporters: ['dots']
 	}, function (code) {
-		gulp.src('test/coverage/**/lcov.info')
-			.pipe(coveralls())
-			.on('end', function () {
-				process.exit(code);
-			});
+		console.log('Karma exited with ', code);
 	});
 });
 
