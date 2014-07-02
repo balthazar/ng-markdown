@@ -7,9 +7,10 @@ var gulp = require('gulp'),
 	rename = require("gulp-rename"),
 	gutil = require('gulp-util'),
 	sass = require('gulp-ruby-sass'),
-	karma = require('gulp-karma'),
+	karma = require('karma').server,
 	gulpactor = require("gulp-protractor"),
-	args = require('yargs').argv;
+	args = require('yargs').argv,
+	coveralls = require('gulp-coveralls');
 
 //Server config
 var express = require('express'),
@@ -44,13 +45,17 @@ gulp.task('css', function () {
 });
 
 gulp.task('test', function () {
-	return gulp.src('./ok')
-		.pipe(karma({
-			configFile: 'test/karma.conf.js',
-			action    : 'run'
-		})).on('error', function (err) {
-			throw err;
-		});
+	karma.start({
+		configFile: path.join(__dirname, 'test/karma.conf.js'),
+	    browsers: ['PhantomJS'],
+	    reporters: ['progress']
+	}, function (code) {
+		gulp.src('test/coverage/**/lcov.info')
+			.pipe(coveralls())
+			.on('end', function () {
+				process.exit(code);
+			});
+	});
 });
 
 gulp.task('e2e:server', function (callback) {

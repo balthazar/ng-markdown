@@ -17,7 +17,6 @@
     "gulp-ruby-sass": "^0.4.3",
     "gulp-uglify": "^0.2.1",
     "gulp-util": "^2.2.14",
-    "gulp-karma": "0.0.4",
     "karma-jasmine": "^0.1.5",
     "karma-chrome-launcher": "^0.1.4",
     "karma-ng-html2js-preprocessor": "~0.1.0",
@@ -25,7 +24,9 @@
     "gulp-protractor": "0.0.9",
     "protractor": "~1.0.0-rc1",
     "yargs": "~1.2.6",
-    "express": "~4.4.5"
+    "express": "~4.4.5",
+    "gulp-coveralls": "~0.1.2",
+    "karma": "~0.12.16"
   },
   "scripts": {
     "test": "gulp test"
