@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 	karma = require('karma').server,
 	gulpactor = require("gulp-protractor"),
 	args = require('yargs').argv,
-	path = rquire('path'),
+	path = require('path'),
 	coveralls = require('gulp-coveralls');
 
 //Server config
