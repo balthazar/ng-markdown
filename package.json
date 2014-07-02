@@ -26,7 +26,8 @@
     "yargs": "~1.2.6",
     "express": "~4.4.5",
     "gulp-coveralls": "~0.1.2",
-    "karma": "~0.12.16"
+    "karma": "~0.12.16",
+    "karma-phantomjs-launcher": "~0.1.4"
   },
   "scripts": {
     "test": "gulp test"
