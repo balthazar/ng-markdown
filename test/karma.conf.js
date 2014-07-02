@@ -33,8 +33,21 @@ module.exports = function(config) {
 	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	preprocessors: {
 		'tpl/*.html': 'ng-html2js',
-		'src/{,*/}*.js': 'coverage'
+		'js/{,*/}*.js': 'coverage'
 	},
+
+	coverageReporter: {
+		reporters:[
+			{ type: 'lcov', dir:'test/coverage/' },
+			{ type: 'text-summary', dir:'test/coverage/' }
+		]
+	},
+
+	plugins: [
+		'karma-jasmine',
+		'karma-phantomjs-launcher',
+		'karma-coverage'
+	],
 
 
 	// test results reporter to use
