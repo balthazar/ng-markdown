@@ -2,3 +2,4 @@ node_modules/
 .sass-cache/
 .idea/
 bower_components/
+test/coverage/

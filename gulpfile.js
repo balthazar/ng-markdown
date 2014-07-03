@@ -49,7 +49,8 @@ gulp.task('test', function () {
 	karma.start({
 		configFile: path.join(__dirname, 'test/karma.conf.js'),
 	    browsers: ['PhantomJS'],
-	    reporters: ['dots']
+	    reporters: ['progress', 'coverage'],
+		singleRun: true
 	}, function (code) {
 		console.log('Karma exited with ', code);
 	});

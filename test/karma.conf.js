@@ -19,6 +19,7 @@ module.exports = function(config) {
 		'bower_components/angular-mocks/angular-mocks.js',
 		'bower_components/angular-elastic/elastic.js',
 		'dist/ng-markdown.min.js',
+		'dist/ng-markdown.js',
 		'test/unit/*.js'
 	],
 
@@ -31,7 +32,7 @@ module.exports = function(config) {
 	// preprocess matching files before serving them to the browser
 	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	preprocessors: {
-		'js/{,*/}*.js': 'coverage'
+		'dist/ng-markdown.js': 'coverage'
 	},
 
 	plugins: [
@@ -55,11 +56,8 @@ module.exports = function(config) {
 	},
 
 
-	singleRun: false,
-
-
 	// web server port
-	port: 8080,
+	port: 8181,
 
 
 	// enable / disable colors in the output (reporters and logs)
@@ -68,7 +66,7 @@ module.exports = function(config) {
 
 	// level of logging
 	// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-	logLevel: config.LOG_DEBUG,
+	logLevel: config.LOG_INFO,
 
 
 	// enable / disable watching file and executing tests whenever any file changes
@@ -83,5 +81,6 @@ module.exports = function(config) {
 	// Continuous Integration mode
 	// if true, Karma captures browsers, runs the tests and exits
 	singleRun: false
+
   });
 };
