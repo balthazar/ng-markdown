@@ -53,6 +53,11 @@ gulp.task('test', function () {
 		singleRun: true
 	}, function (code) {
 		console.log('Karma exited with ', code);
+		gulp.src('test/coverage/**/lcov.info')
+			.pipe(coveralls())
+			.on('end', function() {
+				process.exit(code);
+			});
 	});
 });
 
