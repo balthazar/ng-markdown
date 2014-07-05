@@ -13,11 +13,6 @@ var gulp = require('gulp'),
 	path = require('path'),
 	coveralls = require('gulp-coveralls');
 
-//Server config
-var express = require('express'),
-	http = require('http'),
-	server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
-
 function handleError(err) {
 	console.log(err.toString());
 	this.emit('end');
@@ -61,6 +56,11 @@ gulp.task('test', function () {
 	});
 });
 
+
+var express = require('express'),
+	http = require('http'),
+	server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
+
 gulp.task('e2e:server', function (callback) {
 	server.listen(8001, callback);
 });
@@ -68,10 +68,10 @@ gulp.task('e2e:server', function (callback) {
 gulp.task('e2e:run', ['e2e:server'], function (callback) {
 	gulp.src('test/e2e/*.js')
 		.pipe(gulpactor.protractor({
-			configFile: 'test/protractor.config.js',
+			configFile: 'test/protractor.conf.js',
 			args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
 		})).on('error', function (e) {
-			//console.log(e);
+			console.log(e);
 			//throw(e);
 			server.close();
 			callback();

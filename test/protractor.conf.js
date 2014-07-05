@@ -57,11 +57,6 @@ exports.config = {
     'e2e/*.js',
   ],
 
-  // Maximum number of total browser sessions to run. Tests are queued in
-  // sequence if number of browser sessions is limited by this parameter.
-  // Use a number less than 1 to denote unlimited. Default is unlimited.
-  maxSessions: -1,
-
   // ----- Capabilities to be passed to the webdriver instance ----
   //
   // For a list of available capabilities, see
@@ -77,24 +72,13 @@ exports.config = {
   // body, but is necessary if ng-app is on a descendant of <body>
   rootElement: 'body',
 
-  // ----- The test framework -----
-  //
-  // Jasmine isfully supported as a test and assertion framework.
-  // Mocha and Cucumber have limited beta support. You will need to include your
-  // own assertion framework if working with mocha.
   framework: 'jasmine',
 
-  // ----- Options to be passed to minijasminenode -----
-  //
-  // See the full list at https://github.com/juliemr/minijasminenode
   jasmineNodeOpts: {
     // If true, display spec names.
     isVerbose: false,
-    // If true, print colors to the terminal.
     showColors: true,
-    // If true, include stack traces in failures.
     includeStackTrace: true,
-    // Default time to wait in ms before a test fails.
     defaultTimeoutInterval: 30000
   }
 
