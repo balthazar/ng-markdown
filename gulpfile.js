@@ -72,7 +72,6 @@ gulp.task('e2e:run', ['e2e:server'], function (callback) {
 			args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
 		})).on('error', function (e) {
 			console.log(e);
-			//throw(e);
 			server.close();
 			callback();
 		}).on('end', function () {
