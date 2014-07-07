@@ -69,7 +69,7 @@ gulp.task('e2e:run', ['e2e:server'], function (callback) {
 	gulp.src('test/e2e/*.js')
 		.pipe(gulpactor.protractor(
 			{
-				configFile: 'test/protractor.conf.js'
+				configFile: 'test/protractor.conf.js',
 				args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
 			}
 		)).on('error', function (e) {
