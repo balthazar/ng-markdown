@@ -17,7 +17,7 @@ exports.config = {
 	//If Server already there
 	//seleniumAddress: null,
 
-	allScriptsTimeout: 11000,
+	allScriptsTimeout: 50000,
 
 	specs: [
 		'e2e/*.js',

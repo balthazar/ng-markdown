@@ -3,6 +3,9 @@
 	<head>
 		<meta charset='utf-8'>
 		<title>Ng-Markdown e2e tests</title>
+
+		<link rel="stylesheet" href="css/ng-markdown.min.css">
+
     <script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/elastic.js"></script>
 		<script type="text/javascript" src="js/ng-markdown.min.js"></script>
@@ -23,5 +26,7 @@
 		<div class="wmd-button-bar"></div>
 		<ng-markdown ng-model="text"></ng-markdown>
 		<div class="wmd-preview"></div>
+		<p class="bindTest">{{text}}</p>
+
 	</body>
 </html>
