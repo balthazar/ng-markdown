@@ -64,7 +64,7 @@
 }
 
 [class^="wmd-prompt-background"], [class*=" wmd-prompt-background"] {
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	width: 100%;
 	z-index: 1000;

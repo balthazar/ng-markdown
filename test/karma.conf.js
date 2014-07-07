@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './..',
 
 
     // frameworks to use
@@ -18,9 +18,9 @@ module.exports = function(config) {
 		'bower_components/angular/angular.min.js',
 		'bower_components/angular-mocks/angular-mocks.js',
 		'bower_components/angular-elastic/elastic.js',
-		'js/*.js',
-		'test/*.js',
-		'test/tpl/*.html'
+		'dist/ng-markdown.min.js',
+		'js/**/*.js',
+		'test/unit/*.spec.js'
 	],
 
 
@@ -32,18 +32,32 @@ module.exports = function(config) {
 	// preprocess matching files before serving them to the browser
 	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	preprocessors: {
-		'test/tpl/*.html': 'ng-html2js'
+		'js/**/*.js': 'coverage'
 	},
+
+	plugins: [
+		'karma-jasmine',
+		'karma-phantomjs-launcher',
+		'karma-coverage'
+	],
 
 
 	// test results reporter to use
 	// possible values: 'dots', 'progress'
 	// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-	reporters: ['progress'],
+	reporters: ['progress', 'coverage'],
+
+
+	coverageReporter: {
+		reporters:[
+			{ type: 'lcov', dir:'test/coverage/' },
+			{ type: 'text-summary', dir:'test/coverage/' }
+		]
+	},
 
 
 	// web server port
-	port: 9876,
+	port: 8181,
 
 
 	// enable / disable colors in the output (reporters and logs)
@@ -52,7 +66,7 @@ module.exports = function(config) {
 
 	// level of logging
 	// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-	logLevel: config.LOG_DEBUG,
+	logLevel: config.LOG_INFO,
 
 
 	// enable / disable watching file and executing tests whenever any file changes
@@ -67,5 +81,6 @@ module.exports = function(config) {
 	// Continuous Integration mode
 	// if true, Karma captures browsers, runs the tests and exits
 	singleRun: false
+
   });
 };
