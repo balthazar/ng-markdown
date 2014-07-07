@@ -65,7 +65,7 @@ gulp.task('e2e:server', function (callback) {
 	server.listen(8001, callback);
 });
 
-gulp.task('e2e:run', ['e2e:update', 'e2e:server'], function (callback) {
+gulp.task('e2e:run', ['e2e:server'], function (callback) {
 	gulp.src('test/e2e/*.js')
 		.pipe(gulpactor.protractor(
 			{
