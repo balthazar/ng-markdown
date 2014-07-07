@@ -18,7 +18,7 @@ describe('ngMarkdown Directive', function () {
 	beforeEach(module('ngMarkdown'));
 
 	//need to implement this
-	beforeEach(module('test/tpl/default.html'));
+	//beforeEach(module('tpl/default.html'));
 
 	beforeEach(inject(function ($rootScope, $compile, $document) {
 		$scope = $rootScope;
