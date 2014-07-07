@@ -20,7 +20,7 @@ module.exports = function(config) {
 		'bower_components/angular-elastic/elastic.js',
 		'dist/ng-markdown.min.js',
 		'js/**/*.js',
-		'test/unit/*.js'
+		'test/unit/*.spec.js'
 	],
 
 
