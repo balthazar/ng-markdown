@@ -8,7 +8,7 @@ before_script:
 - export PHANTOMJS_BIN=/usr/local/phantomjs/bin/phantomjs
 - sh -e /etc/init.d/xvfb start
 - sleep 3
-- npm install -gq bower
+- npm install -g bower
 - bower install --config.interactive=0
 - gulp --version
 - bower --version

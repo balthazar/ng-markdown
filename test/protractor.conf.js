@@ -10,9 +10,9 @@ exports.config = {
 	// Tests for browsers other than chrome will not run.
 	chromeOnly: false,
 
-	//Deploying to SauceLabs (warn with the key ?)
-	//sauceUser: 'bgronon',
-	//sauceKey: '',
+	//Deploying to SauceLabs
+	sauceUser: process.env.SAUCE_USERNAME,
+	sauceKey: process.env.SAUCE_ACCESS_KEY,
 
 	//If Server already there
 	//seleniumAddress: null,
@@ -30,6 +30,8 @@ exports.config = {
 	// Additionally, you may specify count, shardTestFiles, and maxInstances.
 	capabilities: {
 		browserName: 'chrome',
+		tunnel-identifier: process.env.TRAVIS_JOB_NUMBER,
+		build: process.env.TRAVIS_BUILD_NUMBER
 	},
 
 	framework: 'jasmine',

@@ -28,6 +28,6 @@
     "karma-coverage": "~0.2.4"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test && gulp e2e:run"
   }
 }
