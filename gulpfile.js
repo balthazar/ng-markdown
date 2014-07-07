@@ -13,6 +13,10 @@ var gulp = require('gulp'),
 	path = require('path'),
 	coveralls = require('gulp-coveralls');
 
+var express = require('express'),
+	http = require('http'),
+	server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
+
 function handleError(err) {
 	console.log(err.toString());
 	this.emit('end');
@@ -55,11 +59,6 @@ gulp.task('test', function () {
 			});
 	});
 });
-
-
-var express = require('express'),
-	http = require('http'),
-	server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
 
 gulp.task('e2e:server', function (callback) {
 	server.listen(8001, callback);
