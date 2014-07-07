@@ -8,10 +8,9 @@ before_script:
 - export PHANTOMJS_BIN=/usr/local/phantomjs/bin/phantomjs
 - sh -e /etc/init.d/xvfb start
 - sleep 3
-- npm install -g bower
-- bower install --config.interactive=0
+- ./node_modules/bower/bin/bower install --config.interactive=0
+- ./node_modules/bower/bin/bower --version
 - gulp --version
-- bower --version
 env:
   global:
   - secure: iKE9Qp+6ZKCr1Xon087MKA267kgIItF/RMuEDUCwNzsD3VvZHdzqi00qml3iyZ5zHEWTWEev0gBQdVDNQbyzTM/6Eu60TXQcx6Veqgm6jkTmOC9gtiY1AA/SEm6eEm2dZKVKagQpaLiK3GxVPSeeGygGqDMPpOUKNnHdT4jZHDQ=
