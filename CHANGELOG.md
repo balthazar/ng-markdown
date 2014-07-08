@@ -1,3 +1,30 @@
+## 2.1.0 (2014-07-08)
+
+
+#### Bug Fixes
+
+* **core:** prevent second npm install ([41ec60d1](https://github.com/Apercu/ng-markdown/commit/41ec60d1551487da0877099402bd8fffc6136ee9))
+* **gulp:** typo ([16aa3e8d](https://github.com/Apercu/ng-markdown/commit/16aa3e8d4769d8f328e90ac9e0d84eb30efa29b0))
+* **karma:** improving conf and package ([ddfe0c28](https://github.com/Apercu/ng-markdown/commit/ddfe0c28eb37f1441e3857fe82000baff9fd68e5))
+* **style:** background-prompt on all the viewport ([a5bb52fe](https://github.com/Apercu/ng-markdown/commit/a5bb52fe669b2e43b6ce0066e6aa83de8930bf8b), closes [#8](https://github.com/Apercu/ng-markdown/issues/8))
+* **test:** Launching test and coverage support now operational ([5f7cf228](https://github.com/Apercu/ng-markdown/commit/5f7cf22879a92d38cf33332b3d4cc23e7553c22b))
+* **tests:** protractor paths files in e2e config ([d92235b6](https://github.com/Apercu/ng-markdown/commit/d92235b6b5140ea0ac44f3301f52a700f015d669))
+* **travis:**
+  * prevent npm from crashing ([59b5559f](https://github.com/Apercu/ng-markdown/commit/59b5559ffe26f3bbbd590911e5d66897b832266e))
+  * prevent 500 error for coveralls ([38eb4723](https://github.com/Apercu/ng-markdown/commit/38eb4723e324ff86c1889168c55d8574989bbf55))
+  * improving bower install on travis build ([435cf6db](https://github.com/Apercu/ng-markdown/commit/435cf6db17d182308e692a7278fcf65e68d8c317))
+  * adding phantomJS ([975d5be9](https://github.com/Apercu/ng-markdown/commit/975d5be9c4c74cc691528ae3718092f2f38d23c6))
+  * missing require ([66ddde06](https://github.com/Apercu/ng-markdown/commit/66ddde0619788d559bc4c2f08a4a35e8087cc16a))
+  * Build Status linking to master branch ([b5cf1f1b](https://github.com/Apercu/ng-markdown/commit/b5cf1f1be09c0dc5e65deac38c6dd9dc4cb3aed1))
+
+
+#### Features
+
+* **core:** ability to disable the elasticity of the textarea ([b57971f5](https://github.com/Apercu/ng-markdown/commit/b57971f5b2ea53a45b637a424d88baf1a1a5b8fe), closes [#5](https://github.com/Apercu/ng-markdown/issues/5), [#10](https://github.com/Apercu/ng-markdown/issues/10))
+* **sauce:** Adding SauceLabs, improving Protractor ([7ef11dcb](https://github.com/Apercu/ng-markdown/commit/7ef11dcb8a88b2174b40c24970022bfe42bb00a4))
+* **test:** protractor webserver initialized and ready to test ([2056fdbf](https://github.com/Apercu/ng-markdown/commit/2056fdbf5e86e92a5da6adef9669a3587ce3d35c))
+
+
 ## 2.0.0 (2014-07-05)
 
 
