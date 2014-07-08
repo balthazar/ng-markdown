@@ -17,7 +17,7 @@ exports.config = {
 	//If Server already there
 	//seleniumAddress: null,
 
-	allScriptsTimeout: 50000,
+	allScriptsTimeout: 110000,
 
 	specs: [
 		'e2e/*.spec.js',
@@ -40,7 +40,7 @@ exports.config = {
 		isVerbose: true,
 		showColors: true,
 		includeStackTrace: true,
-		defaultTimeoutInterval: 50000
+		defaultTimeoutInterval: 30000
 	}
 
 };
