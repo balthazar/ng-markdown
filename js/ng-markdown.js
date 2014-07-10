@@ -101,16 +101,19 @@
 						editor.run();
 
 						var refresh = function () {
-							$timeout(function() {
+							if (attrs.listTransform === 'true') {
+								scope.ngModel = scope.ngModel.replace(/•/g, '-');
+							}
+							$timeout(function () {
 								editor.refreshPreview();
 							}, 0);
 						};
 
-						scope.$watch('ngModel', function(value) {
+						scope.$watch('ngModel', function () {
 							refresh();
 						});
 
-						scope.$on('refreshMarkdown', function(event, message) {
+						scope.$on('refreshMarkdown', function (event, message) {
 							if (!message || message === '' || message === (prefix + postfix)) {
 								refresh();
 							}
