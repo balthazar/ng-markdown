@@ -96,7 +96,7 @@
 							strings = scope.customStrings;
 						}
 
-                        preview = angular.element(document.querySelector(prefix + 'preview' + postfix));
+                        preview = angular.element(document.querySelector('.' + prefix + 'preview' + postfix));
 
 						element.addClass(prefix + 'input' + postfix);
 
@@ -106,8 +106,10 @@
 						var refresh = function () {
 							$timeout(function() {
 								editor.refreshPreview();
-                                console.log(preview);
-							}, 0);
+                                angular.forEach(preview.find('pre'), function (block) {
+                                    hljs.highlightBlock(block);
+                                });
+							});
 						};
 
 						scope.$watch('ngModel', function(value) {
