@@ -40,6 +40,7 @@
 						//Setting defaults params
 						var converter = Markdown.getSanitizingConverter();
 						var editor;
+                        var preview;
 						var postfix = '';
 						var prefix = 'wmd-';
 						var helpHandler = null;
@@ -95,6 +96,8 @@
 							strings = scope.customStrings;
 						}
 
+                        preview = angular.element(document.querySelector(prefix + 'preview' + postfix));
+
 						element.addClass(prefix + 'input' + postfix);
 
 						editor = new Markdown.Editor(converter, postfix, prefix, helpHandler, strings);
@@ -103,6 +106,7 @@
 						var refresh = function () {
 							$timeout(function() {
 								editor.refreshPreview();
+                                console.log(preview);
 							}, 0);
 						};
 
@@ -118,7 +122,7 @@
 
 					}
 				};
-			},
+			}
 		};
 	});
 })();
@@ -128,7 +132,7 @@ Syntax highlighting with language autodetection.
 http://highlightjs.org/
 */
 
-function() {
+(function() {
 
   /* Utility functions */
 
@@ -821,7 +825,7 @@ function() {
     begin: this.UNDERSCORE_IDENT_RE,
     relevance: 0
   };
-}
+})();
 
 var Markdown;
 
