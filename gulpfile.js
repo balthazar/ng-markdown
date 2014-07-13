@@ -14,7 +14,8 @@ var pkg = require('./package.json'),
     changelog = require('conventional-changelog'),
     karma = require('karma').server,
 	args = require('yargs').argv,
-	path = require('path');
+	path = require('path'),
+    es = require('event-stream');
 
 var express = require('express'),
 	http = require('http'),
@@ -32,19 +33,24 @@ gulp.task('js', function () {
 		.pipe(concat('ng-markdown.js'))
 		.pipe(gulp.dest('dist'))
 		.pipe(ngmin())
-		.pipe(uglify({mangle: false}))
-		.pipe(rename({suffix: '.min'}))
+        .on('error', handleError)
+		.pipe(uglify({ mangle: false }))
+		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
-	return gulp.src('css/*.scss')
-		.pipe(sass({compass: true}))
-		.pipe(gulp.dest('dist'))
-		.on('error', handleError)
-		.pipe(cssmin())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('dist'));
+
+    var _highlight = gulp.src('js/highlight/*.css');
+    var _sass = gulp.src('css/*.scss')
+        .pipe(sass({ compass: true }));
+
+    return es.merge(_sass, _highlight)
+        .pipe(concat('ng-markdown.css'))
+        .pipe(gulp.dest('dist'))
+        .pipe(cssmin())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('changelog', function () {
