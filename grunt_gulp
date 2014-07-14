@@ -1,0 +1,40 @@
+https://github.com/OverZealous/run-sequence
+https://github.com/dominictarr/event-stream
+
+
+https://github.com/Metrime/gulp-autoprefixer
+https://github.com/taptapship/wiredep
+
+https://github.com/robrich/gulp-rimraf
+https://github.com/wearefractal/gulp-concat
+https://github.com/jonathanepollack/gulp-minify-css
+https://github.com/jonschlinkert/gulp-htmlmin
+https://github.com/sindresorhus/gulp-imagemin
+https://github.com/spenceralger/gulp-jshint
+https://github.com/terinjokes/gulp-uglify
+default or https://github.com/floatdrop/gulp-watch
+
+https://github.com/wearefractal/gulp-coffee
+https://github.com/phated/gulp-jade
+https://github.com/plus3network/gulp-less
+https://github.com/sindresorhus/gulp-google-cdn
+https://github.com/tschaub/gulp-newer
+https://github.com/sindresorhus/gulp-ngmin
+https://github.com/sindresorhus/gulp-rev
+https://github.com/ben-eb/gulp-svgmin
+https://github.com/zont/gulp-usemin
+gulp env = default
+
+https://github.com/JacksonGariety/gulp-nodemon
+https://github.com/RobbinHabermehl/gulp-angular-templates
+https://github.com/mllrsohn/gulp-protractor
+
+alternative grunt asset injector ? https://github.com/mariocasciaro/gulp-multinject
+
+karma directly or https://github.com/lazd/gulp-karma
+https://github.com/sindresorhus/gulp-mocha
+https://github.com/sindresorhus/gulp-ruby-sass
+https://github.com/stevelacy/gulp-stylus
+https://github.com/hughsk/gulp-duration
+https://github.com/stevelacy/gulp-open
+
