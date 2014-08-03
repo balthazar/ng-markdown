@@ -1,4 +1,6 @@
-var gulp = require('gulp'),
+var pkg = require('./package.json'),
+    fs = require('fs'),
+    gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
@@ -7,11 +9,13 @@ var gulp = require('gulp'),
 	rename = require("gulp-rename"),
 	gutil = require('gulp-util'),
 	sass = require('gulp-ruby-sass'),
-	karma = require('karma').server,
 	gulpactor = require("gulp-protractor"),
+    coveralls = require('gulp-coveralls'),
+    changelog = require('conventional-changelog'),
+    karma = require('karma').server,
 	args = require('yargs').argv,
 	path = require('path'),
-	coveralls = require('gulp-coveralls');
+    es = require('event-stream');
 
 var express = require('express'),
 	http = require('http'),
@@ -29,19 +33,35 @@ gulp.task('js', function () {
 		.pipe(concat('ng-markdown.js'))
 		.pipe(gulp.dest('dist'))
 		.pipe(ngmin())
-		.pipe(uglify({mangle: false}))
-		.pipe(rename({suffix: '.min'}))
+        .on('error', handleError)
+		.pipe(uglify({ mangle: false }))
+		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
-	return gulp.src('css/*.scss')
-		.pipe(sass({compass: true}))
-		.pipe(gulp.dest('dist'))
-		.on('error', handleError)
-		.pipe(cssmin())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('dist'));
+
+    var _highlight = gulp.src('js/highlight/*.css');
+    var _sass = gulp.src('css/*.scss')
+        .pipe(sass({ compass: true }));
+
+    return es.merge(_sass, _highlight)
+        .pipe(concat('ng-markdown.css'))
+        .pipe(gulp.dest('dist'))
+        .pipe(cssmin())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('changelog', function () {
+    changelog({
+        version: pkg.version,
+        repository: 'https://github.com/Apercu/ng-markdown',
+        from: '2.0.0'
+    }, function(err, log) {
+        if (err) throw new Error(err);
+        fs.writeFileSync('CHANGELOG.md', log);
+    });
 });
 
 gulp.task('test', function () {

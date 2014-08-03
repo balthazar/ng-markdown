@@ -10,7 +10,7 @@ describe('ngMarkdown Directive', function () {
 
 	afterEach(function () {
 		input.clear();
-	})
+	});
 
     it('should pass this simple test', function() {
 		expect(42).toBe(42);
@@ -65,7 +65,7 @@ describe('ngMarkdown Directive', function () {
 
 		italic.click().then(function () {
 
-			//LIttle fix for now till resolve of #13
+			//Little fix for now till resolve of #13
 			input.sendKeys(protractor.Key.ARROW_RIGHT);
 			input.sendKeys(protractor.Key.ARROW_RIGHT);
 			input.sendKeys(' ');
@@ -84,7 +84,6 @@ describe('ngMarkdown Directive', function () {
 			preview.getText().then(function (text) {
 				expect(text).toBe('emphasized text');
 			});
-
 		});
 	});
 

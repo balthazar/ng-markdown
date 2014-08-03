@@ -1,6 +1,6 @@
 {
   "name": "ng-markdown",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "main": "dist/ng-markdown.min.js",
   "repository": {
     "type": "git",
@@ -10,6 +10,7 @@
   "devDependencies": {
     "bower": "^1.3.7",
     "conventional-changelog": "0.0.11",
+    "event-stream": "^3.1.5",
     "express": "~4.4.5",
     "gulp": "^3.6.1",
     "gulp-concat": "^2.2.0",
