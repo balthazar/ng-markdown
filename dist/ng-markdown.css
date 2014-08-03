@@ -2,8 +2,8 @@
 [class^="wmd-preview"] p > code, [class*=" wmd-preview"] p > code {
   padding: 3px 4px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  -moz-border-radius: 4px / 4px;
   -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
   border-radius: 4px / 4px; }
 [class^="wmd-preview"] > blockquote, [class*=" wmd-preview"] > blockquote {
   padding: 0 0 0 16px;
@@ -48,8 +48,9 @@
   outline: none;
   resize: none !important;
   word-wrap: break-word;
-  -moz-transition-duration: 50ms;
   -webkit-transition-duration: 50ms;
+  -moz-transition-duration: 50ms;
+  -o-transition-duration: 50ms;
   transition-duration: 50ms; }
   [class^="wmd-input"]:focus, [class*=" wmd-input"]:focus {
     border-color: #859900; }
@@ -70,8 +71,8 @@
   left: 40%;
   z-index: 1001;
   padding: 16px;
-  -moz-border-radius: 5px / 5px;
   -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px / 5px;
   border-radius: 5px / 5px;
   border: 2px solid #c4c4c4;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
@@ -96,6 +97,7 @@
   src: url("fonts/markdown.eot") format("embedded-opentype"), url("fonts/markdown.woff") format("woff"), url("fonts/markdown.ttf") format("truetype"), url("fonts/markdown.svg") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 [class^="markdown-icon-"], [class*=" markdown-icon-"] {
   font-family: 'markdown';
   speak: none;

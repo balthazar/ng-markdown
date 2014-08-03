@@ -10,7 +10,7 @@
         .directive('ngMarkdown', function ($timeout, $compile) {
 
             return {
-                template: '<textarea></textarea>',
+                template: '<textarea ng-keydown="refresh()"></textarea>',
                 restrict: 'EA',
                 replace: true,
                 scope: {
@@ -103,22 +103,18 @@
                             editor = new Markdown.Editor(converter, postfix, prefix, helpHandler, strings);
                             editor.run();
 
-                            var refresh = function () {
+                            scope.refresh = function () {
                                 $timeout(function () {
                                     editor.refreshPreview();
-                                    angular.forEach(preview.find('pre'), function (block) {
+                                    angular.forEach(preview.find('code'), function (block) {
                                         hljs.highlightBlock(block);
                                     });
                                 });
                             };
 
-                            scope.$watch('ngModel', function (value) {
-                                refresh();
-                            });
-
                             scope.$on('refreshMarkdown', function (event, message) {
                                 if (!message || message === '' || message === (prefix + postfix)) {
-                                    refresh();
+                                    scope.refresh();
                                 }
                             });
 
