@@ -15,6 +15,25 @@ If you want support for another language, PM me or open an issue.
 
 #Changelog
 
+
+## 2.2.0 (2014-08-03)
+
+
+#### Bug Fixes
+
+* **highlight:**
+  * fix bug when typing not affecting the model ([63d3c186](https://github.com/Apercu/ng-markdown/commit/63d3c18611b29896c7096ccd80e68a14c38bfc46), closes [#11](https://github.com/Apercu/ng-markdown/issues/11))
+  * prevent gulp breaks ([f08f01da](https://github.com/Apercu/ng-markdown/commit/f08f01da39591ed188de5ee075305ab810024fda))
+
+#### Features
+
+* **editor:** transform every dot list into markdown ([67801211](https://github.com/Apercu/ng-markdown/commit/67801211410b464ab422e411ccb676d1ffdbb65f), closes [#14](https://github.com/Apercu/ng-markdown/issues/14))
+* **gulp:**
+  * asynchronous and merge streams ([8b7a4ec9](https://github.com/Apercu/ng-markdown/commit/8b7a4ec95baa8baa8f9a1e2142e74372cc8434da))
+  * adding changelog in gulp task ([5a87b9fb](https://github.com/Apercu/ng-markdown/commit/5a87b9fb45bfc0f22775deaa194b28685cb18ffb))
+* **highlight:** highlight integration in preview ([53fee7b9](https://github.com/Apercu/ng-markdown/commit/53fee7b9811a5ce0927656f142617323f13269e4))
+
+
 ## 2.1.0 (2014-07-08)
 
 
