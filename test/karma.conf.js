@@ -18,7 +18,6 @@ module.exports = function(config) {
 		'bower_components/angular/angular.min.js',
 		'bower_components/angular-mocks/angular-mocks.js',
 		'bower_components/angular-elastic/elastic.js',
-		'dist/ng-markdown.min.js',
 		'js/**/*.js',
 		'test/unit/*.spec.js'
 	],
@@ -32,7 +31,7 @@ module.exports = function(config) {
 	// preprocess matching files before serving them to the browser
 	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	preprocessors: {
-		'js/**/*.js': 'coverage'
+		'js/ng-markdown.js': 'coverage'
 	},
 
 	plugins: [
