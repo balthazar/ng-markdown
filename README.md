@@ -7,6 +7,11 @@ Demo and documentation at [this address](http://apercu.github.io/ng-markdown/).
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
+# Syntax Highlight
+
+Using [highlight.js](http://highlightjs.org/).
+The currently supported languages are : Apache, Bash, C#, C++, CSS, CoffeeScript, Diff, HTML, XML, HTTP, Ini, JSON, Java, JavaScript, Makefile, Markdown, Nginx, Objective C, PHP, Perl, Python, Ruby, SQL, LUA, Delphi, ActionScript, Clojure, Django, Go, Haskell, Lisp, SCSS and Vim Script.
+If you want support for another language, PM me or open an issue.
 
 #Changelog
 
