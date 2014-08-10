@@ -12,7 +12,7 @@
     "conventional-changelog": "0.0.11",
     "event-stream": "^3.1.5",
     "express": "~4.4.5",
-    "gulp": "^3.6.1",
+    "gulp": "^3.8.7",
     "gulp-concat": "^2.2.0",
     "gulp-coveralls": "~0.1.2",
     "gulp-jshint": "^1.5.3",
