@@ -39,15 +39,14 @@ describe('ngMarkdown Directive', function () {
     clearContent();
 
     var template = angular.element(tpl || defTemplate);
-    console.log(template);
-    //angular.element($document[0].body).append(template);
+    angular.element($document[0].body).append(template);
 
     $compile(template)($scope);
     $scope.$digest();
   }
 
-  function getPreview () {
-    return document.querySelector('.wmd-preview');
+  function getPreview (custom) {
+    return document.querySelector(custom || '.wmd-preview');
   }
 
   function clearContent () {
@@ -64,18 +63,17 @@ describe('ngMarkdown Directive', function () {
     expect(getPreview().innerHTML).toBe(value);
   }
 
-  /*
   it('should create a new elem', function () {
     recompile([
       '<content>',
-        '<div class="wmd-button-bar"></div>',
-        '<ng-markdown ng-model="bind" prefix="ok"></ng-markdown>',
-        '<div class="wmd-preview">initialize</div>',
+        '<div class="wmd-button-bar-ok"></div>',
+        '<ng-markdown ng-model="bind" suffix="-ok"></ng-markdown>',
+        '<div class="wmd-preview-ok">initialize</div>',
       '</content>'
     ].join(''));
-    console.log(getPreview());
+    newValue(42);
+    console.log(getPreview('.wmd-preview-ok'));
   });
-  */
 
   it('should equal 42', function () {
     newValue(42);
