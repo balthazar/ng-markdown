@@ -3,36 +3,48 @@
 describe('ngMarkdown Directive', function () {
 
   var $scope,
-      timeout,
-      elem,
-      template;
+      $timeout,
+      $document,
+      $compile,
+      elem;
+
+  var defTemplate = [
+    '<content>',
+      '<div class="wmd-button-bar"></div>',
+      '<ng-markdown ng-model="bind"></ng-markdown>',
+      '<div class="wmd-preview">initialize</div>',
+    '</content>'
+  ].join('');
 
   beforeEach(module('ngMarkdown'));
 
-  beforeEach(inject(function ($rootScope, $compile, $document, $timeout) {
-    $scope = $rootScope;
-    timeout = $timeout;
+  beforeEach(inject(function (_$rootScope_, _$timeout_, _$compile_, _$document_) {
+    $scope = _$rootScope_;
+    $document = _$document_;
+    $timeout = _$timeout_;
+    $compile = _$compile_;
 
-    var template = angular.element([
-      '<content>',
-        '<div class="wmd-button-bar"></div>',
-        '<ng-markdown ng-model="bind"></ng-markdown>',
-        '<div class="wmd-preview">initialize</div>',
-      '</content>'
-    ].join(''));
+    var template = angular.element(defTemplate);
+    angular.element($document[0].body).append(template);
 
-    var body = angular.element($document[0].body);
-    body.append(template);
-
-    elem = $compile(template)($scope);
-
-    body.append(elem);
+    $compile(template)($scope);
     $scope.$digest();
   }));
 
   afterEach(inject(function ($document) {
     clearContent();
   }));
+
+  function recompile (tpl) {
+    clearContent();
+
+    var template = angular.element(tpl || defTemplate);
+    console.log(template);
+    //angular.element($document[0].body).append(template);
+
+    $compile(template)($scope);
+    $scope.$digest();
+  }
 
   function getPreview () {
     return document.querySelector('.wmd-preview');
@@ -45,12 +57,25 @@ describe('ngMarkdown Directive', function () {
 
   function newValue (value) {
     $scope.bind = value;
-    timeout.flush();
+    $timeout.flush();
   }
 
   function checkPreview (value) {
     expect(getPreview().innerHTML).toBe(value);
   }
+
+  /*
+  it('should create a new elem', function () {
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" prefix="ok"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+    console.log(getPreview());
+  });
+  */
 
   it('should equal 42', function () {
     newValue(42);
