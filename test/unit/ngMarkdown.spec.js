@@ -335,6 +335,142 @@ describe('ngMarkdown Directive', function () {
     checkPreview('<blockquote>\n  <p>blockquote</p>\n  \n  <p>- append</p>\n</blockquote>\n\n<p>- append</p>');
   });
 
+  it('should test the postBlockquoteCreation hook', function () {
+    //This should be tested in e2e tests
+
+    $scope.func = function (text) {
+      if (!/^>/.test(text)) {
+        return text;
+      }
+      return text + '\n\nOkay\n\n';
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" post-blockquote-creation="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('## This cannot be really useful in unit tests but should be used in the e2e ones.');
+
+    checkPreview('<h2>This cannot be really useful in unit tests but should be used in the e2e ones.</h2>');
+  });
+
+  it('should test the insertImageDialog hook', function () {
+    //This should be tested in e2e tests
+
+    $scope.func = function (callback) {
+      setTimeout(function () {
+        callback('http://restock.io/logo.png');
+      }, 0);
+      return true;
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" insert-image-dialog="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('## This cannot be really useful in unit tests but should be used in the e2e ones.');
+
+    checkPreview('<h2>This cannot be really useful in unit tests but should be used in the e2e ones.</h2>');
+  });
+
+  it('should test the help handler', function () {
+
+    $scope.func = function () {
+      console.log('Help button has been clicked.');
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" help-handler="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    expect(document.querySelectorAll('.wmd-button-bar div i').length).toBe(16);
+    expect(document.querySelector('.wmd-help-button')).toBeDefined();
+  });
+
+  it('should use another strings', function () {
+
+    $scope.strings = {
+      bold: 'Hey I\'m really bold!',
+      hr  : 'Let\'s make some ruler.',
+      undo: 'Oh god I didn\'t mean to do that!'
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" custom-strings="strings"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    expect(document.querySelector('#wmd-bold-button').getAttribute('title')).toBe('Hey I\'m really bold!');
+    expect(document.querySelector('#wmd-hr-button').getAttribute('title')).toBe('Let\'s make some ruler.');
+    expect(document.querySelector('#wmd-undo-button').getAttribute('title')).toBe('Oh god I didn\'t mean to do that!');
+
+    expect(document.querySelector('#wmd-italic-button').getAttribute('title')).toBe('Emphasis <em> Ctrl+I');
+  });
+
+  it('should refresh the preview on refreshMarkdown event', function () {
+
+    var count = 0;
+
+    $scope.func = function () {
+      count++;
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" on-preview-refresh="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('---');
+    checkPreview('<hr>');
+
+    $scope.$broadcast('refreshMarkdown');
+    $scope.$broadcast('refreshMarkdown');
+    newValue('---');
+
+    expect(count).toBe(5);
+    checkPreview('<hr>');
+  });
+
+  it('should call the function on each preview refresh', function () {
+
+    var count = 0;
+
+    $scope.func = function () {
+      count++;
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" on-preview-refresh="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('**Refresh it !**');
+
+    checkPreview('<p><strong>Refresh it !</strong></p>');
+    expect(count).toBe(3);
+  });
+
   it('should convert bullets to lists', function () {
 
     $scope.bind = '• One\n• Two\n• Three';
