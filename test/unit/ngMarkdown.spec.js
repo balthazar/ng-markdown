@@ -258,4 +258,101 @@ describe('ngMarkdown Directive', function () {
     checkPreview('<h1>Hey hey</h1>\n\n<p><a href="http://stackoverflow.com/users/2054072/aper%C3%A7u"><b>A link to an awesome site !</b></a></p>');
   });
 
+  it('should test the preSpanGamut', function () {
+
+    $scope.func = function (text) {
+      return text.replace(/^\!\!(.*)\!\!$/gm, function (whole, inner) {
+        return '<b>' + inner + '</b>';
+      });
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" pre-span-gamut="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('!!color!!');
+    checkPreview('<p><b>color</b></p>');
+  });
+
+  it('should test the postSpanGamut', function () {
+
+    $scope.func = function (text) {
+      return text + '`not in a code span`';
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" post-span-gamut="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('`$timeout`');
+    checkPreview('<p><code class=" hljs bash"><span class="hljs-variable">$timeout</span></code>`not in a code span`</p>');
+  });
+
+  it('should test the preBlockGamut', function () {
+
+    $scope.func = function (text, runBlockGamut) {
+      return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+        return '<blockquote>' + runBlockGamut(inner) + '</blockquote>\n';
+      });
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" pre-block-gamut="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('"""\n ok\nok\n"""');
+    checkPreview('<blockquote><p>ok\nok</p></blockquote>');
+  });
+
+  it('should test the postBlockGamut', function () {
+
+    //we will not using the runBlockGamut here
+    $scope.func = function (text, runBlockGamut) {
+      return text + '- append';
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" post-block-gamut="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('> blockquote\n');
+    checkPreview('<blockquote>\n  <p>blockquote</p>\n  \n  <p>- append</p>\n</blockquote>\n\n<p>- append</p>');
+  });
+
+  it('should convert bullets to lists', function () {
+
+    $scope.bind = '• One\n• Two\n• Three';
+    expect($scope.bind).toBe('• One\n• Two\n• Three');
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" list-transform="true"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    expect($scope.bind).toBe('- One\n- Two\n- Three');
+
+    $timeout.flush();
+
+    checkPreview('<ul>\n<li>One</li>\n<li>Two</li>\n<li>Three</li>\n</ul>');
+  });
+
 });
