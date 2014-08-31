@@ -1,3 +1,13 @@
+## 2.3.0 (2014-09-01)
+
+
+#### Bug Fixes
+
+* **core:**
+  * allow to use editor hooks correclty and improve code style ([e9cc906f](https://github.com/Apercu/ng-markdown/commit/e9cc906f2c8e0d234150807585bba47b334d27e4))
+* **test:** unit tests are now really operational. ([cd5d3d7e](https://github.com/Apercu/ng-markdown/commit/cd5d3d7ed473dd5a46487551b7d635a161af0c07), closes [#15](https://github.com/Apercu/ng-markdown/issues/15))
+
+
 ## 2.2.0 (2014-08-03)
 
 
@@ -24,8 +34,9 @@
 * **core:** prevent second npm install ([41ec60d1](https://github.com/Apercu/ng-markdown/commit/41ec60d1551487da0877099402bd8fffc6136ee9))
 * **gulp:** typo ([16aa3e8d](https://github.com/Apercu/ng-markdown/commit/16aa3e8d4769d8f328e90ac9e0d84eb30efa29b0))
 * **karma:** improving conf and package ([ddfe0c28](https://github.com/Apercu/ng-markdown/commit/ddfe0c28eb37f1441e3857fe82000baff9fd68e5))
-* **test:** Launching test and coverage support now operational ([5f7cf228](https://github.com/Apercu/ng-markdown/commit/5f7cf22879a92d38cf33332b3d4cc23e7553c22b))
-* **tests:** protractor paths files in e2e config ([d92235b6](https://github.com/Apercu/ng-markdown/commit/d92235b6b5140ea0ac44f3301f52a700f015d669))
+* **test:**
+  * protractor paths files in e2e config ([d92235b6](https://github.com/Apercu/ng-markdown/commit/d92235b6b5140ea0ac44f3301f52a700f015d669))
+  * Launching test and coverage support now operational ([5f7cf228](https://github.com/Apercu/ng-markdown/commit/5f7cf22879a92d38cf33332b3d4cc23e7553c22b))
 * **travis:**
   * prevent npm from crashing ([59b5559f](https://github.com/Apercu/ng-markdown/commit/59b5559ffe26f3bbbd590911e5d66897b832266e))
   * prevent 500 error for coveralls ([38eb4723](https://github.com/Apercu/ng-markdown/commit/38eb4723e324ff86c1889168c55d8574989bbf55))
