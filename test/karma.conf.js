@@ -15,72 +15,71 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-		'bower_components/angular/angular.min.js',
-		'bower_components/angular-mocks/angular-mocks.js',
-		'bower_components/angular-elastic/elastic.js',
-		'dist/ng-markdown.min.js',
-		'js/**/*.js',
-		'test/unit/*.spec.js'
-	],
+    'bower_components/angular/angular.min.js',
+    'bower_components/angular-mocks/angular-mocks.js',
+    'bower_components/angular-elastic/elastic.js',
+    'js/**/*.js',
+    'test/unit/*.spec.js'
+  ],
 
 
-	// list of files to exclude
-	exclude: [
-	],
+  // list of files to exclude
+  exclude: [
+  ],
 
 
-	// preprocess matching files before serving them to the browser
-	// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-	preprocessors: {
-		'js/**/*.js': 'coverage'
-	},
+  // preprocess matching files before serving them to the browser
+  // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+  preprocessors: {
+    'js/ng-markdown.js': 'coverage'
+  },
 
-	plugins: [
-		'karma-jasmine',
-		'karma-phantomjs-launcher',
-		'karma-coverage'
-	],
-
-
-	// test results reporter to use
-	// possible values: 'dots', 'progress'
-	// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-	reporters: ['progress', 'coverage'],
+  plugins: [
+    'karma-jasmine',
+    'karma-phantomjs-launcher',
+    'karma-coverage'
+  ],
 
 
-	coverageReporter: {
-		reporters:[
-			{ type: 'lcov', dir:'test/coverage/' },
-			{ type: 'text-summary', dir:'test/coverage/' }
-		]
-	},
+  // test results reporter to use
+  // possible values: 'dots', 'progress'
+  // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+  reporters: ['progress', 'coverage'],
 
 
-	// web server port
-	port: 8181,
+  coverageReporter: {
+    reporters:[
+      { type: 'lcov', dir:'test/coverage/' },
+      { type: 'text-summary', dir:'test/coverage/' }
+    ]
+  },
 
 
-	// enable / disable colors in the output (reporters and logs)
-	colors: true,
+  // web server port
+  port: 8181,
 
 
-	// level of logging
-	// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-	logLevel: config.LOG_INFO,
+  // enable / disable colors in the output (reporters and logs)
+  colors: true,
 
 
-	// enable / disable watching file and executing tests whenever any file changes
-	autoWatch: false,
+  // level of logging
+  // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+  logLevel: config.LOG_INFO,
 
 
-	// start these browsers
-	// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-	browsers: ['Firefox'],
+  // enable / disable watching file and executing tests whenever any file changes
+  autoWatch: false,
 
 
-	// Continuous Integration mode
-	// if true, Karma captures browsers, runs the tests and exits
-	singleRun: false
+  // start these browsers
+  // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+  browsers: ['Firefox'],
+
+
+  // Continuous Integration mode
+  // if true, Karma captures browsers, runs the tests and exits
+  singleRun: false
 
   });
 };
