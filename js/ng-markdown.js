@@ -41,21 +41,29 @@
             var converter = Markdown.getSanitizingConverter();
             var editor;
             var preview;
-            var postfix = '';
+            var suffix = '';
             var prefix = 'wmd-';
             var helpHandler = null;
             var strings = {};
 
-            //Test attributes
             if (attrs.sanitized === 'false') {
               converter = new Markdown.Converter();
             }
             if (attrs.suffix) {
-              postfix = attrs.suffix;
+              suffix = attrs.suffix;
             }
             if (attrs.prefix) {
               prefix = attrs.prefix;
             }
+            if (attrs.helpHandler) {
+              helpHandler = scope.helpHandler;
+            }
+            if (attrs.customStrings) {
+              strings = scope.customStrings;
+            }
+
+            editor = new Markdown.Editor(converter, suffix, prefix, helpHandler, strings);
+
             if (attrs.preConversion) {
               converter.hooks.chain('preConversion', scope.preConversion);
             }
@@ -89,18 +97,11 @@
             if (attrs.insertImageDialog) {
               editor.hooks.set('insertImageDialog', scope.insertImageDialog);
             }
-            if (attrs.helpHandler) {
-              helpHandler = scope.helpHandler;
-            }
-            if (attrs.customStrings) {
-              strings = scope.customStrings;
-            }
 
-            preview = angular.element(document.querySelector('.' + prefix + 'preview' + postfix));
+            preview = angular.element(document.querySelector('.' + prefix + 'preview' + suffix));
 
-            element.addClass(prefix + 'input' + postfix);
+            element.addClass(prefix + 'input' + suffix);
 
-            editor = new Markdown.Editor(converter, postfix, prefix, helpHandler, strings);
             editor.run();
 
             scope.refresh = function () {
@@ -116,7 +117,7 @@
             };
 
             scope.$on('refreshMarkdown', function (event, message) {
-              if (!message || message === '' || message === (prefix + postfix)) {
+              if (!message || message === '' || message === (prefix + suffix)) {
                 scope.refresh();
               }
             });
