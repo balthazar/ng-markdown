@@ -63,18 +63,6 @@ describe('ngMarkdown Directive', function () {
     expect(getPreview().innerHTML).toBe(value);
   }
 
-  it('should create a new elem', function () {
-    recompile([
-      '<content>',
-        '<div class="wmd-button-bar-ok"></div>',
-        '<ng-markdown ng-model="bind" suffix="-ok"></ng-markdown>',
-        '<div class="wmd-preview-ok">initialize</div>',
-      '</content>'
-    ].join(''));
-    newValue(42);
-    console.log(getPreview('.wmd-preview-ok'));
-  });
-
   it('should equal 42', function () {
     newValue(42);
     expect(42).toBe(42);
@@ -150,6 +138,124 @@ describe('ngMarkdown Directive', function () {
   it('should make a separator', function () {
     newValue('Hey Hey, do you want to be separated ?\n\n----------\n\nYep');
     checkPreview('<p>Hey Hey, do you want to be separated ?</p>\n\n<hr>\n\n<p>Yep</p>');
+  });
+
+  it('should create directive with a suffix', function () {
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar-ok"></div>',
+        '<ng-markdown ng-model="bind" suffix="-ok"></ng-markdown>',
+        '<div class="wmd-preview-ok">initialize</div>',
+      '</content>'
+    ].join(''));
+    newValue(42);
+    expect(getPreview('.wmd-preview-ok').innerHTML).toBe('<p>42</p>');
+  });
+
+  it('should create directive with a prefix', function () {
+    recompile([
+      '<content>',
+        '<div class="apercu-button-bar"></div>',
+        '<ng-markdown ng-model="bind" prefix="apercu-"></ng-markdown>',
+        '<div class="apercu-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+    newValue(42);
+    expect(getPreview('.apercu-preview').innerHTML).toBe('<p>42</p>');
+  });
+
+  it('should sanitize output', function () {
+    newValue('<marquee>I\'m a relic of a forgotten past.</marquee>');
+    checkPreview('<p>I\'m a relic of a forgotten past.</p>');
+  });
+
+  it('should not sanitize output', function () {
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" sanitized="false"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+    newValue('<marquee>I\'m a relic of a forgotten past.</marquee>');
+    checkPreview('<p><marquee>I\'m a relic of a forgotten past.</marquee></p>');
+  });
+
+  it('should add a preConversion hook', function () {
+
+    $scope.func = function (text) {
+      return '# This text will be followed by the real input\n\n' + text;
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" pre-conversion="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('#Prehook');
+    checkPreview('<h1>This text will be followed by the real input</h1>\n\n<h1>Prehook</h1>');
+  });
+
+  it('should add a postConversion hook', function () {
+
+    $scope.func = function (text) {
+      return text + '<br>\n**This is not bold, because it was added after the conversion**';
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" post-conversion="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('**Okay that\'s some really awesome tests**');
+    checkPreview('<p><strong>Okay that\'s some really awesome tests</strong></p><br>\n**This is not bold, because it was added after the conversion**');
+  });
+
+  it('should call the post normalisation', function () {
+
+    $scope.func = function (text) {
+      return text;
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" post-normalization="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('                      \n**strong text**');
+    checkPreview('<p><strong>strong text</strong></p>');
+  });
+
+  it('should control plain links', function () {
+
+    $scope.func = function (url) {
+      if (/^http:\/\/stackoverflow.com\/.*/i.test(url)) {
+        return '<b>A link to an awesome site !</b>';
+      }
+      else {
+        return 'Some page on the internet';
+      }
+    };
+
+    recompile([
+      '<content>',
+        '<div class="wmd-button-bar"></div>',
+        '<ng-markdown ng-model="bind" plain-link-text="func"></ng-markdown>',
+        '<div class="wmd-preview">initialize</div>',
+      '</content>'
+    ].join(''));
+
+    newValue('# Hey hey\nhttp://stackoverflow.com/users/2054072/aper%C3%A7u');
+    checkPreview('<h1>Hey hey</h1>\n\n<p><a href="http://stackoverflow.com/users/2054072/aper%C3%A7u"><b>A link to an awesome site !</b></a></p>');
   });
 
 });
