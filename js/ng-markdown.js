@@ -82,9 +82,7 @@
               'postBlockquoteCreation',
               'insertImageDialog'
             ].forEach(function (hook) {
-                if (hook in attrs) {
-                  editor.hooks.chain(hook, scope[hook]);
-                }
+                if (hook in attrs) { editor.hooks.chain(hook, scope[hook]); }
               });
 
             preview = angular.element(document.querySelector('.' + prefix + 'preview' + suffix));
