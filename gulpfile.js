@@ -4,7 +4,7 @@ var   pkg = require('./package.json'),
    jshint = require('gulp-jshint'),
    concat = require('gulp-concat'),
    uglify = require('gulp-uglify'),
-    ngmin = require('gulp-ngmin'),
+ annotate = require('gulp-ng-annotate'),
    cssmin = require('gulp-minify-css'),
    rename = require("gulp-rename"),
     gutil = require('gulp-util'),
@@ -32,7 +32,7 @@ gulp.task('js', function () {
     .pipe(jshint.reporter('default'))
     .pipe(concat('ng-markdown.js'))
     .pipe(gulp.dest('dist'))
-    .pipe(ngmin())
+    .pipe(annotate())
       .on('error', handleError)
     .pipe(uglify({ mangle: false }))
     .pipe(rename({ suffix: '.min' }))
