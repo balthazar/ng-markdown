@@ -1,16 +1,7 @@
 var   pkg = require('./package.json'),
        fs = require('fs'),
      gulp = require('gulp'),
-   jshint = require('gulp-jshint'),
-   concat = require('gulp-concat'),
-   uglify = require('gulp-uglify'),
- annotate = require('gulp-ng-annotate'),
-   cssmin = require('gulp-minify-css'),
-   rename = require("gulp-rename"),
-    gutil = require('gulp-util'),
-     sass = require('gulp-ruby-sass'),
-gulpactor = require("gulp-protractor"),
-coveralls = require('gulp-coveralls'),
+       _g = require('gulp-load-plugins')(),
 changelog = require('conventional-changelog'),
     karma = require('karma').server,
      args = require('yargs').argv,
@@ -21,34 +12,27 @@ var express = require('express'),
        http = require('http'),
      server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
 
-function handleError(err) {
-  console.log(err.toString());
-  this.emit('end');
-}
-
-gulp.task('js', function () {
+gulp.task('js', ['jshint'], function () {
   return gulp.src('js/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(concat('ng-markdown.js'))
+    .pipe(_g.concat('ng-markdown.js'))
     .pipe(gulp.dest('dist'))
-    .pipe(annotate())
-      .on('error', handleError)
-    .pipe(uglify({ mangle: false }))
-    .pipe(rename({ suffix: '.min' }))
+    .pipe(_g.ngAnnotate())
+      .on('error', _g.util.log)
+    .pipe(_g.uglify({ mangle: false }))
+    .pipe(_g.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
   var _highlight = gulp.src('js/highlight/*.css');
   var _sass = gulp.src('css/*.scss')
-    .pipe(sass({ compass: true }));
+    .pipe(_g.rubySass({ compass: true }));
 
   return es.merge(_sass, _highlight)
-    .pipe(concat('ng-markdown.css'))
+    .pipe(_g.concat('ng-markdown.css'))
     .pipe(gulp.dest('dist'))
-    .pipe(cssmin())
-    .pipe(rename({ suffix: '.min' }))
+    .pipe(_g.minifyCss())
+    .pipe(_g.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist'));
 });
 
@@ -71,12 +55,19 @@ gulp.task('test', function () {
     singleRun: true
   }, function (code) {
     console.log('Karma exited with ', code);
+    if (process.env.TRAVIS !== true) { return ; }
     gulp.src('test/coverage/**/lcov.info')
-      .pipe(coveralls())
+      .pipe(_g.coveralls())
       .on('end', function() {
         process.exit(code);
       });
   });
+});
+
+gulp.task('jshint', function () {
+  return gulp.src('js/*.js')
+    .pipe(_g.jshint())
+    .pipe(_g.jshint.reporter('default'));
 });
 
 gulp.task('e2e:server', function (callback) {
@@ -85,7 +76,7 @@ gulp.task('e2e:server', function (callback) {
 
 gulp.task('e2e:run', ['e2e:server'], function (callback) {
   gulp.src('test/e2e/*.js')
-    .pipe(gulpactor.protractor(
+    .pipe(_g.protractor.protractor(
       {
         configFile: 'test/protractor.conf.js',
         args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
@@ -101,7 +92,7 @@ gulp.task('e2e:run', ['e2e:server'], function (callback) {
 });
 
 gulp.task('e2e:update', function () {
-  gulpactor.webdriver_update();
+  _g.protractor.webdriver_update();
 });
 
 gulp.task('watch', function () {

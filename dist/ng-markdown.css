@@ -49,6 +49,7 @@
   resize: none !important;
   word-wrap: break-word;
   -moz-transition-duration: 50ms;
+  -o-transition-duration: 50ms;
   -webkit-transition-duration: 50ms;
   transition-duration: 50ms; }
   [class^="wmd-input"]:focus, [class*=" wmd-input"]:focus {
