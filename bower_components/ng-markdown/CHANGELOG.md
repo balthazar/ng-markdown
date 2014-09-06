@@ -1,21 +1,3 @@
-NgMarkdown [![Build Status](https://travis-ci.org/Apercu/ng-markdown.svg?branch=master)](https://travis-ci.org/Apercu/ng-markdown) [![Coverage Status](https://img.shields.io/coveralls/Apercu/ng-markdown.svg)](https://coveralls.io/r/Apercu/ng-markdown) [![Dev Dependencies](https://david-dm.org/Apercu/ng-markdown/dev-status.svg)](https://david-dm.org/Apercu/ng-markdown#info=devDependencies)
-========
-
-Demo and documentation at [this address](http://apercu.github.io/ng-markdown/).
-
-#Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-# Syntax Highlight
-
-Using [highlight.js](http://highlightjs.org/).
-The currently supported languages are : Apache, Bash, C#, C++, CSS, CoffeeScript, Diff, HTML, XML, HTTP, Ini, JSON, Java, JavaScript, Makefile, Markdown, Nginx, Objective C, PHP, Perl, Python, Ruby, SQL, LUA, Delphi, ActionScript, Clojure, Django, Go, Haskell, Lisp, SCSS and Vim Script.
-If you want support for another language, PM me or open an issue.
-
-#Changelog
-
-
 ## 2.3.0 (2014-09-01)
 
 
