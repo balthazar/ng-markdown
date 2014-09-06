@@ -64,39 +64,26 @@
 
             editor = new Markdown.Editor(converter, suffix, prefix, helpHandler, strings);
 
-            if (attrs.preConversion) {
-              converter.hooks.chain('preConversion', scope.preConversion);
-            }
-            if (attrs.postConversion) {
-              converter.hooks.chain('postConversion', scope.postConversion);
-            }
-            if (attrs.postNormalization) {
-              converter.hooks.chain('postNormalization', scope.postNormalization);
-            }
-            if (attrs.plainLinkText) {
-              converter.hooks.chain('plainLinkText', scope.plainLinkText);
-            }
-            if (attrs.preBlockGamut) {
-              converter.hooks.chain('preBlockGamut', scope.preBlockGamut);
-            }
-            if (attrs.postBlockGamut) {
-              converter.hooks.chain('postBlockGamut', scope.postBlockGamut);
-            }
-            if (attrs.preSpanGamut) {
-              converter.hooks.chain('preSpanGamut', scope.preSpanGamut);
-            }
-            if (attrs.postSpanGamut) {
-              converter.hooks.chain('postSpanGamut', scope.postSpanGamut);
-            }
-            if (attrs.onPreviewRefresh) {
-              editor.hooks.chain('onPreviewRefresh', scope.onPreviewRefresh);
-            }
-            if (attrs.postBlockquoteCreation) {
-              editor.hooks.chain('postBlockquoteCreation', scope.postBlockquoteCreation);
-            }
-            if (attrs.insertImageDialog) {
-              editor.hooks.set('insertImageDialog', scope.insertImageDialog);
-            }
+            [
+              'preConversion',
+              'postConversion',
+              'postNormalization',
+              'plainLinkText',
+              'preBlockGamut',
+              'postBlockGamut',
+              'preSpanGamut',
+              'postSpanGamut'
+            ].forEach(function (hook) {
+                if (hook in attrs) { converter.hooks.chain(hook, scope[hook]); }
+              });
+
+            [
+              'onPreviewRefresh',
+              'postBlockquoteCreation',
+              'insertImageDialog'
+            ].forEach(function (hook) {
+                if (hook in attrs) { editor.hooks.chain(hook, scope[hook]); }
+              });
 
             preview = angular.element(document.querySelector('.' + prefix + 'preview' + suffix));
 
