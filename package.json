@@ -1,6 +1,6 @@
 {
   "name": "ng-markdown",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "main": "dist/ng-markdown.min.js",
   "repository": {
     "type": "git",
@@ -16,8 +16,9 @@
     "gulp-concat": "^2.2.0",
     "gulp-coveralls": "~0.1.2",
     "gulp-jshint": "^1.5.3",
+    "gulp-load-plugins": "^0.6.0",
     "gulp-minify-css": "^0.3.7",
-    "gulp-ngmin": "^0.3.0",
+    "gulp-ng-annotate": "^0.3.0",
     "gulp-protractor": "0.0.11",
     "gulp-rename": "^1.2.0",
     "gulp-ruby-sass": "^0.7.1",

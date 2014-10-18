@@ -1,4 +1,6 @@
-NgMarkdown [![Build Status](https://travis-ci.org/Apercu/ng-markdown.svg?branch=master)](https://travis-ci.org/Apercu/ng-markdown) [![Coverage Status](https://img.shields.io/coveralls/Apercu/ng-markdown.svg)](https://coveralls.io/r/Apercu/ng-markdown) [![Dev Dependencies](https://david-dm.org/Apercu/ng-markdown/dev-status.svg)](https://david-dm.org/Apercu/ng-markdown#info=devDependencies)
+[![Build Status](https://travis-ci.org/Apercu/ng-markdown.svg?branch=master)](https://travis-ci.org/Apercu/ng-markdown) [![Coverage Status](https://img.shields.io/coveralls/Apercu/ng-markdown.svg)](https://coveralls.io/r/Apercu/ng-markdown) [![Dev Dependencies](https://david-dm.org/Apercu/ng-markdown/dev-status.svg)](https://david-dm.org/Apercu/ng-markdown#info=devDependencies) [![Sauce tests](http://img.shields.io/badge/Sauce-failed-red.svg)](https://saucelabs.com/u/Apercu)
+
+NgMarkdown
 ========
 
 Demo and documentation at [this address](http://apercu.github.io/ng-markdown/).

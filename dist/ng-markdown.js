@@ -41,53 +41,19 @@
             var converter = Markdown.getSanitizingConverter();
             var editor;
             var preview;
-            var postfix = '';
+            var suffix = '';
             var prefix = 'wmd-';
             var helpHandler = null;
             var strings = {};
 
-            //Test attributes
             if (attrs.sanitized === 'false') {
               converter = new Markdown.Converter();
             }
             if (attrs.suffix) {
-              postfix = attrs.suffix;
+              suffix = attrs.suffix;
             }
             if (attrs.prefix) {
               prefix = attrs.prefix;
-            }
-            if (attrs.preConversion) {
-              converter.hooks.chain('preConversion', scope.preConversion);
-            }
-            if (attrs.postConversion) {
-              converter.hooks.chain('postConversion', scope.postConversion);
-            }
-            if (attrs.postNormalization) {
-              converter.hooks.chain('postNormalization', scope.postNormalization);
-            }
-            if (attrs.plainLinkText) {
-              converter.hooks.chain('plainLinkText', scope.plainLinkText);
-            }
-            if (attrs.preBlockGamut) {
-              converter.hooks.chain('preBlockGamut', scope.preBlockGamut);
-            }
-            if (attrs.postBlockGamut) {
-              converter.hooks.chain('postBlockGamut', scope.postBlockGamut);
-            }
-            if (attrs.preSpanGamut) {
-              converter.hooks.chain('preSpanGamut', scope.preSpanGamut);
-            }
-            if (attrs.postSpanGamut) {
-              converter.hooks.chain('postSpanGamut', scope.postSpanGamut);
-            }
-            if (attrs.onPreviewRefresh) {
-              editor.hooks.chain('onPreviewRefresh', scope.onPreviewRefresh);
-            }
-            if (attrs.postBlockquoteCreation) {
-              editor.hooks.chain('postBlockquoteCreation', scope.postBlockquoteCreation);
-            }
-            if (attrs.insertImageDialog) {
-              editor.hooks.set('insertImageDialog', scope.insertImageDialog);
             }
             if (attrs.helpHandler) {
               helpHandler = scope.helpHandler;
@@ -96,11 +62,33 @@
               strings = scope.customStrings;
             }
 
-            preview = angular.element(document.querySelector('.' + prefix + 'preview' + postfix));
+            editor = new Markdown.Editor(converter, suffix, prefix, helpHandler, strings);
 
-            element.addClass(prefix + 'input' + postfix);
+            [
+              'preConversion',
+              'postConversion',
+              'postNormalization',
+              'plainLinkText',
+              'preBlockGamut',
+              'postBlockGamut',
+              'preSpanGamut',
+              'postSpanGamut'
+            ].forEach(function (hook) {
+                if (hook in attrs) { converter.hooks.chain(hook, scope[hook]); }
+              });
 
-            editor = new Markdown.Editor(converter, postfix, prefix, helpHandler, strings);
+            [
+              'onPreviewRefresh',
+              'postBlockquoteCreation',
+              'insertImageDialog'
+            ].forEach(function (hook) {
+                if (hook in attrs) { editor.hooks.chain(hook, scope[hook]); }
+              });
+
+            preview = angular.element(document.querySelector('.' + prefix + 'preview' + suffix));
+
+            element.addClass(prefix + 'input' + suffix);
+
             editor.run();
 
             scope.refresh = function () {
@@ -116,7 +104,7 @@
             };
 
             scope.$on('refreshMarkdown', function (event, message) {
-              if (!message || message === '' || message === (prefix + postfix)) {
+              if (!message || message === '' || message === (prefix + suffix)) {
                 scope.refresh();
               }
             });
@@ -1519,91 +1507,89 @@ else
 
 (function () {
 
-    var util = {},
-        position = {},
-        ui = {},
-        doc = window.document,
-        re = window.RegExp,
-        nav = window.navigator,
-        SETTINGS = { lineLength: 72 },
+  var util = {},
+      position = {},
+      ui = {},
+      doc = window.document,
+      re = window.RegExp,
+      nav = window.navigator,
+      SETTINGS = { lineLength: 72 },
+      uaSniffed = {
+        isIE: /msie/.test(nav.userAgent.toLowerCase()),
+        isIE_5or6: /msie 6/.test(nav.userAgent.toLowerCase()) || /msie 5/.test(nav.userAgent.toLowerCase()),
+        isOpera: /opera/.test(nav.userAgent.toLowerCase())
+      };
 
-        uaSniffed = {
-            isIE: /msie/.test(nav.userAgent.toLowerCase()),
-            isIE_5or6: /msie 6/.test(nav.userAgent.toLowerCase()) || /msie 5/.test(nav.userAgent.toLowerCase()),
-            isOpera: /opera/.test(nav.userAgent.toLowerCase())
-        };
+  var defaultsStrings = {
+    bold: "Strong <strong> Ctrl+B",
+    boldexample: "strong text",
 
-	var defaultsStrings = {
-        bold: "Strong <strong> Ctrl+B",
-        boldexample: "strong text",
+    italic: "Emphasis <em> Ctrl+I",
+    italicexample: "emphasized text",
 
-        italic: "Emphasis <em> Ctrl+I",
-        italicexample: "emphasized text",
+    link: "Hyperlink <a> Ctrl+L",
+    linkdescription: "enter link description here",
+    linkdialog: "<p><b>Insert Hyperlink</b></p><p>http://example.com/ \"optional title\"</p>",
 
-        link: "Hyperlink <a> Ctrl+L",
-        linkdescription: "enter link description here",
-        linkdialog: "<p><b>Insert Hyperlink</b></p><p>http://example.com/ \"optional title\"</p>",
+    quote: "Blockquote <blockquote> Ctrl+Q",
+    quoteexample: "Blockquote",
 
-        quote: "Blockquote <blockquote> Ctrl+Q",
-        quoteexample: "Blockquote",
+    code: "Code Sample <pre><code> Ctrl+K",
+    codeexample: "enter code here",
 
-        code: "Code Sample <pre><code> Ctrl+K",
-        codeexample: "enter code here",
+    image: "Image <img> Ctrl+G",
+    imagedescription: "enter image description here",
+    imagedialog: "<p><b>Insert Image</b></p><p>http://example.com/images/diagram.jpg \"optional title\"</p>",
 
-        image: "Image <img> Ctrl+G",
-        imagedescription: "enter image description here",
-        imagedialog: "<p><b>Insert Image</b></p><p>http://example.com/images/diagram.jpg \"optional title\"</p>",
+    olist: "Numbered List <ol> Ctrl+O",
+    ulist: "Bulleted List <ul> Ctrl+U",
+    litem: "List item",
 
-        olist: "Numbered List <ol> Ctrl+O",
-        ulist: "Bulleted List <ul> Ctrl+U",
-        litem: "List item",
+    heading: "Heading <h1>/<h2> Ctrl+H",
+    headingexample: "Heading",
 
-        heading: "Heading <h1>/<h2> Ctrl+H",
-        headingexample: "Heading",
+    hr: "Horizontal Rule <hr> Ctrl+R",
 
-        hr: "Horizontal Rule <hr> Ctrl+R",
+    undo: "Undo - Ctrl+Z",
+    redo: "Redo - Ctrl+Y",
+    redomac: "Redo - Ctrl+Shift+Z",
 
-        undo: "Undo - Ctrl+Z",
-        redo: "Redo - Ctrl+Y",
-        redomac: "Redo - Ctrl+Shift+Z",
+    help: "Markdown Editing Help"
+  };
 
-        help: "Markdown Editing Help"
-    };
+  var imageDefaultText = 'http://',
+      linkDefaultText = 'http://',
+      prefixName,
+      suffixName;
 
-    var imageDefaultText = "http://";
-    var linkDefaultText = "http://";
-	var prefixName;
-	var suffixName;
-
-	// The helpFunction is the help function handler, fired when a user click on
-	// the help button. It will not be created if null function is given.
-	//
-	// If given, strings can modify all the properties as defaultStrings above.
-    //
-    // The constructed editor object has the methods:
-    // - getConverter() returns the markdown converter object that was passed to the constructor
-    // - run() actually starts the editor; should be called after all necessary plugins are registered. Calling this more than once is a no-op.
-    // - refreshPreview() forces the preview to be updated. This method is only available after run() was called.
+  // The helpFunction is the help function handler, fired when a user click on
+  // the help button. It will not be created if null function is given.
+  //
+  // If given, strings can modify all the properties as defaultStrings above.
+  //
+  // The constructed editor object has the methods:
+  // - getConverter() returns the markdown converter object that was passed to the constructor
+  // - run() actually starts the editor; should be called after all necessary plugins are registered. Calling this more than once is a no-op.
+  // - refreshPreview() forces the preview to be updated. This method is only available after run() was called.
     Markdown.Editor = function (markdownConverter, idPostfix, idPrefix, helpFunction, strings) {
         strings = strings || {};
         var getString = function (identifier) { return strings[identifier] || defaultsStrings[identifier]; };
 
         idPostfix = idPostfix || "";
-		suffixName = idPostfix;
-		prefixName = idPrefix;
+        suffixName = idPostfix;
+        prefixName = idPrefix;
 
         var hooks = this.hooks = new Markdown.HookCollection();
-        hooks.addNoop("onPreviewRefresh");       // called with no arguments after the preview has been refreshed
-        hooks.addNoop("postBlockquoteCreation"); // called with the user's selection *after* the blockquote was created; should return the actual to-be-inserted text
-        hooks.addFalse("insertImageDialog");     /* called with one parameter: a callback to be called with the URL of the image. If the application creates
+        hooks.addNoop('onPreviewRefresh');       // called with no arguments after the preview has been refreshed
+        hooks.addNoop('postBlockquoteCreation'); // called with the user's selection *after* the blockquote was created; should return the actual to-be-inserted text
+        hooks.addFalse('insertImageDialog');     /* called with one parameter: a callback to be called with the URL of the image. If the application creates
                                                   * its own image insertion dialog, this hook should return true, and the callback should be called with the chosen
                                                   * image url (or null if the user cancelled). If this hook returns false, the default dialog will be used.
                                                   */
 
         this.getConverter = function () { return markdownConverter; };
 
-        var that = this,
-            panels;
+        var that = this, panels;
 
         this.run = function () {
             if (panels)

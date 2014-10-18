@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '0.10'
 addons:
-    sauce_connect: true
+  sauce_connect: true
 before_install:
 - npm cache clean
 before_script:
@@ -10,10 +10,10 @@ before_script:
 - export PHANTOMJS_BIN=/usr/local/phantomjs/bin/phantomjs
 - sh -e /etc/init.d/xvfb start
 - sleep 3
-- ./node_modules/bower/bin/bower install --config.interactive=0
-- ./node_modules/bower/bin/bower --version
+- "./node_modules/bower/bin/bower install --config.interactive=0"
+- "./node_modules/bower/bin/bower --version"
 - gulp --version
 env:
   global:
-  - secure: iKE9Qp+6ZKCr1Xon087MKA267kgIItF/RMuEDUCwNzsD3VvZHdzqi00qml3iyZ5zHEWTWEev0gBQdVDNQbyzTM/6Eu60TXQcx6Veqgm6jkTmOC9gtiY1AA/SEm6eEm2dZKVKagQpaLiK3GxVPSeeGygGqDMPpOUKNnHdT4jZHDQ=
-  - secure: Snq1vfb80lHE4pkhqVfAt6a2mwO/mMA4hkQcVdP034AxrzuD82xuaZgsFOt+jidXdcZwXcZeJTOG8uoQnU8Sq/WTvx/OGhOhaYR6B2qNT3D9k/dOl3gc/7+ZmxZ9bGq++pXTPIwKinhJ0wNrBWCmwNBuohZDE95aAPItVmGJP6c=
+  - secure: BQ2feGizkxZvy9OEabZ43inovL5TaqyQQ88aEth2lbFjNYYXdUSi1FCNjvC7Rz8b64Dn2c9DSujXGbN460wYe94K4k96w7/mc0FpdFO3BsHXSwKdPDUJyhhCh7Mx8aJ7KGEb6eiL8n+jEpqWrMu9hFlYZI6wS49fSCrnT7OZ1+4=
+  - secure: VNZNv6yPFvTIAxEPVnqo8RayOVmK0YPOxBCSSC+Mxv1J0QAa/F8gag9JmHpLhDoVi7lS1fIobMOkAVnL3tWTqVKluhTqeiwNtib9GZ7lsJpC2QNV9ZZMdLUF/h4ScZjPxLZcrUIjBTIdFCMK+CWmWEBi7TRFOcE1GTr1nHcoa9E=

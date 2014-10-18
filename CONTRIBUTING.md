@@ -12,4 +12,6 @@ You should always push your commits to `develop` branch, or to another if you th
 
 Please follow the [AngularJS commit conventions](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md) when pushing a commit.
 
+When updating a *js* or *scss* file, don't forget to run the `gulp` command which reloads the minication process to keep the dist files up-to-date.
+
 In case the Travis build is failing, make the fix and squash your commit into one. If you think the fail comes from a timeout or something that is not related to your PR, please explain it.
