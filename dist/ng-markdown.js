@@ -7,8 +7,20 @@
     .config(['msdElasticConfig', function (config) {
       config.append = '\n\n';
     }])
+    .service('ngMarkdown', function () {
+      return {
+        get: function (input, unsafe) {
+          var converter = unsafe ? new Markdown.Converter() : Markdown.getSanitizingConverter();
+          return converter.makeHtml(input);
+        }
+      };
+    })
+    .filter('ngMarkdown', function (ngMarkdown) {
+      return function (input, unsafe) {
+        return ngMarkdown.get(input, unsafe);
+      };
+    })
     .directive('ngMarkdown', function ($timeout, $compile) {
-
       return {
         template: '<textarea ng-keydown="refresh()"></textarea>',
         restrict: 'EA',
@@ -111,6 +123,34 @@
 
               scope.refresh();
 
+            }
+          };
+        }
+      };
+    })
+    .directive('ngMarkdownPreview', function ($timeout, ngMarkdown) {
+      return {
+        template: '<div></div>',
+        restrict: 'EA',
+        replace: true,
+        scope: {
+          ngModel: '='
+        },
+        compile: function () {
+          return {
+            post: function (scope, element, attrs) {
+
+              scope.refresh = function () {
+                $timeout(function () {
+                  element.html(ngMarkdown.get(scope.ngModel, attrs.sanitized === false));
+                  angular.forEach(element.find('code'), function (block) {
+                    hljs.highlightBlock(block);
+                  });
+                });
+              };
+
+              scope.refresh();
+              scope.$watch('ngModel', scope.refresh);
             }
           };
         }
