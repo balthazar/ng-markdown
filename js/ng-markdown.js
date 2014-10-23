@@ -130,7 +130,7 @@
     })
     .directive('ngMarkdownPreview', function ($timeout, ngMarkdown) {
       return {
-        template: '<div></div>',
+        template: '<div class="wmd-preview"></div>',
         restrict: 'EA',
         replace: true,
         scope: {
