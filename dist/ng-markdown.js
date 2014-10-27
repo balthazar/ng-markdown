@@ -10,6 +10,7 @@
     .service('ngMarkdown', function () {
       return {
         get: function (input, unsafe) {
+          if (!input) { return null; }
           var converter = unsafe ? new Markdown.Converter() : Markdown.getSanitizingConverter();
           return converter.makeHtml(input);
         }
