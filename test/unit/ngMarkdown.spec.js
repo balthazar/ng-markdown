@@ -486,10 +486,9 @@ describe('ngMarkdown Directive', function () {
       '</content>'
     ].join(''));
 
-    expect($scope.bind).toBe('- One\n- Two\n- Three');
-
     $timeout.flush();
 
+    expect($scope.bind).toBe('- One\n- Two\n- Three');
     checkPreview('<ul>\n<li>One</li>\n<li>Two</li>\n<li>Three</li>\n</ul>');
   });
 
