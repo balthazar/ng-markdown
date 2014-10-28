@@ -18,7 +18,6 @@ gulp.task('js', ['jshint'], function () {
     .pipe($.concat('ng-markdown.js'))
     .pipe(gulp.dest('dist'))
     .pipe($.ngAnnotate())
-      .on('error', $.util.log)
     .pipe($.uglify({ mangle: false }))
     .pipe($.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist'));

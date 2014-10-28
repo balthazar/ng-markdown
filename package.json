@@ -24,7 +24,6 @@
     "gulp-rename": "^1.2.0",
     "gulp-ruby-sass": "^0.7.1",
     "gulp-uglify": "^1.0.0",
-    "gulp-util": "^3.0.1",
     "karma": "~0.12.16",
     "karma-coverage": "~0.2.4",
     "karma-jasmine": "^0.1.5",
