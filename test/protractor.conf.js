@@ -1,14 +1,14 @@
 exports.config = {
 
 	//Running a standalone Selenium Server !
-	seleniumServerJar: '../node_modules/protractor/selenium/selenium-server-standalone-2.42.2.jar',
+	seleniumServerJar: '../node_modules/protractor/selenium/selenium-server-standalone-2.43.1.jar',
 	seleniumPort: null,
 
 	chromeDriver: '../node_modules/protractor/selenium/chromedriver',
 
 	// If true, only chromedriver will be started.
 	// Tests for browsers other than chrome will not run.
-	chromeOnly: false,
+	chromeOnly: true,
 
 	//Deploying to SauceLabs
 	sauceUser: process.env.SAUCE_USERNAME,
