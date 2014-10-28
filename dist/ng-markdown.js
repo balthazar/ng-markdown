@@ -143,7 +143,7 @@
 
               scope.refresh = function () {
                 $timeout(function () {
-                  element.html(ngMarkdown.get(scope.ngModel, attrs.sanitized === false));
+                  element.html(ngMarkdown.get(scope.ngModel, attrs.sanitized === 'false'));
                   angular.forEach(element.find('code'), function (block) {
                     hljs.highlightBlock(block);
                   });
