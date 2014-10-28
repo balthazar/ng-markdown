@@ -6,14 +6,16 @@ describe('ngMarkdown Directive', function () {
 
   var input = element(by.model('text')),
     preview = element(by.css('.wmd-preview')),
-    bind = element(by.css('.bindTest'));
+    bind = element(by.css('.bindTest')),
+    ptor = protractor.getInstance();
 
   afterEach(function () {
     input.clear();
   });
 
-    it('should pass this simple test', function() {
+  it('should pass this simple test', function() {
     expect(42).toBe(42);
+    ptor.sleep(500);
   });
 
   it('should create some text on basic input', function () {

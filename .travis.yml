@@ -13,7 +13,6 @@ before_script:
 - "./node_modules/bower/bin/bower install --config.interactive=0"
 - "./node_modules/bower/bin/bower --version"
 - gulp --version
-- gulp e2e:update
 env:
   global:
   - secure: BQ2feGizkxZvy9OEabZ43inovL5TaqyQQ88aEth2lbFjNYYXdUSi1FCNjvC7Rz8b64Dn2c9DSujXGbN460wYe94K4k96w7/mc0FpdFO3BsHXSwKdPDUJyhhCh7Mx8aJ7KGEb6eiL8n+jEpqWrMu9hFlYZI6wS49fSCrnT7OZ1+4=
