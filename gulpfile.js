@@ -55,8 +55,9 @@ gulp.task('test', function () {
       reporters: ['progress', 'coverage'],
     singleRun: true
   }, function (code) {
-    console.log('Karma exited with ', code);
+    console.info('[Karma] exited with ', code);
     if (process.env.TRAVIS !== true) { return ; }
+    console.info('[Coverage] Launching...');
     gulp.src('test/coverage/**/lcov.info')
       .pipe($.coveralls())
       .on('end', function() {
@@ -83,9 +84,9 @@ gulp.task('e2e:run', ['e2e:server'], function (callback) {
         args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
       }
     )).on('error', function (e) {
-      console.log(e);
+      console.info('[Protactor] Errored.');
       server.close();
-      callback();
+      callback(e);
     }).on('end', function () {
       server.close();
       callback();
