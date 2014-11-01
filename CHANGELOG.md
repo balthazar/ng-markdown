@@ -1,3 +1,20 @@
+### 2.4.0 (2014-11-01)
+
+
+#### Bug Fixes
+
+* **core:**
+  * prevent convert when input is null ([3a81817e](https://github.com/Apercu/ng-markdown/commit/3a81817ead76c88d13d4478f1a7123f11a657d7b))
+* **gen:**
+  * add plumber and remove unwanted map files ([2435fe0f](https://github.com/Apercu/ng-markdown/commit/2435fe0f89b7a09aeb21050ce342e33af4edb8de))
+  * deps and watch js files ([a59d31a8](https://github.com/Apercu/ng-markdown/commit/a59d31a8458267a72da86405082f489789c5298d))
+* **test:** prevent incorrect passing builds ([73921d3d](https://github.com/Apercu/ng-markdown/commit/73921d3dfe46adea6bff4d22aad1b73033d9a503))
+
+#### Features
+
+* **core:** add markdown service, filter and preview directive ([0a7eef74](https://github.com/Apercu/ng-markdown/commit/0a7eef74db5f6cf1b409f7863c301b5c3373ea44))
+
+
 ## 2.3.0 (2014-09-01)
 
 
