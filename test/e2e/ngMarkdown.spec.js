@@ -12,26 +12,26 @@ describe('ngMarkdown Directive', function () {
     input.clear();
   });
 
-    it('should pass this simple test', function() {
+  it('should pass this simple test', function() {
     expect(42).toBe(42);
   });
 
   it('should create some text on basic input', function () {
 
-    input.sendKeys('Hello this is my first protractor test ! **I\'m happy**');
+    input.sendKeys('**happy**');
 
     preview.getText().then(function (text) {
-      expect(text).toBe('Hello this is my first protractor test ! I\'m happy');
+      expect(text).toBe('happy');
     });
 
     preview.getInnerHtml().then(function (html) {
-      expect(html).toBe('<p>Hello this is my first protractor test ! <strong>I\'m happy</strong></p>');
+      expect(html).toBe('<p><strong>happy</strong></p>');
     });
 
-    input.sendKeys(' that this should append text');
+    input.sendKeys('\nyeah');
 
     preview.getText().then(function (text) {
-      expect(text).toBe('Hello this is my first protractor test ! I\'m happy that this should append text');
+      expect(text).toBe('happy yeah');
     });
 
   });

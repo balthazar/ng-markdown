@@ -1,38 +1,39 @@
-var   pkg = require('./package.json'),
-       fs = require('fs'),
-     gulp = require('gulp'),
-       _g = require('gulp-load-plugins')(),
-changelog = require('conventional-changelog'),
+var gulp = require('gulp'),
+    $ = require('gulp-load-plugins')(),
+    pkg = require('./package.json'),
+    fs = require('fs'),
+    changelog = require('conventional-changelog'),
     karma = require('karma').server,
-     args = require('yargs').argv,
-     path = require('path'),
-       es = require('event-stream');
+    args = require('yargs').argv,
+    path = require('path'),
+    es = require('event-stream');
 
 var express = require('express'),
-       http = require('http'),
-     server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
+    http = require('http'),
+    server = http.createServer(express().use(express.static(__dirname + '/test/e2e/app/')));
 
 gulp.task('js', ['jshint'], function () {
   return gulp.src('js/**/*.js')
-    .pipe(_g.concat('ng-markdown.js'))
+    .pipe($.plumber())
+    .pipe($.concat('ng-markdown.js'))
     .pipe(gulp.dest('dist'))
-    .pipe(_g.ngAnnotate())
-      .on('error', _g.util.log)
-    .pipe(_g.uglify({ mangle: false }))
-    .pipe(_g.rename({ suffix: '.min' }))
+    .pipe($.ngAnnotate())
+    .pipe($.uglify({ mangle: false }))
+    .pipe($.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
   var _highlight = gulp.src('js/highlight/*.css');
   var _sass = gulp.src('css/*.scss')
-    .pipe(_g.rubySass({ compass: true }));
+    .pipe($.plumber())
+    .pipe($.rubySass({ compass: true, 'sourcemap=none': true }));
 
   return es.merge(_sass, _highlight)
-    .pipe(_g.concat('ng-markdown.css'))
+    .pipe($.concat('ng-markdown.css'))
     .pipe(gulp.dest('dist'))
-    .pipe(_g.minifyCss())
-    .pipe(_g.rename({ suffix: '.min' }))
+    .pipe($.minifyCss())
+    .pipe($.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist'));
 });
 
@@ -54,10 +55,11 @@ gulp.task('test', function () {
       reporters: ['progress', 'coverage'],
     singleRun: true
   }, function (code) {
-    console.log('Karma exited with ', code);
-    if (process.env.TRAVIS !== true) { return ; }
+    console.info('[Karma] exited with ', code);
+    if (!process.env.TRAVIS) { return code; }
+    console.info('[Coverage] Launching...');
     gulp.src('test/coverage/**/lcov.info')
-      .pipe(_g.coveralls())
+      .pipe($.coveralls())
       .on('end', function() {
         process.exit(code);
       });
@@ -66,8 +68,8 @@ gulp.task('test', function () {
 
 gulp.task('jshint', function () {
   gulp.src('js/*.js')
-    .pipe(_g.jshint())
-    .pipe(_g.jshint.reporter('default'));
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('default'));
 });
 
 gulp.task('e2e:server', function (callback) {
@@ -76,23 +78,22 @@ gulp.task('e2e:server', function (callback) {
 
 gulp.task('e2e:run', ['e2e:server'], function (callback) {
   gulp.src('test/e2e/*.js')
-    .pipe(_g.protractor.protractor(
+    .pipe($.protractor.protractor(
       {
         configFile: 'test/protractor.conf.js',
         args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
       }
     )).on('error', function (e) {
-      console.log(e);
       server.close();
-      callback();
+      callback(e);
     }).on('end', function () {
       server.close();
       callback();
-    });;
+    });
 });
 
 gulp.task('e2e:update', function () {
-  _g.protractor.webdriver_update();
+  $.protractor.webdriver_update();
 });
 
 gulp.task('watch', function () {

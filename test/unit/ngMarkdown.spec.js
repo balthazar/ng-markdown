@@ -6,7 +6,8 @@ describe('ngMarkdown Directive', function () {
       $timeout,
       $document,
       $compile,
-      elem;
+      elem,
+      service;
 
   var defTemplate = [
     '<content>',
@@ -18,11 +19,12 @@ describe('ngMarkdown Directive', function () {
 
   beforeEach(module('ngMarkdown'));
 
-  beforeEach(inject(function (_$rootScope_, _$timeout_, _$compile_, _$document_) {
+  beforeEach(inject(function (_$rootScope_, _$timeout_, _$compile_, _$document_, ngMarkdown) {
     $scope = _$rootScope_;
     $document = _$document_;
     $timeout = _$timeout_;
     $compile = _$compile_;
+    service = ngMarkdown;
 
     var template = angular.element(defTemplate);
     angular.element($document[0].body).append(template);
@@ -484,11 +486,91 @@ describe('ngMarkdown Directive', function () {
       '</content>'
     ].join(''));
 
+    $timeout.flush();
+    $scope.$digest();
+
     expect($scope.bind).toBe('- One\n- Two\n- Three');
+    checkPreview('<ul>\n<li>One</li>\n<li>Two</li>\n<li>Three</li>\n</ul>');
+  });
+
+  it('should test the new preview directive', function () {
+
+    $scope.bind = '# Title\nYe **ye** common preview';
+    expect($scope.bind).toBe('# Title\nYe **ye** common preview');
+
+    recompile([
+      '<content>',
+        '<ng-markdown-preview ng-model="bind"></ng-markdown-preview>',
+      '</content>'
+    ].join(''));
 
     $timeout.flush();
 
-    checkPreview('<ul>\n<li>One</li>\n<li>Two</li>\n<li>Three</li>\n</ul>');
+    checkPreview('<h1>Title</h1>\n\n<p>Ye <strong>ye</strong> common preview</p>');
+  });
+
+  it('should test the new preview directive using unsafe', function () {
+
+    $scope.bind = '# Title\nYe **ye** common preview unsafe\n\n<marquee>OKAY</marquee>';
+    expect($scope.bind).toBe('# Title\nYe **ye** common preview unsafe\n\n<marquee>OKAY</marquee>');
+
+    recompile([
+      '<content>',
+        '<ng-markdown-preview ng-model="bind" sanitized="false"></ng-markdown-preview>',
+      '</content>'
+    ].join(''));
+
+    $timeout.flush();
+
+    checkPreview('<h1>Title</h1>\n\n<p>Ye <strong>ye</strong> common preview unsafe</p>\n\n<p><marquee>OKAY</marquee></p>');
+  });
+
+  it('should test the new preview directive with code block highlight', function () {
+
+    $scope.bind = '# PLZGEVMEDACODE\n\n    function (ok) { return "Lirik<3"; }';
+    expect($scope.bind).toBe('# PLZGEVMEDACODE\n\n    function (ok) { return "Lirik<3"; }');
+
+    recompile([
+      '<content>',
+        '<ng-markdown-preview ng-model="bind"></ng-markdown-preview>',
+      '</content>'
+    ].join(''));
+
+    $timeout.flush();
+
+    checkPreview('<h1>PLZGEVMEDACODE</h1>\n\n<pre><code class=" hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ok)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"Lirik&lt;3"</span>; }\n</code></pre>');
+  });
+
+  it('should test the filter', function () {
+
+    $scope.bind = '**Some simple binding**\n<marquee>ok</marquee>';
+    expect($scope.bind).toBe('**Some simple binding**\n<marquee>ok</marquee>');
+
+    recompile([
+      '<content>',
+        '<div class="wmd-preview">{{ bind | ngMarkdown }}</div>',
+      '</content>'
+    ].join(''));
+
+    $timeout.flush();
+
+    checkPreview('&lt;p&gt;&lt;strong&gt;Some simple binding&lt;/strong&gt;\nok&lt;/p&gt;');
+  });
+
+  it('should test to bind to null', function () {
+
+    $scope.bind = null;
+    expect($scope.bind).toBeNull();
+
+    recompile([
+      '<content>',
+        '<ng-markdown-preview ng-model="bind"></ng-markdown-preview>',
+      '</content>'
+    ].join(''));
+
+    $timeout.flush();
+
+    checkPreview('');
   });
 
 });
