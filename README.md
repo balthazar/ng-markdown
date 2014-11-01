@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Apercu/ng-markdown.svg?branch=master&style=flat-square)](https://travis-ci.org/Apercu/ng-markdown) [![protractor](http://img.shields.io/badge/protractor-passing-green.svg?style=flat-square)](https://saucelabs.com/u/Apercu) [![Coverage Status](https://img.shields.io/coveralls/Apercu/ng-markdown.svg?style=flat-square)](https://coveralls.io/r/Apercu/ng-markdown) [![devDependency Status](https://david-dm.org/Apercu/ng-markdown/dev-status.svg?style=flat-square)](https://david-dm.org/Apercu/ng-markdown#info=devDependencies)
+[![Build Status](http://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square)](https://travis-ci.org/Apercu/ng-markdown) [![protractor](http://img.shields.io/badge/protractor-passing-brightgreen.svg?style=flat-square)](https://saucelabs.com/u/Apercu) [![Coverage Status](https://img.shields.io/coveralls/Apercu/ng-markdown.svg?style=flat-square)](https://coveralls.io/r/Apercu/ng-markdown) [![devDependency Status](https://david-dm.org/Apercu/ng-markdown/dev-status.svg?style=flat-square)](https://david-dm.org/Apercu/ng-markdown#info=devDependencies)
 
 NgMarkdown
 ========
