@@ -56,7 +56,7 @@ gulp.task('test', function () {
     singleRun: true
   }, function (code) {
     console.info('[Karma] exited with ', code);
-    if (!process.env.TRAVIS) { return code; }
+    if (!process.env.TRAVIS || code) { return code; }
     console.info('[Coverage] Launching...');
     gulp.src('test/coverage/**/lcov.info')
       .pipe($.coveralls())
