@@ -2905,6 +2905,8 @@ else
 
             var buttonBar = panels.buttonBar;
 
+            if (!buttonBar) { return ; }
+
             var normalYShift = "0px";
             var disabledYShift = "-20px";
             var highlightYShift = "-40px";
