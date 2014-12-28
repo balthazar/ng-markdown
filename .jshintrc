@@ -1,0 +1,27 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "forin": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
+  "noempty": true,
+  "nonbsp": true,
+  "nonew": false,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "maxparams": 3,
+  "maxdepth": 3,
+  "globals": {
+    "angular": true,
+    "document": true,
+    "hljs": true,
+    "Markdown": false
+  }
+}

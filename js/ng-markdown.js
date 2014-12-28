@@ -1,7 +1,5 @@
 (function () {
   'use strict';
-  /* global angular */
-  /* global Markdown */
 
   angular.module('ngMarkdown', ['monospaced.elastic'])
     .config(['msdElasticConfig', function (config) {
